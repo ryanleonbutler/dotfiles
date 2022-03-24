@@ -19,11 +19,11 @@ export EDITOR="lvim"
 alias sz="source ~/.zshrc"
 alias ls="ls -GFh"
 alias ll="ls -GFhl"
-alias zshrc="cd ~ && vim ~/.zshrc"
-alias starrc="cd ~/.config && vim starship.toml"
-alias sshrc="cd ~/.ssh && vim config"
-alias vimrc="cd ~/.config/lvim && vim config.lua"
-alias kittyrc="cd ~/.config/kitty && vim kitty.conf"
+alias zshrc="chezmoi ~/.zshrc"
+alias starrc="chezmoi ~/.config/starship.toml"
+alias sshrc="vim ~/.ssh/config"
+alias vimrc="chezmoi ~/.config/lvim/config.lua"
+alias kittyrc="chezmoi ~/.config/kitty/kitty.conf"
 alias filesopen="sudo lsof -n | cut -f1 -d' ' | uniq -c | sort | tail"
 alias ranger="TERM=xterm-kitty ranger"
 alias chrome="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
@@ -70,7 +70,7 @@ eval "$(rbenv init -)"
 
 # fnm
 export PATH=$HOME/.fnm:$PATH
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -94,3 +94,5 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 SECRETS="${HOME}/.env"
 source $SECRETS
 
+# starship
+eval "$(starship init zsh)"
