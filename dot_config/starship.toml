@@ -1,0 +1,92 @@
+scan_timeout = 100
+add_newline = false
+
+[username]
+format = "\\[($style)[$user@]($style)"
+style_user = "red"
+show_always = false
+disabled = true
+
+[hostname]
+ssh_only = false
+format = "\\[[MBP]($style)\\] "
+style = "yellow"
+
+[aws]
+disabled = true
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+truncation_length = 2 
+truncate_to_repo = true
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+pyenv_version_name = false
+python_binary = ["./venv/bin/python", "python3"]
+disabled = false
+
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
