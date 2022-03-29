@@ -1,3 +1,7 @@
+#
+BP="${HOME}/.profile"
+source $BP
+
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#75B8C8'
