@@ -418,7 +418,7 @@
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
     "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
-        "[One Dark Pro]": {
+        "[Atom One Dark]": {
             "terminal.background": "#1D1D1D",
             "terminalCursor.background": "#D9D8D8",
             "terminalCursor.foreground": "#D9D8D8",

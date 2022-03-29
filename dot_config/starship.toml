@@ -60,6 +60,10 @@ symbol = " "
 [nix_shell]
 symbol = " "
 
+[nodejs]
+symbol = " "
+disabled = true
+
 [package]
 symbol = " "
 
@@ -73,8 +77,7 @@ symbol = " "
 symbol = " "
 pyenv_version_name = false
 python_binary = ["./venv/bin/python", "python3"]
-disabled = false
-
+disabled = true
 
 [ruby]
 symbol = " "
