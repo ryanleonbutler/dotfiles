@@ -469,7 +469,7 @@
     "viceroy.marketplace.extensionUpdateChannels": {
         "marklel.vscode-brazil": "stable"
     },
-    "viceroy.config.internal.lastUpdateTime": "2022-03-22T13:06:57.182Z",
+    "viceroy.config.internal.lastUpdateTime": "2022-03-29T07:59:05.784Z",
     "viceroy.config.includeWorkspaceAsFolder": false,
     "viceroy.workspaceSyncStrategy": "automatic",
     "viceroy.config.resolveSymlinks": "resolve",
