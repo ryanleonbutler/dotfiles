@@ -20,7 +20,7 @@
     },
     "breadcrumbs.enabled": false,
     "debug.allowBreakpointsEverywhere": true,
-    "debug.console.fontFamily": "FuraCodeNerdFontCompleteM-Regular",
+    "debug.console.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "debug.console.fontSize": 12,
     "debug.javascript.autoAttachFilter": "disabled",
     "debug.onTaskErrors": "showErrors",
@@ -31,18 +31,18 @@
     "diffEditor.renderSideBySide": false,
     "diffEditor.wordWrap": "off",
     "editor.accessibilitySupport": "off",
-    "editor.codeLensFontFamily": "FuraCodeNerdFontCompleteM-Regular",
-    "editor.cursorBlinking": "phase",
+    "editor.codeLensFontFamily": "FiraCodeNerdFontCompleteM-Retina",
+    "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 2,
     "editor.folding": false,
-    "editor.fontFamily": "FuraCodeNerdFontCompleteM-Regular",
+    "editor.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "editor.fontLigatures": false,
-    "editor.fontSize": 16,
+    "editor.fontSize": 14,
     "editor.glyphMargin": true,
     "editor.hideCursorInOverviewRuler": false,
-    "editor.inlayHints.fontFamily": "FuraCodeNerdFontCompleteM-Regular",
+    "editor.inlayHints.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 200,
     "editor.minimap.renderCharacters": false,
@@ -64,7 +64,7 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.smoothScrolling": false,
-    "editor.suggestFontSize": 16,
+    "editor.suggestFontSize": 14,
     "editor.suggestSelection": "first",
     "editor.wordWrapColumn": 130,
     "explorer.confirmDelete": false,
@@ -76,7 +76,7 @@
         "*.toml": "ini"
     },
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 5,
+    "files.autoSaveDelay": 500,
     "files.exclude": {
         ".viceroy": true,
         "apollo-overrides": true,
@@ -210,38 +210,25 @@
     "security.workspace.trust.untrustedFiles": "open",
     "telemetry.telemetryLevel": "off",
     "terminal.external.osxExec": "Kitty.app",
+    "terminal.external.linuxExec": "Kitty.app",
     "terminal.integrated.confirmOnExit": "never",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": false,
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorWidth": 4,
-    "terminal.integrated.defaultProfile.linux": "zsh",
-    "terminal.integrated.defaultProfile.osx": "zsh",
-    "terminal.integrated.fontFamily": "FuraCodeNerdFontCompleteM-Regular",
+    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
+    "terminal.integrated.defaultProfile.osx": "/usr/bin/zsh",
+    "terminal.integrated.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.gpuAcceleration": "off",
-    "terminal.integrated.profiles.linux": {
-        "zsh": {
-            "args": [
-                "-l"
-            ],
-            "path": "zsh"
-        }
-    },
-    "terminal.integrated.profiles.osx": {
-        "zsh": {
-            "args": [
-                "-l"
-            ],
-            "path": "zsh"
-        }
-    },
     "terminal.integrated.tabs.enabled": true,
     "vim.easymotion": true,
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false
     },
+    "vim.searchHighlightColor": "#D9D8D8",
+    "vim.searchHighlightTextColor": "#282C34",
     "vim.highlightedyank.color": "rgba(78, 184, 251, 0.5)",
     "vim.highlightedyank.duration": 500,
     "vim.highlightedyank.enable": true,
@@ -419,6 +406,8 @@
     "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
         "[Atom One Dark]": {
+            "editorCursor.background": "#1D1D1D",
+            "editorCursor.foreground": "#D9D8D8",
             "terminal.background": "#1D1D1D",
             "terminalCursor.background": "#D9D8D8",
             "terminalCursor.foreground": "#D9D8D8",
@@ -439,10 +428,10 @@
             "terminal.ansiWhite": "#D9D8D8",
             "terminal.ansiYellow": "#E6B875"
         },
-        "statusBar.background": "#282A36",
-        "statusBar.debuggingBackground": "#DDE493",
+        "statusBar.background": "#282C34",
+        "statusBar.debuggingBackground": "#E6B875",
         "statusBar.debuggingForeground": "#000000",
-        "statusBar.foreground": "#fff",
+        "statusBar.foreground": "#D9D8D8",
         "statusBar.noFolderBackground": "#282A36"
     },
     "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -469,7 +458,7 @@
     "viceroy.marketplace.extensionUpdateChannels": {
         "marklel.vscode-brazil": "stable"
     },
-    "viceroy.config.internal.lastUpdateTime": "2022-03-29T07:59:05.784Z",
+    "viceroy.config.internal.lastUpdateTime": "2022-04-05T08:26:34.441Z",
     "viceroy.config.includeWorkspaceAsFolder": false,
     "viceroy.workspaceSyncStrategy": "automatic",
     "viceroy.config.resolveSymlinks": "resolve",
@@ -480,5 +469,6 @@
     "python.analysis.extraPaths": [],
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "workbench.colorTheme": "Atom One Dark"
+    "workbench.colorTheme": "Atom One Dark",
+    "terminal.integrated.shellIntegration.enabled": false
 }

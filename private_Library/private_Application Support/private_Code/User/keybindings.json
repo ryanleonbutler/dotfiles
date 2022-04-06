@@ -1,6 +1,34 @@
 // Place your key bindings in this file to override the defaults
 [
     {
+        "key": "ctrl+e",
+        "command": "cursorEndSelect"
+    },
+    {
+        "key": "cmd+k",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+k",
+        "command": "workbench.action.showTreeHover",
+        "when": "customTreeView && listFocus && !inputFocus"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "workbench.action.showTreeHover",
+        "when": "customTreeView && listFocus && !inputFocus"
+    },
+    {
+        "key": "shift+cmd+k",
+        "command": "editor.action.showDefinitionPreviewHover"
+    },
+    {
         "key": "ctrl+cmd+b",
         "command": "workbench.action.toggleAuxiliaryBar"
     },

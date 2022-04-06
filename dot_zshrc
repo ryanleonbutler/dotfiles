@@ -31,6 +31,17 @@ alias secretsrc="v ~/.env"
 alias jupyter="${HOME}/development/jupyter_notebooks/.venv/bin/jupyter notebook --port 8888 --notebook-dir ${HOME}/development/jupyter_notebooks/src"
 alias cat="rich"
 
+# docker
+alias db="docker build"
+alias dcl="docker container ls -a"
+alias dcc="docker container create"
+alias dcstart="docker container start"
+alias dcstop="docker container stop"
+alias dck="docker container kill"
+alias dcrm="docker container rm -f"
+alias dil="docker image ls"
+alias dirm="docker image rm -f"
+
 # Functions
 # Custom ls
 cdl() { builtin cd "$@" && ls; }

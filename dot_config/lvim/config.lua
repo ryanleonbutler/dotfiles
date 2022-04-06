@@ -90,7 +90,7 @@ lvim.keys.normal_mode["q"] = ""
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -237,6 +237,7 @@ lvim.plugins = {
           "help",
           "terminal",
           "dashboard",
+          "alpha",
           "packer",
           "lspinfo",
           "TelescopePrompt",
@@ -310,10 +311,10 @@ lvim.plugins = {
       }
     end
   },
-  {
-    "sindrets/diffview.nvim",
-    event = "BufRead",
-  },
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   event = "BufRead",
+  -- },
   {
     "f-person/git-blame.nvim",
     event = "BufRead",
@@ -322,25 +323,25 @@ lvim.plugins = {
       vim.g.gitblame_enabled = 0
     end,
   },
-  {
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Git",
-      "Gdiffsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GDelete",
-      "GBrowse",
-      "GRemove",
-      "GRename",
-      "Glgrep",
-      "Gedit"
-  },
-    ft = {"fugitive"}
-  },
+  -- {
+  --   "tpope/vim-fugitive",
+  --   cmd = {
+  --     "G",
+  --     "Git",
+  --     "Gdiffsplit",
+  --     "Gread",
+  --     "Gwrite",
+  --     "Ggrep",
+  --     "GMove",
+  --     "GDelete",
+  --     "GBrowse",
+  --     "GRemove",
+  --     "GRename",
+  --     "Glgrep",
+  --     "Gedit"
+  -- },
+  --   ft = {"fugitive"}
+  -- },
   {
     "p00f/nvim-ts-rainbow",
   },
@@ -369,44 +370,44 @@ lvim.plugins = {
             })
     end,
   },
-  {
-    "ahmedkhalf/lsp-rooter.nvim",
-    event = "BufRead",
-    config = function()
-      require("lsp-rooter").setup()
-    end,
-  },
-  {
-    "vim-test/vim-test",
-    config = function()
-        vim.cmd [[
-            function! ToggleTermStrategy(cmd) abort
-                call luaeval("require('toggleterm').exec(_A[1])", [a:cmd])
-            endfunction
-            let g:test#custom_strategies = {'toggleterm': function('ToggleTermStrategy')}
-        ]]
-        vim.g["test#strategy"] = "toggleterm"
-    end,
-  },
-  {
-    "npxbr/glow.nvim",
-    ft = {"markdown"}
-  },
+  -- {
+  --   "ahmedkhalf/lsp-rooter.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("lsp-rooter").setup()
+  --   end,
+  -- },
+  -- {
+  --   "vim-test/vim-test",
+  --   config = function()
+  --       vim.cmd [[
+  --           function! ToggleTermStrategy(cmd) abort
+  --               call luaeval("require('toggleterm').exec(_A[1])", [a:cmd])
+  --           endfunction
+  --           let g:test#custom_strategies = {'toggleterm': function('ToggleTermStrategy')}
+  --       ]]
+  --       vim.g["test#strategy"] = "toggleterm"
+  --   end,
+  -- },
+  -- {
+  --   "npxbr/glow.nvim",
+  --   ft = {"markdown"}
+  -- },
   {
     'wakatime/vim-wakatime'
   },
-  {
-    "lunarvim/colorschemes"
-  },
-  {
-    'dracula/vim'
-  },
-  {
-    'folke/tokyonight.nvim'
-  },
-  {
-    "arcticicestudio/nord-vim"
-  },
+  -- {
+  --   "lunarvim/colorschemes"
+  -- },
+  -- {
+  --   'dracula/vim'
+  -- },
+  -- {
+  --   'folke/tokyonight.nvim'
+  -- },
+  -- {
+  --   "arcticicestudio/nord-vim"
+  -- },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
