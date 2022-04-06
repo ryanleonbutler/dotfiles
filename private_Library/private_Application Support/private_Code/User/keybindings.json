@@ -1,5 +1,15 @@
 // Place your key bindings in this file to override the defaults
 [
+    // Toggle between terminal and editor focus
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
     {
         "key": "ctrl+e",
         "command": "cursorEndSelect"
@@ -63,5 +73,45 @@
     {
         "key": "ctrl+e",
         "command": "cursorEndSelect"
+    },
+    {
+        "key": "cmd+l",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "cmd+k",
+        "command": "-workbench.action.terminal.clear",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "shift+cmd+]",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+cmd+down",
+        "command": "-workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+cmd+right",
+        "command": "-workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "shift+cmd+[",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+cmd+up",
+        "command": "-workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+cmd+left",
+        "command": "-workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
     }
 ]
