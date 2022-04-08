@@ -16,7 +16,7 @@ vim.opt.cursorline = true -- highlight the current line
 -- vim.opt.wrap = true
 
 -- colorscheme
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "dracula"
 lvim.transparent_window = true
 
 -- Spell check
@@ -399,9 +399,9 @@ lvim.plugins = {
   -- {
   --   "lunarvim/colorschemes"
   -- },
-  -- {
-  --   'dracula/vim'
-  -- },
+  {
+    'dracula/vim'
+  },
   -- {
   --   'folke/tokyonight.nvim'
   -- },
