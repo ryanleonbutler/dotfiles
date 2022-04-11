@@ -39,7 +39,7 @@
     "editor.folding": false,
     "editor.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "editor.fontLigatures": false,
-    "editor.fontSize": 14,
+    "editor.fontSize": 15,
     "editor.glyphMargin": true,
     "editor.hideCursorInOverviewRuler": false,
     "editor.inlayHints.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
@@ -456,7 +456,7 @@
     "viceroy.marketplace.extensionUpdateChannels": {
         "marklel.vscode-brazil": "stable"
     },
-    "viceroy.config.internal.lastUpdateTime": "2022-04-05T08:26:34.441Z",
+    "viceroy.config.internal.lastUpdateTime": "2022-04-11T08:12:41.547Z",
     "viceroy.config.includeWorkspaceAsFolder": false,
     "viceroy.workspaceSyncStrategy": "automatic",
     "viceroy.config.resolveSymlinks": "resolve",
@@ -468,5 +468,8 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "workbench.colorTheme": "Atom One Dark",
-    "terminal.integrated.shellIntegration.enabled": false
+    "terminal.integrated.shellIntegration.enabled": false,
+    "editor.guides.indentation": false,
+    "gitlens.currentLine.enabled": false,
+    "todo-tree.highlights.useColourScheme": true
 }
