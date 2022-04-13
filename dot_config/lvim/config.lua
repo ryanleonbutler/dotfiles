@@ -9,18 +9,64 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
-lvim.log.level = "warn"
 lvim.format_on_save = false
-vim.opt.clipboard = "unnamedplus"
+lvim.log.level = "warn"
+vim.opt.backup = false -- creates a backup file
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+-- vim.opt.colorcolumn = "99999" -- fixes indentline for now
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.cursorline = false -- highlight the current line
--- vim.opt.wrap = true
+vim.opt.expandtab = true -- convert tabs to spaces
+vim.opt.fileencoding = "utf-8" -- the encoding written to a file
+vim.opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+vim.opt.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
+-- vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
+vim.opt.hlsearch = true -- highlight all matches on previous search pattern
+vim.opt.ignorecase = true -- ignore case in search patterns
+vim.opt.mouse = "a" -- allow the mouse to be used in neovim
+vim.opt.number = false -- set numbered lines
+vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
+vim.opt.pumheight = 10 -- pop up menu height
+vim.opt.relativenumber = false -- set relative numbered lines
+vim.opt.scrolloff = 8 -- is one of my fav
+vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.opt.showtabline = 2 -- always show tabs
+vim.opt.sidescrolloff = 8
+vim.opt.signcolumn = "no" -- always show the sign column otherwise it would shift the text each time
+-- vim.opt.smartcase = true -- smart case
+-- vim.opt.smartindent = true -- make indenting smarter again
+vim.opt.spell = false
+vim.opt.spelllang = "en"
+vim.opt.splitbelow = true -- force all horizontal splits to go below current window
+vim.opt.splitright = true -- force all vertical splits to go to the right of current window
+vim.opt.swapfile = false -- creates a swapfile
+vim.opt.tabstop = 4 -- insert 2 spaces for a tab
+vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
+vim.opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.title = true -- set the title of window to the value of the titlestring
+vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.updatetime = 300 -- faster completion
+vim.opt.wrap = false -- display lines as one long line
+vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 
 -- colorscheme
 lvim.colorscheme = "onedarker"
-lvim.transparent_window = true
+lvim.transparent_window = false
 
--- Spell check
-lvim.keys.normal_mode["<leader>ss"] = ":setlocal spell spelllang=en<CR>"
+lvim.keys.normal_mode["<leader>se"] = ":setlocal spell spelllang=en<CR>"
+lvim.keys.normal_mode["<leader>sd"] = ":setlocal nospell<CR>"
+lvim.keys.normal_mode["<leader>ne"] = ":setlocal number<CR>"
+lvim.keys.normal_mode["<leader>nd"] = ":setlocal nonumber<CR>"
+lvim.keys.normal_mode["<leader>re"] = ":setlocal relativenumber<CR>"
+lvim.keys.normal_mode["<leader>rd"] = ":setlocal norelativenumber<CR>"
+lvim.keys.normal_mode["<leader>le"] = ":LspStart<CR>"
+lvim.keys.normal_mode["<leader>ld"] = ":LspStop<CR>"
 
 -- nvim tree
 lvim.nvim_tree_hide_dotfiles = 0
@@ -117,7 +163,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = true
+lvim.lsp.diagnostics.virtual_text = false
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
@@ -155,10 +202,10 @@ lspconfig.barium.setup {}
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "black", filetypes = { "python" } },
+--   { command = "isort", filetypes = { "python" } },
 --   {
 --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "prettier",
@@ -168,12 +215,12 @@ formatters.setup {
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "typescript", "typescriptreact" },
 --   },
-}
+-- }
 
 -- -- set additional linters
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "flake8", filetypes = { "python" } },
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "flake8", filetypes = { "python" } },
 --   {
 --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "shellcheck",
@@ -186,7 +233,7 @@ linters.setup {
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "javascript", "python" },
 --   },
-}
+-- }
 
 -- Additional Plugins
 -- lvim.plugins = {

@@ -76,8 +76,8 @@ symbol = " "
 [python]
 symbol = " "
 pyenv_version_name = false
-python_binary = ["./venv/bin/python", "python3"]
-disabled = true
+python_binary = ["./.venv/bin/python", "./venv/bin/python", "python3", "python"]
+disabled = false
 
 [ruby]
 symbol = " "
