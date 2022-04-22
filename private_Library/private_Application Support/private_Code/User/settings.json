@@ -1,5 +1,7 @@
 {
-    "editor.hover.enabled": true,
+    "[brazilPackageConfig]": {
+        "workbench.editor.languageDetection": false
+    },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
@@ -41,7 +43,9 @@
     "editor.fontLigatures": false,
     "editor.fontSize": 15,
     "editor.glyphMargin": true,
+    "editor.guides.indentation": false,
     "editor.hideCursorInOverviewRuler": false,
+    "editor.hover.enabled": true,
     "editor.inlayHints.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 200,
@@ -78,48 +82,12 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
     "files.exclude": {
-        ".viceroy": true,
-        "apollo-overrides": true,
-        "release-info": true,
-        "src/*/build": true,
-        "build": true,
-        "env": true,
-        "packageInfo*": true,
-        ".bemol": true,
+        "**/*.pyc": true,
+        "**/*.pytest_cache": true,
+        "**/.DS_Store": true,
         "**/.git": true,
+        "**/.hg": true,
         "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/*.pyc": true,
-        "**/*.pytest_cache": true,
-        "**/__pycache__": true,
-        "**/build": true,
-        "**/build-tools": true,
-        "**/logs": true,
-        "**/node_modules/**": true,
-        "**/site-package/**": true,
-        "**build**": true,
-        ".rpm": true,
-        ".vscode": true,
-        "bin": true,
-        "build-tools": true
-    },
-    "files.insertFinalNewline": false,
-    "files.trimTrailingWhitespace": true,
-    "files.watcherExclude": {
-        "**/build/**": true,
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/node_modules/*/**": true,
-        "**/.hg/store/**": true,
-        "**/*.pyc": true,
-        "**/*.pytest_cache": true,
-        "**/*.svn": true,
-        "**/.DS_Store": true,
-        "**/.git": true,
-        "**/.hg": true,
         "**/CVS": true,
         "**/Thumbs.db": true,
         "**/__pycache__": true,
@@ -142,7 +110,44 @@
         "release-info": true,
         "src/*/build": true
     },
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/*.pyc": true,
+        "**/*.pytest_cache": true,
+        "**/*.svn": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg": true,
+        "**/.hg/store/**": true,
+        "**/CVS": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__": true,
+        "**/build": true,
+        "**/build-tools": true,
+        "**/build/**": true,
+        "**/logs": true,
+        "**/node_modules/**": true,
+        "**/node_modules/*/**": true,
+        "**/site-package/**": true,
+        "**build**": true,
+        ".bemol": true,
+        ".rpm": true,
+        ".viceroy": true,
+        ".vscode": true,
+        "apollo-overrides": true,
+        "bin": true,
+        "build": true,
+        "build-tools": true,
+        "env": true,
+        "packageInfo*": true,
+        "release-info": true,
+        "src/*/build": true
+    },
     "git.enableStatusBarSync": false,
+    "gitlens.currentLine.enabled": false,
     "jupyter.askForKernelRestart": false,
     "jupyter.sendSelectionToInteractiveWindow": true,
     "launch": {
@@ -161,12 +166,14 @@
     ],
     "python.analysis.autoSearchPaths": true,
     "python.analysis.completeFunctionParens": true,
+    "python.analysis.extraPaths": [],
     "python.analysis.typeCheckingMode": "off",
     "python.autoComplete.extraPaths": [],
     "python.defaultInterpreterPath": "",
     "python.formatting.blackPath": "~/.local/bin/black",
     "python.formatting.provider": "black",
     "python.languageServer": "Pylance",
+    "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "~/.local/bin/flake8",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
     "python.testing.cwd": "",
@@ -175,11 +182,6 @@
     "remote.restoreForwardedPorts": true,
     "scm.inputFontSize": 14,
     "search.exclude": {
-        "env": true,
-        "src/*/build": true,
-        "build": true,
-        "**/node_modules": true,
-        "**/bower_components": true,
         "**/*.code-search": true,
         "**/.DS_Store": true,
         "**/.git": true,
@@ -190,9 +192,11 @@
         "**/CVS": true,
         "**/Thumbs.db": true,
         "**/__pycache__": true,
+        "**/bower_components": true,
         "**/build": true,
         "**/build-tools": true,
         "**/logs": true,
+        "**/node_modules": true,
         "**/node_modules/**": true,
         "**build**": true,
         ".bemol": true,
@@ -202,12 +206,17 @@
         "/local/*": true,
         "apollo-overrides": true,
         "bin": true,
+        "build": true,
         "build-tools": true,
+        "env": true,
         "packageInfo*": true,
-        "release-info": true
+        "release-info": true,
+        "src/*/build": true
     },
     "search.followSymlinks": false,
     "security.workspace.trust.untrustedFiles": "open",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
     "telemetry.telemetryLevel": "off",
     "terminal.external.osxExec": "/Applications/kitty.app",
     "terminal.integrated.confirmOnExit": "never",
@@ -219,48 +228,30 @@
     "terminal.integrated.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.gpuAcceleration": "auto",
+    "terminal.integrated.shellIntegration.enabled": false,
     "terminal.integrated.tabs.enabled": false,
+    "todo-tree.highlights.useColourScheme": true,
+    "viceroy.config.beautyMode": false,
+    "viceroy.config.includeWorkspaceAsFolder": false,
+    "viceroy.config.internal.lastUpdateTime": "2022-04-19T11:41:37.477Z",
+    "viceroy.config.lastVersion": "0.45.0",
+    "viceroy.config.resolveSymlinks": "resolve",
+    "viceroy.doc.welcome.showAtStartup": false,
+    "viceroy.marketplace.extensionUpdateChannels": {
+        "marklel.vscode-brazil": "stable"
+    },
+    "viceroy.python.useBemol": true,
+    "viceroy.workspaceSyncStrategy": "automatic",
     "vim.easymotion": true,
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false
     },
-    "vim.searchHighlightColor": "#00B0BB",
-    "vim.searchHighlightTextColor": "#282C34",
     "vim.highlightedyank.color": "rgba(78, 184, 251, 0.5)",
     "vim.highlightedyank.duration": 500,
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.incsearch": true,
-    "vim.visualModeKeyBindings": [
-        {
-            "after": [
-                "<Esc>"
-            ],
-            "before": [
-                "j",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "e"
-            ],
-            "commands": [
-                "cursorEnd"
-            ]
-        }
-    ],
     "vim.insertModeKeyBindings": [
         {
             "after": [
@@ -374,41 +365,80 @@
             "silent": true
         },
         {
-            "before": ["g", "d"],
+            "before": [
+                "g",
+                "d"
+            ],
             "commands": [
                 "editor.action.revealDefinition"
             ]
         },
         {
-            "before": ["g", "r"],
+            "before": [
+                "g",
+                "r"
+            ],
             "commands": [
                 "editor.action.goToReferences"
             ]
         },
         {
-            "before": ["<Tab>"],
+            "before": [
+                "<Tab>"
+            ],
             "commands": [
                 "workbench.action.nextEditorInGroup"
             ]
         },
         {
-            "before": ["<S>", ",<Tab>"],
+            "before": [
+                "<S>",
+                ",<Tab>"
+            ],
             "commands": [
                 "workbench.action.previousEditor"
             ]
         }
     ],
+    "vim.searchHighlightColor": "#00B0BB",
+    "vim.searchHighlightTextColor": "#282C34",
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
+    "vim.visualModeKeyBindings": [
+        {
+            "after": [
+                "<Esc>"
+            ],
+            "before": [
+                "j",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "<C>",
+                "a"
+            ],
+            "commands": [
+                "cursorHome"
+            ]
+        },
+        {
+            "before": [
+                "<C>",
+                "e"
+            ],
+            "commands": [
+                "cursorEnd"
+            ]
+        }
+    ],
     "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
         "[Atom One Dark]": {
             "editorCursor.background": "#1D1D1D",
             "editorCursor.foreground": "#D9D8D8",
-            "terminal.background": "#21242C",
-            "terminalCursor.background": "#D9D8D8",
-            "terminalCursor.foreground": "#D9D8D8",
             "terminal.ansiBlack": "#282C34",
             "terminal.ansiBlue": "#009DDC",
             "terminal.ansiBrightBlack": "#737171",
@@ -424,7 +454,10 @@
             "terminal.ansiMagenta": "#B8453F",
             "terminal.ansiRed": "#E4616B",
             "terminal.ansiWhite": "#D9D8D8",
-            "terminal.ansiYellow": "#E6B875"
+            "terminal.ansiYellow": "#E6B875",
+            "terminal.background": "#21242C",
+            "terminalCursor.background": "#D9D8D8",
+            "terminalCursor.foreground": "#D9D8D8"
         },
         "statusBar.background": "#282C34",
         "statusBar.debuggingBackground": "#E6B875",
@@ -432,6 +465,7 @@
         "statusBar.foreground": "#D9D8D8",
         "statusBar.noFolderBackground": "#282A36"
     },
+    "workbench.colorTheme": "Atom One Dark",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.restoreViewState": true,
     "workbench.editor.showIcons": false,
@@ -447,28 +481,5 @@
     "zenMode.hideLineNumbers": false,
     "zenMode.hideStatusBar": false,
     "zenMode.hideTabs": true,
-    "zenMode.restore": true,
-    "viceroy.config.lastVersion": "0.45.0",
-    "[brazilPackageConfig]": {
-        "workbench.editor.languageDetection": false
-    },
-    "viceroy.marketplace.extensionUpdateChannels": {
-        "marklel.vscode-brazil": "stable"
-    },
-    "viceroy.config.internal.lastUpdateTime": "2022-04-12T10:41:33.342Z",
-    "viceroy.config.includeWorkspaceAsFolder": false,
-    "viceroy.workspaceSyncStrategy": "automatic",
-    "viceroy.config.resolveSymlinks": "resolve",
-    "viceroy.config.beautyMode": false,
-    "viceroy.doc.welcome.showAtStartup": false,
-    "viceroy.python.useBemol": true,
-    "python.linting.flake8Enabled": true,
-    "python.analysis.extraPaths": [],
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "workbench.colorTheme": "Atom One Dark",
-    "terminal.integrated.shellIntegration.enabled": false,
-    "editor.guides.indentation": false,
-    "gitlens.currentLine.enabled": false,
-    "todo-tree.highlights.useColourScheme": true
+    "zenMode.restore": true
 }

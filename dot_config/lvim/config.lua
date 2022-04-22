@@ -1,10 +1,4 @@
 -- general lvim
-lvim.colorscheme = "onedarker"
-lvim.format_on_save = false
-lvim.log.level = "warn"
-lvim.transparent_window = false
-lvim.nvim_tree_hide_dotfiles = 0
-lvim.leader = "space"
 lvim.builtin.alpha.active = false
 lvim.builtin.dap.active = false
 lvim.builtin.dashboard.active = false
@@ -13,8 +7,14 @@ lvim.builtin.notify.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.terminal.active = false
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = false
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.colorscheme = "onedark"
+lvim.format_on_save = false
+lvim.leader = "space"
+lvim.log.level = "warn"
+lvim.nvim_tree_hide_dotfiles = 0
+lvim.transparent_window = false
 
 -- general vim
 vim.opt.backup = false -- creates a backup file
@@ -349,16 +349,19 @@ lvim.plugins = {
   --       vim.g["test#strategy"] = "toggleterm"
   --   end,
   -- },
-  -- {
-  --   "npxbr/glow.nvim",
-  --   ft = {"markdown"}
-  -- },
+  {
+    "npxbr/glow.nvim",
+    ft = {"markdown"}
+  },
   {
     'wakatime/vim-wakatime'
   },
   {
-    "lunarvim/colorschemes"
+    'joshdick/onedark.vim'
   },
+  -- {
+  --   "lunarvim/colorschemes"
+  -- },
   -- {
   --   'dracula/vim'
   -- },
