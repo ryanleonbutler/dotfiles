@@ -1,4 +1,8 @@
-set fish_greeting ""
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+ulimit -n 10240
 
 set -gx TERM xterm-256color
 
@@ -18,12 +22,17 @@ set -gx EDITOR lvim
 alias vim "vim"
 alias v "vim"
 alias vi "vim"
+alias t "tmux"
 alias sz "source /usr/local/bin/fish"
 alias zshrc "vim $HOME/.local/share/chezmoi/dot_zshrc"
+alias fshrc "vim $HOME/.local/share/chezmoi/dot_config/private_fish/config.fish"
 alias starrc "vim $HOME/.local/share/chezmoi/dot_config/starship.toml"
 alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim $HOME/.local/share/chezmoi/dot_config/lvim/config.lua"
 alias kittyrc "vim $HOME/.local/share/chezmoi/dot_config/kitty/kitty.conf"
+alias yabairc "vim $HOME/.local/share/chezmoi/dot_config/kitty/kitty.conf"
+alias skhdrc "vim $HOME/.local/share/chezmoi/dot_config/kitty/kitty.conf"
+alias spacebarrc "vim $HOME/.local/share/chezmoi/dot_config/kitty/kitty.conf"
 alias filesopen "sudo lsof -n | cut -f1 -d  | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
@@ -61,10 +70,32 @@ status is-interactive; and pyenv init - | source
 
 # fnm
 set -gx PATH $HOME/.fnm $PATH
-#eval $(fnm env --use-on-cd)
+fnm env --use-on-cd | source
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
+# peco
+function fish_user_key_bindings
+    bind \cr 'peco_select_history (commandline -b)'
+end
+
+function peco_select_history
+  if test (count $argv) = 0
+    set peco_flags --layout=bottom-up
+  else
+    set peco_flags --layout=top-down --query "$argv"
+  end
+
+  history|peco $peco_flags|read foo
+
+  if [ $foo ]
+    commandline $foo
+  else
+    commandline ''
+  end
+end
+
 starship init fish | source
+
