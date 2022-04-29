@@ -26,7 +26,7 @@ end
 
 ulimit -n 10240
 
-set -gx TERM xterm-256color
+set -g fish_term24bit 1
 
 # theme
 set -g theme_color_scheme terminal-dark
