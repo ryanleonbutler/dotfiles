@@ -2,6 +2,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+function fish_greeting
+    echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
+end
+
 ulimit -n 10240
 
 set -gx TERM xterm-256color
@@ -23,7 +27,7 @@ alias vim "vim"
 alias v "vim"
 alias vi "vim"
 alias t "tmux"
-alias sz "source /usr/local/bin/fish"
+alias sf "source ~/.config/fish/config.fish"
 alias zshrc "vim $HOME/.local/share/chezmoi/dot_zshrc"
 alias fshrc "vim $HOME/.local/share/chezmoi/dot_config/private_fish/config.fish"
 alias starrc "vim $HOME/.local/share/chezmoi/dot_config/starship.toml"
@@ -53,6 +57,7 @@ alias gcm "git commit -m"
 alias gma "git commit -am"
 alias gb "git branch"
 alias gc "git checkout"
+alias gp "git push"
 
 # AWS CLI
 set -gx AWS_PAGER 
