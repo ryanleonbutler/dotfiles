@@ -1,6 +1,6 @@
 scan_timeout = 200
 add_newline = false
-format = """$hostname$directory($git_branch$git_state$git_commit$git_status$git_metrics)$python$nodejs$character"""
+# format = """$hostname$directory($git_branch$git_state$git_commit$git_status$git_metrics)$python$nodejs$character"""
 
 [username]
 format = "\\[($style)[$user@]($style)"
