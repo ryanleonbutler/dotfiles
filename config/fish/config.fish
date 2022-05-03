@@ -42,6 +42,7 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 # aliases
+alias vim "lvim"
 set -gx EDITOR lvim
 alias vim "vim"
 alias v "vim"
