@@ -42,11 +42,11 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 # aliases
-alias vim "lvim"
 set -gx EDITOR lvim
 alias vim "vim"
 alias v "vim"
 alias vi "vim"
+alias vim "lvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
 alias tmuxrc "vim ~/development/dotfiles/tmux.conf"
@@ -123,6 +123,12 @@ function peco_select_history
     commandline ''
   end
 end
+
+# if set -q KITTY_INSTALLATION_DIR
+#     set --global KITTY_SHELL_INTEGRATION enabled
+#     source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+#     set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+# end
 
 starship init fish | source
 
