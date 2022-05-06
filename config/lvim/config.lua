@@ -211,4 +211,7 @@ lvim.plugins = {
   {
     "ojroques/vim-oscyank",
   },
+  {
+    'Chaitanyabsprip/present.nvim',
+  }
 }

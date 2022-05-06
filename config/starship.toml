@@ -1,4 +1,4 @@
-scan_timeout = 200
+scan_timeout = 500
 add_newline = false
 # format = """$hostname$directory($git_branch$git_state$git_commit$git_status$git_metrics)$python$nodejs$character"""
 
