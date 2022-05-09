@@ -104,25 +104,24 @@ lvim.lsp.automatic_servers_installation = true
 lvim.lsp.diagnostics.virtual_text = false
 lvim.lsp.diagnostics.underline = false
 
--- -- barium
--- local lspconfig = require 'lspconfig'
--- local configs = require 'lspconfig.configs'
+-- barium
+local lspconfig = require 'lspconfig'
+local configs = require 'lspconfig.configs'
 
--- if not configs.barium then
---     configs.barium = {
---         default_config = {
---             cmd = {'barium'};
---             filetypes = {'brazil-config'};
---             root_dir = function(fname)
---                 return lspconfig.util.find_git_ancestor(fname)
---             end;
---             settings = {};
---         };
---     }
--- end
+if not configs.barium then
+    configs.barium = {
+        default_config = {
+            cmd = {'barium'};
+            filetypes = {'brazil-config'};
+            root_dir = function(fname)
+                return lspconfig.util.find_git_ancestor(fname)
+            end;
+            settings = {};
+        };
+    }
+end
 
--- lspconfig.barium.setup {}
-
+lspconfig.barium.setup {}
 
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
