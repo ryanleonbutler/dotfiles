@@ -46,7 +46,7 @@ set -gx EDITOR vim
 alias vim "vim"
 alias v "vim"
 alias vi "vim"
-alias vim "nvim"
+alias vim "lvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
 alias tmuxrc "vim ~/development/dotfiles/tmux.conf"

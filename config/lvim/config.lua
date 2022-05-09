@@ -1,22 +1,10 @@
 -- general lvim
-lvim.builtin.alpha.active = false
-lvim.builtin.dap.active = false
-lvim.builtin.dashboard.active = false
-lvim.builtin.gitsigns.active = false
-lvim.builtin.notify.active = false
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.terminal.active = false
-lvim.builtin.treesitter.highlight.enabled = false
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.colorscheme = "onedark"
 lvim.format_on_save = false
 lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.nvim_tree_hide_dotfiles = 0
 lvim.transparent_window = false
-
--- general vim
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
@@ -58,10 +46,6 @@ vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 
 -- keys
-lvim.keys.normal_mode["<leader>lp"] = ":LspStart<CR>"
-lvim.keys.normal_mode["<leader>lps"] = ":LspStop<CR>"
-lvim.keys.normal_mode["<leader>s"] = ":setlocal spell spelllang=en<CR>"
-lvim.keys.normal_mode["<leader>ss"] = ":setlocal nospell<CR>"
 lvim.keys.normal_mode["<leader>w"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>q"] = ":q<cr>"
 lvim.keys.normal_mode["<leader>c"] = ":bd<cr>"
@@ -74,48 +58,70 @@ lvim.keys.visual_mode["<C-e>"] = "<END>"
 lvim.keys.visual_mode["<C-a>"] = "<HOME>"
 lvim.keys.normal_mode["<TAB>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-TAB>"] = ":bprevious<CR>"
-lvim.keys.normal_mode["<leader>m"] = ":Glow<CR>"
+-- lvim.keys.normal_mode["<leader>m"] = ":Glow<CR>"
 lvim.keys.normal_mode["q"] = ""
 lvim.keys.visual_mode["<C-c>"] = ":OSCYank<CR>"
+
+-- Lvim builtins
+lvim.builtin.alpha.active = false
+lvim.builtin.dap.active = false
+lvim.builtin.gitsigns.active = false
+lvim.builtin.notify.active = false
+lvim.builtin.terminal.active = false
+lvim.builtin.treesitter.highlight.enabled = false
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.bufferline.options.diagnostics_indicator = false
+lvim.builtin.bufferline.options.custom_filter = false
+
+-- Lualine
+lvim.builtin.lualine.style = "default"
+lvim.builtin.lualine.sections.lualine_a = { "mode", "filename" }
+lvim.builtin.lualine.sections.lualine_b = { "branch" }
+lvim.builtin.lualine.sections.lualine_c = { "python_env" }
+lvim.builtin.lualine.sections.lualine_x = { "lsp" }
+lvim.builtin.lualine.sections.lualine_y = { "filetype" }
+lvim.builtin.lualine.sections.lualine_z = { "progress" }
 
 -- treesitter 
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
+  -- "c",
   "javascript",
   "json",
   "lua",
   "python",
   "typescript",
   "css",
-  "rust",
-  "java",
+  -- "rust",
+  -- "java",
   "yaml",
 }
-
 
 -- generic LSP settings
 lvim.lsp.automatic_servers_installation = true
 lvim.lsp.diagnostics.virtual_text = false
+lvim.lsp.diagnostics.underline = false
 
--- barium
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig.configs'
+-- -- barium
+-- local lspconfig = require 'lspconfig'
+-- local configs = require 'lspconfig.configs'
 
-if not configs.barium then
-    configs.barium = {
-        default_config = {
-            cmd = {'barium'};
-            filetypes = {'brazil-config'};
-            root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname)
-            end;
-            settings = {};
-        };
-    }
-end
+-- if not configs.barium then
+--     configs.barium = {
+--         default_config = {
+--             cmd = {'barium'};
+--             filetypes = {'brazil-config'};
+--             root_dir = function(fname)
+--                 return lspconfig.util.find_git_ancestor(fname)
+--             end;
+--             settings = {};
+--         };
+--     }
+-- end
 
-lspconfig.barium.setup {}
+-- lspconfig.barium.setup {}
 
 
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
@@ -168,40 +174,40 @@ lvim.plugins = {
         })
     end,
   },
-  {
-    'Pocco81/AutoSave.nvim',
-    config = function()
-      require("autosave").setup()
-    end,
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require("indent_blankline").setup {
-        indentLine_enabled = 1,
-        char = "▏",
-        filetype_exclude = {
-          "help",
-          "terminal",
-          "dashboard",
-          "alpha",
-          "packer",
-          "lspinfo",
-          "TelescopePrompt",
-          "TelescopeResults",
-          "startify",
-          "",
-        },
-        buftype_exclude = { "terminal" },
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = false,
-      }
-    end,
-  },
-  {
-    "npxbr/glow.nvim",
-    ft = {"markdown"}
-  },
+  -- {
+  --   'Pocco81/AutoSave.nvim',
+  --   config = function()
+  --     require("autosave").setup()
+  --   end,
+  -- },
+  -- {
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   config = function()
+  --     require("indent_blankline").setup {
+  --       indentLine_enabled = 1,
+  --       char = "▏",
+  --       filetype_exclude = {
+  --         "help",
+  --         "terminal",
+  --         "dashboard",
+  --         "alpha",
+  --         "packer",
+  --         "lspinfo",
+  --         "TelescopePrompt",
+  --         "TelescopeResults",
+  --         "startify",
+  --         "",
+  --       },
+  --       buftype_exclude = { "terminal" },
+  --       show_trailing_blankline_indent = false,
+  --       show_first_indent_level = false,
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   "npxbr/glow.nvim",
+  --   ft = {"markdown"}
+  -- },
   {
     "wakatime/vim-wakatime"
   },
@@ -210,8 +216,5 @@ lvim.plugins = {
   },
   {
     "ojroques/vim-oscyank",
-  },
-  {
-    'Chaitanyabsprip/present.nvim',
   }
 }
