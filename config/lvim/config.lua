@@ -58,7 +58,6 @@ lvim.keys.visual_mode["<C-e>"] = "<END>"
 lvim.keys.visual_mode["<C-a>"] = "<HOME>"
 lvim.keys.normal_mode["<TAB>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-TAB>"] = ":bprevious<CR>"
--- lvim.keys.normal_mode["<leader>m"] = ":Glow<CR>"
 lvim.keys.normal_mode["q"] = ""
 lvim.keys.visual_mode["<C-c>"] = ":OSCYank<CR>"
 
@@ -207,9 +206,9 @@ lvim.plugins = {
   --   "npxbr/glow.nvim",
   --   ft = {"markdown"}
   -- },
-  {
-    "wakatime/vim-wakatime"
-  },
+  -- {
+  --   "wakatime/vim-wakatime"
+  -- },
   {
     "joshdick/onedark.vim"
   },
