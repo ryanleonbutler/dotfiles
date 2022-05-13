@@ -51,7 +51,7 @@ alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
 alias tmuxrc "vim ~/development/dotfiles/tmux.conf"
 alias zshrc "vim ~/development/dotfiles/zshrc"
-alias fshrc "vim ~/development/dotfiles/config/fish/config.fish"
+alias fishrc "vim ~/development/dotfiles/config/fish/config.fish"
 alias starrc "vim ~/development/dotfiles/config/starship.toml"
 alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/development/dotfiles/config/lvim/config.lua"
@@ -62,6 +62,10 @@ alias spacebarrc "vim ~/development/dotfiles/config/spacebar/spacebarrc"
 alias filesopen "sudo lsof -n | cut -f1 -d  | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
+
+# tmux
+alias t "tmux"
+alias mux "tmuxinator"
 
 # exa
 if type -q exa

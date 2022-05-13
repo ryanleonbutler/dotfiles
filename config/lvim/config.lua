@@ -1,10 +1,10 @@
 -- general lvim
-lvim.colorscheme = "onedark"
+lvim.colorscheme = "gruvbox"
 lvim.format_on_save = false
 lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.nvim_tree_hide_dotfiles = 0
-lvim.transparent_window = false
+lvim.transparent_window = true
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
@@ -22,7 +22,7 @@ vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.number = true -- set numbered lines
 vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
 vim.opt.pumheight = 10 -- pop up menu height
-vim.opt.relativenumber = false -- set relative numbered lines
+vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
@@ -60,14 +60,27 @@ lvim.keys.normal_mode["<TAB>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-TAB>"] = ":bprevious<CR>"
 lvim.keys.normal_mode["q"] = ""
 lvim.keys.visual_mode["<C-c>"] = ":OSCYank<CR>"
+lvim.keys.visual_mode["<Up>"] = "<Nop>"
+lvim.keys.visual_mode["<Down>"] = "<Nop>"
+lvim.keys.visual_mode["<Left>"] = "<Nop>"
+lvim.keys.insert_mode["<Right>"] = "<Nop>"
+lvim.keys.insert_mode["<Up>"] = "<Nop>"
+lvim.keys.insert_mode["<Down>"] = "<Nop>"
+lvim.keys.insert_mode["<Left>"] = "<Nop>"
+lvim.keys.normal_mode["<Right>"] = "<Nop>"
+lvim.keys.normal_mode["<Up>"] = "<Nop>"
+lvim.keys.normal_mode["<Down>"] = "<Nop>"
+lvim.keys.normal_mode["<Left>"] = "<Nop>"
+lvim.keys.normal_mode["<Right>"] = "<Nop>"
+lvim.keys.normal_mode["<Leader>vs"] = "<Cmd>lua ReloadConfig()<CR>"
 
 -- Lvim builtins
 lvim.builtin.alpha.active = false
 lvim.builtin.dap.active = false
-lvim.builtin.gitsigns.active = false
-lvim.builtin.notify.active = false
+lvim.builtin.gitsigns.active = true
+lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
-lvim.builtin.treesitter.highlight.enabled = false
+lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -83,7 +96,7 @@ lvim.builtin.lualine.sections.lualine_x = { "lsp" }
 lvim.builtin.lualine.sections.lualine_y = { "filetype" }
 lvim.builtin.lualine.sections.lualine_z = { "progress" }
 
--- treesitter 
+-- treesitter
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   -- "c",
@@ -100,8 +113,14 @@ lvim.builtin.treesitter.ensure_installed = {
 
 -- generic LSP settings
 lvim.lsp.automatic_servers_installation = true
-lvim.lsp.diagnostics.virtual_text = false
-lvim.lsp.diagnostics.underline = false
+lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■■■" }
+lvim.lsp.diagnostics.underline = true
+vim.cmd[[
+:hi DiagnosticError guifg=#88088F
+:hi DiagnosticWarn guifg=DarkOrange
+:hi DiagnosticInfo guifg=Blue
+:hi DiagnosticHint guifg=Green
+]]
 
 -- barium
 local lspconfig = require 'lspconfig'
@@ -213,6 +232,10 @@ lvim.plugins = {
     "joshdick/onedark.vim"
   },
   {
+    "gruvbox-community/gruvbox"
+  },
+  {
     "ojroques/vim-oscyank",
   }
 }
+
