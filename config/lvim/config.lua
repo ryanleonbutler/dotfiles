@@ -236,6 +236,9 @@ lvim.plugins = {
   },
   {
     "ojroques/vim-oscyank",
+  },
+  {
+    "ThePrimeagen/vim-be-good",
   }
 }
 
