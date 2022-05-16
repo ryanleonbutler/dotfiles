@@ -72,6 +72,7 @@ alias spacebarrc "vim ~/development/dotfiles/config/spacebar/spacebarrc"
 alias filesopen "sudo lsof -n | cut -f1 -d  | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
+alias c "clear"
 
 # tmux
 alias t "tmux"
