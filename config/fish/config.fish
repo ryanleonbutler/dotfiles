@@ -1,3 +1,12 @@
+fish_add_path /home/butryan/.pyenv/bin
+fish_add_path /home/butryan/.cargo/bin
+fish_add_path /usr/local/bin
+fish_add_path /usr/bin
+fish_add_path /home/butryan/bin
+fish_add_path /usr/local/sbin
+fish_add_path /usr/sbin
+fish_add_path /bin
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -26,6 +35,7 @@ set fish_greeting
 #                        (UU)'(set_color normal)
 # end
 
+
 ulimit -n 10240
 
 set -g fish_term24bit 1
@@ -46,7 +56,7 @@ set -gx EDITOR vim
 alias vim "vim"
 alias v "vim"
 alias vi "vim"
-alias vim "lvim"
+#alias vim "lvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
 alias tmuxrc "vim ~/development/dotfiles/tmux.conf"

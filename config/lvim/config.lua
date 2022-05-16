@@ -1,244 +1,158 @@
--- general lvim
-lvim.colorscheme = "gruvbox"
-lvim.format_on_save = false
-lvim.leader = "space"
+--[[
+lvim is the global options object
+
+Linters should be
+filled in as strings with either
+a global executable or a path to
+an executable
+]]
+-- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+
+-- general
 lvim.log.level = "warn"
-lvim.nvim_tree_hide_dotfiles = 0
-lvim.transparent_window = true
-vim.opt.backup = false -- creates a backup file
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
-vim.opt.cursorline = false -- highlight the current line
-vim.opt.expandtab = true -- convert tabs to spaces
-vim.opt.fileencoding = "utf-8" -- the encoding written to a file
-vim.opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
-vim.opt.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
-vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
-vim.opt.hlsearch = true -- highlight all matches on previous search pattern
-vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.mouse = "a" -- allow the mouse to be used in neovim
-vim.opt.number = true -- set numbered lines
-vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
-vim.opt.pumheight = 10 -- pop up menu height
-vim.opt.relativenumber = true -- set relative numbered lines
-vim.opt.scrolloff = 8 -- is one of my fav
-vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
-vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
-vim.opt.showtabline = 2 -- always show tabs
-vim.opt.sidescrolloff = 8
-vim.opt.signcolumn = "no" -- always show the sign column otherwise it would shift the text each time
-vim.opt.spell = false
-vim.opt.spelllang = "en"
-vim.opt.splitbelow = true -- force all horizontal splits to go below current window
-vim.opt.splitright = true -- force all vertical splits to go to the right of current window
-vim.opt.swapfile = false -- creates a swapfile
-vim.opt.tabstop = 4 -- insert 2 spaces for a tab
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-vim.opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
-vim.opt.title = true -- set the title of window to the value of the titlestring
-vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
-vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
-vim.opt.undofile = true -- enable persistent undo
-vim.opt.updatetime = 300 -- faster completion
-vim.opt.wrap = false -- display lines as one long line
-vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
+lvim.format_on_save = true
+lvim.colorscheme = "onedarker"
+-- to disable icons and use a minimalist setup, uncomment the following
+-- lvim.use_icons = false
 
--- keys
-lvim.keys.normal_mode["<leader>w"] = ":w<cr>"
-lvim.keys.normal_mode["<leader>q"] = ":q<cr>"
-lvim.keys.normal_mode["<leader>c"] = ":bd<cr>"
-lvim.keys.normal_mode["<C-q>"] = ":qa<cr>"
-lvim.keys.normal_mode["<C-e>"] = "<END>"
-lvim.keys.normal_mode["<C-a>"] = "<HOME>"
-lvim.keys.insert_mode["<C-e>"] = "<END>"
-lvim.keys.insert_mode["<C-a>"] = "<HOME>"
-lvim.keys.visual_mode["<C-e>"] = "<END>"
-lvim.keys.visual_mode["<C-a>"] = "<HOME>"
-lvim.keys.normal_mode["<TAB>"] = ":bnext<CR>"
-lvim.keys.normal_mode["<S-TAB>"] = ":bprevious<CR>"
-lvim.keys.normal_mode["q"] = ""
-lvim.keys.visual_mode["<C-c>"] = ":OSCYank<CR>"
-lvim.keys.visual_mode["<Up>"] = "<Nop>"
-lvim.keys.visual_mode["<Down>"] = "<Nop>"
-lvim.keys.visual_mode["<Left>"] = "<Nop>"
-lvim.keys.insert_mode["<Right>"] = "<Nop>"
-lvim.keys.insert_mode["<Up>"] = "<Nop>"
-lvim.keys.insert_mode["<Down>"] = "<Nop>"
-lvim.keys.insert_mode["<Left>"] = "<Nop>"
-lvim.keys.normal_mode["<Right>"] = "<Nop>"
-lvim.keys.normal_mode["<Up>"] = "<Nop>"
-lvim.keys.normal_mode["<Down>"] = "<Nop>"
-lvim.keys.normal_mode["<Left>"] = "<Nop>"
-lvim.keys.normal_mode["<Right>"] = "<Nop>"
-lvim.keys.normal_mode["<Leader>vs"] = "<Cmd>lua ReloadConfig()<CR>"
+-- keymappings [view all the defaults by pressing <leader>Lk]
+lvim.leader = "space"
+-- add your own keymapping
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- unmap a default keymapping
+-- lvim.keys.normal_mode["<C-Up>"] = false
+-- edit a default keymapping
+-- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
--- Lvim builtins
-lvim.builtin.alpha.active = false
-lvim.builtin.dap.active = false
-lvim.builtin.gitsigns.active = true
+-- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
+-- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
+-- local _, actions = pcall(require, "telescope.actions")
+-- lvim.builtin.telescope.defaults.mappings = {
+--   -- for input mode
+--   i = {
+--     ["<C-j>"] = actions.move_selection_next,
+--     ["<C-k>"] = actions.move_selection_previous,
+--     ["<C-n>"] = actions.cycle_history_next,
+--     ["<C-p>"] = actions.cycle_history_prev,
+--   },
+--   -- for normal mode
+--   n = {
+--     ["<C-j>"] = actions.move_selection_next,
+--     ["<C-k>"] = actions.move_selection_previous,
+--   },
+-- }
+
+-- Use which-key to add extra bindings with the leader-key prefix
+-- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+-- lvim.builtin.which_key.mappings["t"] = {
+--   name = "+Trouble",
+--   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+--   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+--   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+-- }
+
+-- TODO: User Config for predefined plugins
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = false
-lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.bufferline.options.diagnostics_indicator = false
-lvim.builtin.bufferline.options.custom_filter = false
 
--- Lualine
-lvim.builtin.lualine.style = "default"
-lvim.builtin.lualine.sections.lualine_a = { "mode", "filename" }
-lvim.builtin.lualine.sections.lualine_b = { "branch" }
-lvim.builtin.lualine.sections.lualine_c = { "python_env" }
-lvim.builtin.lualine.sections.lualine_x = { "lsp" }
-lvim.builtin.lualine.sections.lualine_y = { "filetype" }
-lvim.builtin.lualine.sections.lualine_z = { "progress" }
-
--- treesitter
+-- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  -- "c",
+  "c",
   "javascript",
   "json",
   "lua",
   "python",
   "typescript",
+  "tsx",
   "css",
-  -- "rust",
-  -- "java",
+  "rust",
+  "java",
   "yaml",
 }
 
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
+
 -- generic LSP settings
-lvim.lsp.automatic_servers_installation = true
-lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■■■" }
-lvim.lsp.diagnostics.underline = true
-vim.cmd[[
-:hi DiagnosticError guifg=#88088F
-:hi DiagnosticWarn guifg=DarkOrange
-:hi DiagnosticInfo guifg=Blue
-:hi DiagnosticHint guifg=Green
-]]
 
--- barium
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig.configs'
+-- ---@usage disable automatic installation of servers
+-- lvim.lsp.automatic_servers_installation = false
 
-if not configs.barium then
-    configs.barium = {
-        default_config = {
-            cmd = {'barium'};
-            filetypes = {'brazil-config'};
-            root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname)
-            end;
-            settings = {};
-        };
-    }
-end
+-- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
+-- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+-- local opts = {} -- check the lspconfig documentation for a list of all possible options
+-- require("lvim.lsp.manager").setup("pyright", opts)
 
-lspconfig.barium.setup {}
+-- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
+-- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
+-- vim.tbl_map(function(server)
+--   return server ~= "emmet_ls"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
--- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  -- { command = "black", filetypes = { "python" } },
-  -- { command = "isort", filetypes = { "python" } },
-  -- {
-  --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --   command = "prettier",
-  --   ---@usage arguments to pass to the formatter
-  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --   extra_args = { "--print-with", "100" },
-  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "typescript", "typescriptreact" },
-  -- },
-}
+-- -- you can set a custom on_attach function that will be used for all the language servers
+-- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
+-- lvim.lsp.on_attach_callback = function(client, bufnr)
+--   local function buf_set_option(...)
+--     vim.api.nvim_buf_set_option(bufnr, ...)
+--   end
+--   --Enable completion triggered by <c-x><c-o>
+--   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+-- end
 
--- set additional linters
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  -- { command = "flake8", filetypes = { "python" } },
-  -- {
-  --   -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --   command = "shellcheck",
-  --   ---@usage arguments to pass to the formatter
-  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --   extra_args = { "--severity", "warning" },
-  -- },
-  -- {
-  --   command = "codespell",
-  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "javascript", "python" },
-  -- },
-}
+-- -- set a formatter, this will override the language server formatting capabilities (if it exists)
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "black", filetypes = { "python" } },
+--   { command = "isort", filetypes = { "python" } },
+--   {
+--     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+--     command = "prettier",
+--     ---@usage arguments to pass to the formatter
+--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--     extra_args = { "--print-with", "100" },
+--     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--     filetypes = { "typescript", "typescriptreact" },
+--   },
+-- }
+
+-- -- set additional linters
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "flake8", filetypes = { "python" } },
+--   {
+--     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+--     command = "shellcheck",
+--     ---@usage arguments to pass to the formatter
+--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--     extra_args = { "--severity", "warning" },
+--   },
+--   {
+--     command = "codespell",
+--     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--     filetypes = { "javascript", "python" },
+--   },
+-- }
 
 -- Additional Plugins
-lvim.plugins = {
-  {"tpope/vim-surround"},
-  {"tpope/vim-repeat"},
-  {
-    "ethanholz/nvim-lastplace",
-    config = function ()
-      require("nvim-lastplace").setup({
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = {
-        "gitcommit", "gitrebase", "svn", "hgcommit",
-        },
-        lastplace_open_folds = true,
-        })
-    end,
-  },
-  -- {
-  --   'Pocco81/AutoSave.nvim',
-  --   config = function()
-  --     require("autosave").setup()
-  --   end,
-  -- },
-  -- {
-  --   'lukas-reineke/indent-blankline.nvim',
-  --   config = function()
-  --     require("indent_blankline").setup {
-  --       indentLine_enabled = 1,
-  --       char = "▏",
-  --       filetype_exclude = {
-  --         "help",
-  --         "terminal",
-  --         "dashboard",
-  --         "alpha",
-  --         "packer",
-  --         "lspinfo",
-  --         "TelescopePrompt",
-  --         "TelescopeResults",
-  --         "startify",
-  --         "",
-  --       },
-  --       buftype_exclude = { "terminal" },
-  --       show_trailing_blankline_indent = false,
-  --       show_first_indent_level = false,
-  --     }
-  --   end,
-  -- },
-  -- {
-  --   "npxbr/glow.nvim",
-  --   ft = {"markdown"}
-  -- },
-  -- {
-  --   "wakatime/vim-wakatime"
-  -- },
-  {
-    "joshdick/onedark.vim"
-  },
-  {
-    "gruvbox-community/gruvbox"
-  },
-  {
-    "ojroques/vim-oscyank",
-  },
-  {
-    "ThePrimeagen/vim-be-good",
-  }
-}
+-- lvim.plugins = {
+--     {"folke/tokyonight.nvim"},
+--     {
+--       "folke/trouble.nvim",
+--       cmd = "TroubleToggle",
+--     },
+-- }
 
+-- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- lvim.autocommands.custom_groups = {
+--   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
+-- }
