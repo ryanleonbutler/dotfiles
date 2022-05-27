@@ -73,6 +73,7 @@ lvim.keys.normal_mode["<Down>"] = "<Nop>"
 lvim.keys.normal_mode["<Left>"] = "<Nop>"
 lvim.keys.normal_mode["<Right>"] = "<Nop>"
 lvim.keys.normal_mode["<Leader>vs"] = "<Cmd>lua ReloadConfig()<CR>"
+lvim.keys.normal_mode["<Leader>m"] = "<Cmd>:Glow <CR>"
 
 -- Lvim builtins
 lvim.builtin.alpha.active = false
@@ -83,7 +84,7 @@ lvim.builtin.terminal.active = false
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.bufferline.options.diagnostics_indicator = false
 lvim.builtin.bufferline.options.custom_filter = false
 
@@ -113,8 +114,9 @@ lvim.builtin.treesitter.ensure_installed = {
 
 -- generic LSP settings
 lvim.lsp.automatic_servers_installation = true
-lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■■■" }
-lvim.lsp.diagnostics.underline = true
+-- lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■" }
+lvim.lsp.diagnostics.virtual_text = false
+lvim.lsp.diagnostics.underline = false
 vim.cmd[[
 :hi DiagnosticError guifg=#88088F
 :hi DiagnosticWarn guifg=DarkOrange
@@ -238,7 +240,15 @@ lvim.plugins = {
     "ojroques/vim-oscyank",
   },
   {
-    "ThePrimeagen/vim-be-good",
-  }
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      vim.g.gitblame_enabled = 0
+    end,
+  },
+  {
+    "ellisonleao/glow.nvim"
+  },
 }
 
