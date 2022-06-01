@@ -1,5 +1,7 @@
--- general lvim
+vim.cmd "let g:gruvbox_contrast_dark = 'hard'"
 lvim.colorscheme = "gruvbox"
+
+-- general lvim
 lvim.format_on_save = false
 lvim.leader = "space"
 lvim.log.level = "warn"
@@ -74,6 +76,10 @@ lvim.keys.normal_mode["<Left>"] = "<Nop>"
 lvim.keys.normal_mode["<Right>"] = "<Nop>"
 lvim.keys.normal_mode["<Leader>vs"] = "<Cmd>lua ReloadConfig()<CR>"
 lvim.keys.normal_mode["<Leader>m"] = "<Cmd>:Glow <CR>"
+
+-- copy filename / paths to clipboard
+lvim.keys.normal_mode["<C-c>"] = ":let @*=substitute(expand('%'), '/', '\\', 'g')<CR>"
+lvim.keys.normal_mode["<C-x>"] = ":let @*=substitute(expand('%:p'), '/', '\\', 'g')<CR>"
 
 -- Lvim builtins
 lvim.builtin.alpha.active = false
