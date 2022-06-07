@@ -120,8 +120,8 @@ lvim.builtin.treesitter.ensure_installed = {
 
 -- generic LSP settings
 lvim.lsp.automatic_servers_installation = true
--- lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■" }
-lvim.lsp.diagnostics.virtual_text = false
+lvim.lsp.diagnostics.virtual_text = { spacing = 4, prefix = "■" }
+-- lvim.lsp.diagnostics.virtual_text = false
 lvim.lsp.diagnostics.underline = false
 vim.cmd[[
 :hi DiagnosticError guifg=#88088F
