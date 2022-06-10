@@ -78,8 +78,11 @@ lvim.keys.normal_mode["<Leader>vs"] = "<Cmd>lua ReloadConfig()<CR>"
 lvim.keys.normal_mode["<Leader>m"] = "<Cmd>:Glow <CR>"
 
 -- copy filename / paths to clipboard
-lvim.keys.normal_mode["<C-c>"] = ":let @*=substitute(expand('%'), '/', '\\', 'g')<CR>"
-lvim.keys.normal_mode["<C-x>"] = ":let @*=substitute(expand('%:p'), '/', '\\', 'g')<CR>"
+lvim.keys.normal_mode["<C-c>"] = ":let @*=expand('%')<CR>"
+lvim.keys.normal_mode["<C-x>"] = ":let @*=expand('%:p')<CR>"
+
+-- tmux copy
+vim.cmd[[:let g:oscyank_term = 'tmux']]
 
 -- Lvim builtins
 lvim.builtin.alpha.active = false
@@ -95,12 +98,17 @@ lvim.builtin.bufferline.options.diagnostics_indicator = false
 lvim.builtin.bufferline.options.custom_filter = false
 
 -- Lualine
+local function full_path()
+  return vim.fn.fnamemodify(vim.fn.expand('%:h'), ':p:~:.')
+end
+
+lvim.builtin.lualine.options.theme = "gruvbox"
 lvim.builtin.lualine.style = "default"
-lvim.builtin.lualine.sections.lualine_a = { "mode", "filename" }
-lvim.builtin.lualine.sections.lualine_b = { "branch" }
-lvim.builtin.lualine.sections.lualine_c = { "python_env" }
-lvim.builtin.lualine.sections.lualine_x = { "lsp" }
-lvim.builtin.lualine.sections.lualine_y = { "filetype" }
+lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.lualine.sections.lualine_b = { "filename", "branch", "python_env" }
+lvim.builtin.lualine.sections.lualine_c = { full_path }
+lvim.builtin.lualine.sections.lualine_x = {}
+lvim.builtin.lualine.sections.lualine_y = { "lsp", "filetype" }
 lvim.builtin.lualine.sections.lualine_z = { "progress" }
 
 -- treesitter
