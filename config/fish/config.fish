@@ -1,21 +1,14 @@
-fish_add_path /home/butryan/.pyenv/bin
-fish_add_path /home/butryan/.cargo/bin
-fish_add_path /usr/local/bin
-fish_add_path /usr/bin
-fish_add_path /home/butryan/bin
-fish_add_path /usr/local/sbin
-fish_add_path /usr/sbin
-fish_add_path /bin
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set fish_greeting
+# vi key bindings
+fish_vi_key_bindings
 
-# function fish_greeting
-#     echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
-# end
+# greeting
+function fish_greeting
+    echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
+end
 
 # function fish_greeting
 #     echo '                 '(set_color F00)'___
@@ -34,7 +27,6 @@ set fish_greeting
 #                       (J'(set_color FF7F00)'JJ'(set_color F00)'| \UUU)
 #                        (UU)'(set_color normal)
 # end
-
 
 ulimit -n 10240
 
@@ -59,10 +51,9 @@ alias vi "vim"
 #alias vim "lvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
-alias tmuxrc "vim ~/development/dotfiles/tmux.conf"
-alias zshrc "vim ~/development/dotfiles/zshrc"
-alias fishrc "vim ~/development/dotfiles/config/fish/config.fish"
-alias starrc "vim ~/development/dotfiles/config/starship.toml"
+alias zshrc "vim ~/.zshrc"
+alias fishrc "vim ~/.config/fish/config.fish"
+alias starrc "vim ~/.config/starship.toml"
 alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/development/dotfiles/config/lvim/config.lua"
 alias kittyrc "vim ~/development/dotfiles/config/kitty/kitty.conf"
@@ -110,14 +101,6 @@ set -gx PATH /usr/local/opt/bzip2/bin $PATH
 status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
 
-# fnm
-set -gx PATH $HOME/.fnm $PATH
-fnm env --use-on-cd | source
-
-# Source secrets from .env
-set -gx SECRETS $HOME/.env
-source $SECRETS
-
 # peco
 function fish_user_key_bindings
     bind \cr 'peco_select_history (commandline -b)'
@@ -139,11 +122,15 @@ function peco_select_history
   end
 end
 
-# if set -q KITTY_INSTALLATION_DIR
-#     set --global KITTY_SHELL_INTEGRATION enabled
-#     source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-#     set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-# end
+#Toolbox
+set -gx PATH $HOME/.toolbox/bin $PATH
+
+alias dotfiles "cd ~/development/dotfiles"
+alias ws "cd ~/workspace && ll"
+alias heap "cd ~/workspace/HEAP-AL2/src/Aws-ps-heap-main"
+alias score "cd ~/workspace/scorecard/src/COREScorecard"
+
+#cargo
+set -gx PATH ~/.cargo/bin $PATH
 
 starship init fish | source
-
