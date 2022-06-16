@@ -65,9 +65,16 @@ alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\
 alias secretsrc "vim ~/.env"
 alias c "clear"
 alias todo "vim ~/Documents/todo.md"
+alias notes "vim ~/Documents/notes.md"
+alias unirc "vim ~/.unison/default.prf"
+alias uni-sync "~/.uni-sync.sh"
+alias cht "~/.cht.sh"
 
 # tmux
 alias t "tmux"
+alias ta "tmux a -t"
+alias tk "tmux kill-session -t"
+alias tka "tmux kill-server"
 alias tx "tmuxinator"
 
 # exa
