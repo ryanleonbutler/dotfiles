@@ -69,6 +69,7 @@ alias notes "vim ~/Documents/notes.md"
 alias unirc "vim ~/.unison/default.prf"
 alias uni-sync "~/.uni-sync.sh"
 alias cht "~/.cht.sh"
+alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
 
 # tmux
 alias t "tmux"
