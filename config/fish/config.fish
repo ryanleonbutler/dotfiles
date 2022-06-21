@@ -44,10 +44,10 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 # aliases
-set -gx EDITOR lvim
-alias v "vim"
-alias vi "vim"
-alias vim "lvim"
+set -gx EDITOR nvim
+alias v "nvim"
+alias vi "nvim"
+alias vim "nvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
 alias tmuxrc "vim ~/development/dotfiles/tmux.conf"
