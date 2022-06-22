@@ -1,9 +1,8 @@
-### THEME ###
-
-vim.g.ryan_colorscheme = "tokyonight"
+vim.g.ryan_colorscheme = "gruvbox"
 vim.g.tokyonight_tranparent_sidebar = true
 vim.g.tokyonight_tranparent = true
 vim.g.gruvbox_contrast_dark = "dark"
+vim.g.gruvbox_transparent_bg = true
 vim.g.gruvbox_insert_selection = "0"
 vim.opt.background = "dark"
 vim.cmd("colorscheme " .. vim.g.ryan_colorscheme)
@@ -22,7 +21,7 @@ hl("ColorColumn", {
 })
 
 hl("CursorLineNR", {
-    bg = "none",
+    bg = "#555555",
 })
 
 hl("Normal", {
@@ -30,7 +29,8 @@ hl("Normal", {
 })
 
 hl("LineNR", {
-    fg = "#5eacd3",
+    -- fg = "#5eacd3",  -- Tokyonight
+    fg = "#7DB669",  -- Gruvbox
 })
 
 hl("netrwDir", {
