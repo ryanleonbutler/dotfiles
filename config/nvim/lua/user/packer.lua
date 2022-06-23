@@ -26,12 +26,13 @@ return require("packer").startup(function(use)
         config = function() vim.cmd[[let g:oscyank_term = 'tmux']] end
     }
 
-    -- the man himself, what a legend!
-    use "ThePrimeagen/git-worktree.nvim"
-
     -- Telescope / Plenary
     use "nvim-lua/plenary.nvim"
     use {"nvim-telescope/telescope.nvim", requires =  {'nvim-lua/plenary.nvim'}}
+
+    -- the man himself, what a legend!
+    use "ThePrimeagen/git-worktree.nvim"
+    use {"ThePrimeagen/harpoon", requires =  {'nvim-lua/plenary.nvim'}}
 
     -- Lsp
     use "neovim/nvim-lspconfig"
@@ -60,5 +61,8 @@ return require("packer").startup(function(use)
     -- Colorschemes
     use "gruvbox-community/gruvbox"
     use "folke/tokyonight.nvim"
+
+    -- Start it up
+    use "mhinz/vim-startify"
 
 end)

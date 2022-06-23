@@ -18,16 +18,6 @@ M.nmap("<Leader>ea", ":Lexplore %:p:h<CR>")
 M.nmap("<Leader>ed", ":Lexplore<CR>")
 M.nmap("<Leader>e", ":Explore<CR>")
 
--- M.nmap("<TAB>", "mf") -- toggles mark on file
--- M.nmap("<S-TAB>", "mF") -- unmarks current files in current buffer
--- M.nmap("<Leader><TAB>", "mu") -- removes marks on all files
-
--- M.nmap("ff", ":w<CR>:buffer #<CR>") -- new file
--- M.nmap("fe", "R") -- rename file
--- M.nmap("fc", "mc") -- copy marked files
--- M.nmap("fx", "mm") -- move marked file
--- M.nmap("f;", "mx") -- run external commands on marked files
-
 -- Better save and quit
 M.nmap("<Leader>w", ":write<CR>")
 M.nmap("<Leader>q", ":qa<CR>")
@@ -84,5 +74,8 @@ M.nmap("<Right>", "<Nop>")
 
 -- Git-worktree
 M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+
+-- Lets go harpooning
+M.nmap("<Leader>m", ":lua require('harpoon.mark').add_file()<CR>")
 
 return M

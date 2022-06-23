@@ -1,8 +1,0 @@
-require("ryan.packer")
-require("ryan.set")
-require("ryan.plug_set")
-require("ryan.theme")
-require("ryan.lsp")
-require("ryan.telescope")
-require("ryan.keymap")
-require("ryan.statusline")

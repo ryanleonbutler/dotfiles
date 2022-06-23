@@ -1,4 +1,4 @@
-local Remap = require("ryan.keymap")
+local Remap = require("user.keymap")
 local nmap = Remap.nmap
 local imap = Remap.imap
 
