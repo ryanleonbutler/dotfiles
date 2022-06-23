@@ -33,7 +33,7 @@ set.pumheight = 10 -- pop up menu height
 set.relativenumber = true -- set relative numbered lines
 set.scrolloff = 8 -- is one of my fav
 set.shiftwidth = 4 -- the number of spaces inserted for each indentation
-set.showmode = true -- we don't need to see things like -- INSERT -- anymore
+set.showmode = false -- we don't need to see things like -- INSERT -- anymore
 set.showtabline = 2 -- always show tabs
 set.sidescrolloff = 8
 set.signcolumn = "yes" -- always show the sign column otherwise it would shift the text each time
@@ -51,6 +51,6 @@ set.title = true -- set the title of window to the value of the titlestring
 set.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 set.undodir = os.getenv("HOME") .. "/.vim/undodir"
 set.undofile = true -- enable persistent undo
-set.updatetime = 300 -- faster completion
+set.updatetime = 50 -- faster completion
 set.wrap = false -- display lines as one long line
 set.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited

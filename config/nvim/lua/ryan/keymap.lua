@@ -83,6 +83,6 @@ M.nmap("<Left>", "<Nop>")
 M.nmap("<Right>", "<Nop>")
 
 -- Git-worktree
-M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees())")
+M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 
 return M

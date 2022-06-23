@@ -51,6 +51,12 @@ return require("packer").startup(function(use)
     -- Tabbar
     use "romgrk/barbar.nvim"
 
+    -- Statusline
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
     -- Colorschemes
     use "gruvbox-community/gruvbox"
     use "folke/tokyonight.nvim"

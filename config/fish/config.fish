@@ -59,16 +59,19 @@ alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
 
 # tmux
 alias t "tmux"
+alias tls "tmux ls"
 alias ta "tmux a -t"
 alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
 alias tx "tmuxinator"
+alias txl "tx list"
 
 # exa
 if type -q exa
   alias ll "exa -l -g --icons"
   alias ls "exa --icons"
   alias lla "ll -a"
+  alias tree "exa --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
 end
 
 # Git
@@ -81,6 +84,8 @@ alias gma "git commit -am"
 alias gb "git branch"
 alias gc "git checkout"
 alias gp "git push"
+alias gw "git clone --bare"
+alias gf "git fetch --all"
 
 # AWS CLI
 set -gx AWS_PAGER 
