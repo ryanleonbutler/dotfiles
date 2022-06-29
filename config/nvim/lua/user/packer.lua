@@ -45,6 +45,7 @@ return require("packer").startup(function(use)
     use "simrat39/symbols-outline.nvim"
     use "L3MON4D3/LuaSnip"
     use "saadparwaiz1/cmp_luasnip"
+    use "rafamadriz/friendly-snippets"
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -64,5 +65,8 @@ return require("packer").startup(function(use)
 
     -- Start it up
     use "mhinz/vim-startify"
+
+    -- Mistakes were made
+    use "mbbill/undotree"
 
 end)

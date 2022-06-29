@@ -23,3 +23,7 @@ require("harpoon").setup({
         mark_branch = false,
     }
 })
+
+-- Undotree
+vim.g.undotree_SetFocusWhenToggle = true
+vim.g.undotree_HelpLine = false

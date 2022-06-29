@@ -105,36 +105,15 @@ status is-interactive; and pyenv init - | source
 set -gx PATH $HOME/.fnm $PATH
 fnm env --use-on-cd | source
 
+# fzf
+set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS' 
+--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
+--color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
-# peco
-function fish_user_key_bindings
-    bind \cr 'peco_select_history (commandline -b)'
-end
-
-function peco_select_history
-  if test (count $argv) = 0
-    set peco_flags --layout=bottom-up
-  else
-    set peco_flags --layout=top-down --query "$argv"
-  end
-
-  history|peco $peco_flags|read foo
-
-  if [ $foo ]
-    commandline $foo
-  else
-    commandline ''
-  end
-end
-
-# if set -q KITTY_INSTALLATION_DIR
-#     set --global KITTY_SHELL_INTEGRATION enabled
-#     source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-#     set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-# end
-
 starship init fish | source
-

@@ -78,4 +78,7 @@ M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_work
 -- Lets go harpooning
 M.nmap("<Leader>m", ":lua require('harpoon.mark').add_file()<CR>")
 
+-- Undotree
+M.nmap("<F5>", ":UndotreeToggle <CR>")
+
 return M

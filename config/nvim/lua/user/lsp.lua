@@ -8,15 +8,15 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- nvim-cmp
 local cmp = require("cmp")
 local luasnip = require('luasnip')
+local lspkind = require("lspkind")
 
 local source_mapping = {
 	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
 	nvim_lua = "[Lua]",
 	path = "[Path]",
+	luasnip = "[Snippet]",
 }
-
-local lspkind = require("lspkind")
 
 cmp.setup({
 	snippet = {
@@ -84,66 +84,114 @@ cmp.setup.cmdline(':', {
     })
 })
 
-local function config(_config)
-	return vim.tbl_deep_extend("force", {
-		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-		on_attach = function()
-			nmap("gd", vim.lsp.buf.definition)
-			nmap("gr", vim.lsp.buf.references)
-			nmap("K", vim.lsp.buf.hover)
-			nmap("<leader>vws", vim.lsp.buf.workspace_symbol)
-			nmap("<leader>gt", vim.diagnostic.open_float)
-			nmap("[d", vim.lsp.diagnostic.goto_next)
-			nmap("]d", vim.lsp.diagnostic.goto_prev)
-			nmap("<leader>vca", vim.lsp.buf.code_action)
-			nmap("<leader>vrn", vim.lsp.buf.rename)
-			imap("<C-h>", vim.lsp.buf.signature_help)
-		end,
-	}, _config or {})
+_G.load_config = function() local nvim_lsp = require 'lspconfig'
+    local on_attach = function()
+        local opts = { noremap = true, silent = true }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        -- vim.keymap.set('n', '<space>wl', function()
+        --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        -- end, opts)
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+    end
+
+    -- Add the server that troubles you here
+    -- local name = 'pyright'
+    -- local cmd = { 'pyright-langserver', '--stdio' } -- needed for elixirls, omnisharp, sumneko_lua
+    -- if not name then
+    --     print 'You have not defined a server name, please edit minimal_init.lua'
+    -- end
+    -- if not nvim_lsp[name].document_config.default_config.cmd and not cmd then
+    --     print [[You have not defined a server default cmd for a server
+    --     that requires it please edit minimal_init.lua]]
+    -- end
+
+    -- nvim_lsp[name].setup {
+    --     -- cmd = cmd,
+    --     on_attach = on_attach,
+    -- }
+
+    nvim_lsp["tsserver"].setup {
+        on_attach = on_attach,
+    }
+
+    nvim_lsp["pyright"].setup {
+        cmd = {"pyright-langserver", "--stdio"},
+        on_attach = on_attach,
+        settings = {
+            python = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    useLibraryCodeForTypes = true
+                }
+            }
+        },
+    }
+
+    nvim_lsp["sumneko_lua"].setup {
+        -- cmd = cmd,
+        on_attach = on_attach,
+        settings = {
+            Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                },
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = {'vim'},
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true),
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                    enable = false,
+                },
+            },
+        },
+    }
+
+
+    local opts = {
+        -- whether to highlight the currently hovered symbol
+        -- disable if your cpu usage is higher than you want it
+        -- or you just hate the highlight
+        -- default: true
+        highlight_hovered_item = true,
+
+        -- whether to show outline guides
+        -- default: true
+        show_guides = true,
+    }
+    require("symbols-outline").setup(opts)
+
+    require("luasnip.loaders.from_vscode").lazy_load({
+        -- paths = snippets_paths(),
+        include = nil, -- Load all languages
+        exclude = {},
+    })
 end
 
-require("lspconfig").tsserver.setup(config())
-
-require'lspconfig'.pyright.setup{
-    {"pyright-langserver", "--stdio"},
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true
-            }
-        }
-    }
-}
-
-require'lspconfig'.sumneko_lua.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
+_G.load_config()
 
 -- barium
 local lspconfig = require 'lspconfig'
 local configs = require 'lspconfig.configs'
-
+-- Check if the config is already defined (useful when reloading this file)
 if not configs.barium then
     configs.barium = {
         default_config = {
@@ -156,39 +204,4 @@ if not configs.barium then
         };
     }
 end
-
 lspconfig.barium.setup {}
-
-local opts = {
-	-- whether to highlight the currently hovered symbol
-	-- disable if your cpu usage is higher than you want it
-	-- or you just hate the highlight
-	-- default: true
-	highlight_hovered_item = true,
-
-	-- whether to show outline guides
-	-- default: true
-	show_guides = true,
-}
-
-require("symbols-outline").setup(opts)
-
-local snippets_paths = function()
-	local plugins = { "friendly-snippets" }
-	local paths = {}
-	local path
-	local root_path = vim.env.HOME .. "/.vim/plugged/"
-	for _, plug in ipairs(plugins) do
-		path = root_path .. plug
-		if vim.fn.isdirectory(path) ~= 0 then
-			table.insert(paths, path)
-		end
-	end
-	return paths
-end
-
-require("luasnip.loaders.from_vscode").lazy_load({
-	paths = snippets_paths(),
-	include = nil, -- Load all languages
-	exclude = {},
-})
