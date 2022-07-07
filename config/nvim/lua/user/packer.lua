@@ -19,7 +19,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-repeat")
-
 	-- Auto pairs
 	use({
 		"windwp/nvim-autopairs",
@@ -73,14 +72,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- Colorschemes
-	use("gruvbox-community/gruvbox")
 	use("folke/tokyonight.nvim")
-
-	-- Start it up
-	-- use "mhinz/vim-startify"
-
-	-- Mistakes were made
-	use("mbbill/undotree")
 
 	-- very very sneaky
 	use("justinmk/vim-sneak")
@@ -90,4 +82,11 @@ return require("packer").startup(function(use)
 
 	-- Faster escape
 	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
+
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icons
+		},
+	})
 end)

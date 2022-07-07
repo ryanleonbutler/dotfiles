@@ -1,9 +1,9 @@
 vim.g.ryan_colorscheme = "tokyonight"
 vim.g.tokyonight_tranparent_sidebar = true
 vim.g.tokyonight_tranparent = true
-vim.g.gruvbox_contrast_dark = "dark"
-vim.g.gruvbox_transparent_bg = true
-vim.g.gruvbox_insert_selection = "0"
+-- vim.g.gruvbox_contrast_dark = "dark"
+-- vim.g.gruvbox_transparent_bg = true
+-- vim.g.gruvbox_insert_selection = "0"
 vim.opt.background = "dark"
 vim.cmd("colorscheme " .. vim.g.ryan_colorscheme)
 
@@ -28,11 +28,16 @@ hl("Normal", {
     bg = "none",
 })
 
+hl("Nontext", {
+    bg = "none",
+})
+
 hl("LineNR", {
     fg = "#5eacd3",  -- Tokyonight
     -- fg = "#7DB669",  -- Gruvbox
 })
 
-hl("netrwDir", {
-    fg = "#5eacd3",
-})
+-- hl("netrwDir", {
+--     fg = "#5eacd3",
+-- })
+

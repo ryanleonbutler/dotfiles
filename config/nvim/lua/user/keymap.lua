@@ -13,10 +13,8 @@ M.xmap = function(lhs, rhs)
     vim.api.nvim_set_keymap('x', lhs, rhs, { noremap = true, silent = true })
 end
 
--- Netrw
-M.nmap("<Leader>ea", ":Lexplore %:p:h<CR>")
-M.nmap("<Leader>ed", ":Lexplore<CR>")
-M.nmap("<Leader>e", ":Explore<CR>")
+-- Nerdtree
+M.nmap("<Leader>e", ":NvimTreeToggle<CR>")
 
 -- TagBar
 M.nmap("<F8>", ":TagbarToggle<CR>")
@@ -81,9 +79,6 @@ M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_work
 -- Lets go harpooning
 -- M.nmap("<Leader>,", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 M.nmap("<Leader>m", ":lua require('harpoon.mark').toggle_file()<CR>")
-
--- Undotree
-M.nmap("<F5>", ":UndotreeToggle <CR>")
 
 -- Replace f with sneak
 M.nmap("f", "<Plug>Sneak_f")

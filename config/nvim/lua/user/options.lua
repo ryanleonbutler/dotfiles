@@ -2,10 +2,12 @@ local set = vim.opt
 
 -- global options
 vim.g.mapleader = " "
-vim.g.netrw_browse_split = 0
+
+-- netrw
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 30
+vim.g.netrw_winsize = 25
 vim.g.netrw_keepdir = 0
+vim.g.netrw_liststyle = 3
 vim.g.netrw_localcopydircmd = "cp -r"
 
 -- window-scoped options
@@ -46,7 +48,7 @@ set.softtabstop = 4
 set.swapfile = false -- creates a swapfile
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.termguicolors = true -- set term gui colors (most terminals support this)
-set.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
+set.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
 set.title = true -- set the title of window to the value of the titlestring
 set.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 set.undodir = os.getenv("HOME") .. "/.vim/undodir"

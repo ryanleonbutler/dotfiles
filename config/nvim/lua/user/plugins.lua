@@ -24,11 +24,25 @@ require("harpoon").setup({
     }
 })
 
--- Undotree
-vim.g.undotree_SetFocusWhenToggle = true
-vim.g.undotree_HelpLine = false
-
-
 -- better-escape.vim
-vim.g.better_escape_interval = 100
-vim.g.better_escape_shortcut = { "jk", "kj" }
+vim.g.better_escape_interval = 200
+vim.g.better_escape_shortcut = { "jk" }
+
+-- Nvim-tree
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = false,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
