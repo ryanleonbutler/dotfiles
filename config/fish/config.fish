@@ -6,16 +6,15 @@ end
 fish_vi_key_bindings
 
 # set fish_greeting
-function fish_greeting
-    echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
-end
+# function fish_greeting
+#     echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
+# end
 
-function fish_greeting
-    fish_logo red brred yellow
-end
+function fish_greeting 
+    fish_logo red brred yellow 
+end 
 
-ulimit -n 10240
-
+ulimit -n 10240 
 set -g fish_term24bit 1
 
 # theme
@@ -106,8 +105,7 @@ set -gx PATH $HOME/.fnm $PATH
 fnm env --use-on-cd | source
 
 # fzf
-set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS' 
---color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
 --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
 --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
 --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
@@ -116,4 +114,5 @@ set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS'
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
+# Fish
 starship init fish | source

@@ -46,7 +46,7 @@ set.softtabstop = 4
 set.swapfile = false -- creates a swapfile
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.termguicolors = true -- set term gui colors (most terminals support this)
-set.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
+set.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 set.title = true -- set the title of window to the value of the titlestring
 set.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 set.undodir = os.getenv("HOME") .. "/.vim/undodir"

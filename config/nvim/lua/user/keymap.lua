@@ -18,6 +18,9 @@ M.nmap("<Leader>ea", ":Lexplore %:p:h<CR>")
 M.nmap("<Leader>ed", ":Lexplore<CR>")
 M.nmap("<Leader>e", ":Explore<CR>")
 
+-- TagBar
+M.nmap("<F8>", ":TagbarToggle<CR>")
+
 -- Better save and quit
 M.nmap("<Leader>w", ":write<CR>")
 M.nmap("<Leader>q", ":qa<CR>")
@@ -76,9 +79,16 @@ M.nmap("<Right>", "<Nop>")
 M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 
 -- Lets go harpooning
-M.nmap("<Leader>m", ":lua require('harpoon.mark').add_file()<CR>")
+-- M.nmap("<Leader>,", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
+M.nmap("<Leader>m", ":lua require('harpoon.mark').toggle_file()<CR>")
 
 -- Undotree
 M.nmap("<F5>", ":UndotreeToggle <CR>")
+
+-- Replace f with sneak
+M.nmap("f", "<Plug>Sneak_f")
+M.nmap("F", "<Plug>Sneak_F")
+M.nmap("t", "<Plug>Sneak_t")
+M.nmap("T", "<Plug>Sneak_T")
 
 return M

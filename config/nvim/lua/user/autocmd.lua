@@ -15,10 +15,7 @@ autocmd('TextYankPost', {
     end,
 })
 
--- autocmd({"BufEnter", "BufWinEnter", "TabEnter"}, {
---     group = RyanGroup,
---     pattern = "*.*",
---     callback = function()
---         require("lsp_extensions").inlay_hints{}
---     end
--- })
+-- Force formatoptions
+vim.cmd([[autocmd BufWinEnter * setlocal formatoptions-=cro]])
+vim.cmd([[autocmd BufRead * setlocal formatoptions-=cro]])
+vim.cmd([[autocmd BufNewFile * setlocal formatoptions-=cro]])

@@ -1,6 +1,20 @@
 scan_timeout = 500
+command_timeout = 500
 add_newline = false
-# format = """$hostname$directory($git_branch$git_state$git_commit$git_status$git_metrics)$python$nodejs$character"""
+
+[cmd_duration]
+min_time_to_notify = 200_000
+
+[character] 
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+vimcmd_symbol = "[❮](bold blue)"
+# vimcmd_replace_one_symbol = "[❮](bold purple)"
+# vimcmd_replace_symbol = "[❮](bold purple)"
+# vimcmd_visual_symbol = "[❮](bold yellow)"
+
+[line_break]
+disabled = false
 
 [username]
 format = "\\[($style)[$user@]($style)"
@@ -11,7 +25,7 @@ disabled = true
 [hostname]
 ssh_only = false
 format = "\\[[MBP]($style)\\] "
-style = "green"
+style = "bold blue"
 
 [aws]
 disabled = true
@@ -26,6 +40,7 @@ symbol = " "
 [directory]
 read_only = " "
 truncation_length = 2 
+# truncation_symbol=".../"
 truncate_to_repo = true
 
 [docker_context]

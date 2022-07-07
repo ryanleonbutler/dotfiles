@@ -27,3 +27,8 @@ require("harpoon").setup({
 -- Undotree
 vim.g.undotree_SetFocusWhenToggle = true
 vim.g.undotree_HelpLine = false
+
+
+-- better-escape.vim
+vim.g.better_escape_interval = 100
+vim.g.better_escape_shortcut = { "jk", "kj" }
