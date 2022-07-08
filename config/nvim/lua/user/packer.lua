@@ -44,6 +44,9 @@ return require("packer").startup(function(use)
 	use("ThePrimeagen/git-worktree.nvim")
 	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
 
+	-- git blame
+	use("f-person/git-blame.nvim")
+
 	-- Lsp
 	use("neovim/nvim-lspconfig")
 	use("jose-elias-alvarez/null-ls.nvim")

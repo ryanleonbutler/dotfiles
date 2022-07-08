@@ -59,6 +59,8 @@ alias unirc "vim ~/.unison/default.prf"
 alias uni-sync "~/.uni-sync.sh"
 alias cht "~/.cht.sh"
 alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
+alias av "source .venv/bin/activate.fish"
+alias dv "deactivate"
 
 # tmux
 alias t "tmux"
@@ -68,6 +70,7 @@ alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
 alias tx "tmuxinator"
 alias txl "tx list"
+alias work "tx start unisync && tx start notes && tx start dotfiles && tx start playground"
 
 # exa
 if type -q exa
