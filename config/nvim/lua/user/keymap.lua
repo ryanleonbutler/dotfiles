@@ -86,4 +86,7 @@ M.nmap("F", "<Plug>Sneak_F")
 M.nmap("t", "<Plug>Sneak_t")
 M.nmap("T", "<Plug>Sneak_T")
 
+-- Toggle blame
+M.nmap("<Leader>gb", ":GitBlameToggle<CR>")
+
 return M

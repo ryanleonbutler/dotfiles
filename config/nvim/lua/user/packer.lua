@@ -98,4 +98,7 @@ return require("packer").startup(function(use)
 
 	-- for those todo lists
 	use("jkramer/vim-checkbox")
+
+	-- as you were...
+	use("ethanholz/nvim-lastplace")
 end)

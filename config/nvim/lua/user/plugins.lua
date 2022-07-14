@@ -46,3 +46,15 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+-- git blame
+vim.g.gitblame_enabled = 0
+
+-- last-place
+require("nvim-lastplace").setup({
+  lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+  lastplace_ignore_filetype = {
+    "gitcommit", "gitrebase", "svn", "hgcommit",
+  },
+  lastplace_open_folds = true,
+})
