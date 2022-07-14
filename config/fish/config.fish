@@ -9,14 +9,14 @@ function fish_user_key_bindings
   bind p fish_clipboard_paste
 end
 
-# set fish_greeting
+set fish_greeting
 # function fish_greeting
 #     echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
 # end
 
-function fish_greeting 
-    fish_logo red brred yellow 
-end 
+# function fish_greeting 
+#    fish_logo red brred yellow 
+# end 
 
 ulimit -n 10240 
 set -g fish_term24bit 1
@@ -49,7 +49,7 @@ alias kittyrc "vim ~/development/dotfiles/config/kitty/kitty.conf"
 alias yabairc "vim ~/development/dotfiles/yabairc"
 alias skhdrc "vim ~/development/dotfiles/skhdrc"
 alias spacebarrc "vim ~/development/dotfiles/config/spacebar/spacebarrc"
-alias filesopen "sudo lsof -n | cut -f1 -d  | uniq -c | sort | tail"
+alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
 alias c "clear"
@@ -70,7 +70,7 @@ alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
 alias tx "tmuxinator"
 alias txl "tx list"
-alias work "tx start unisync && tx start notes && tx start dotfiles && tx start playground"
+alias txwork "tx start unisync && tx start notes && tx start dotfiles && tx start playground"
 
 # exa
 if type -q exa

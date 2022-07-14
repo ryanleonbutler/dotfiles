@@ -19,6 +19,8 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-repeat")
+    use("tpope/vim-sleuth")
+
 	-- Auto pairs
 	use({
 		"windwp/nvim-autopairs",
@@ -86,10 +88,14 @@ return require("packer").startup(function(use)
 	-- Faster escape
 	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
 
+	-- Better explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = {
 			"kyazdani42/nvim-web-devicons", -- optional, for file icons
 		},
 	})
+
+	-- for those todo lists
+	use("jkramer/vim-checkbox")
 end)

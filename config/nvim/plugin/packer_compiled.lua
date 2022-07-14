@@ -217,6 +217,11 @@ _G.packer_plugins = {
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-checkbox"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-checkbox",
+    url = "https://github.com/jkramer/vim-checkbox"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-commentary",
@@ -232,6 +237,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-sleuth"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    url = "https://github.com/tpope/vim-sleuth"
   },
   ["vim-sneak"] = {
     loaded = true,

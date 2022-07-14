@@ -97,7 +97,7 @@ _G.load_config = function()
 		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		-- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 		-- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
@@ -212,10 +212,7 @@ if not configs.barium then
 			root_dir = function(fname)
 				return lspconfig.util.find_git_ancestor(fname)
 			end,
-			settings = {},
-		},
-	}
-end
+			settings = {}, }, } end
 lspconfig.barium.setup({})
 
 -- null_ls
@@ -241,4 +238,8 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.jq,
 	},
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
 })
