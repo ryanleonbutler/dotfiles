@@ -19,7 +19,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-repeat")
-    use("tpope/vim-sleuth")
+	use("tpope/vim-sleuth")
 
 	-- Auto pairs
 	use({
@@ -101,4 +101,8 @@ return require("packer").startup(function(use)
 
 	-- as you were...
 	use("ethanholz/nvim-lastplace")
+
+	-- we all need docs
+	use({"kkoomen/vim-doge", run = ":call doge#install()"})
+
 end)

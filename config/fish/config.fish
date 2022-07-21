@@ -107,10 +107,6 @@ set -gx PATH /usr/local/opt/bzip2/bin $PATH
 status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
 
-# fnm
-set -gx PATH $HOME/.fnm $PATH
-fnm env --use-on-cd | source
-
 # fzf
 set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
 --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 

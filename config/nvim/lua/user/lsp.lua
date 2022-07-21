@@ -8,13 +8,16 @@ local lspkind = require("lspkind")
 
 local source_mapping = {
 	buffer = "[Buffer]",
-	luasnip = "[Snippet]",
 	nvim_lsp = "[LSP]",
-	nvim_lua = "[Lua]",
 	path = "[Path]",
+	luasnip = "[Snippet]",
+	nvim_lua = "[Lua]",
 }
 
 cmp.setup({
+	enabled = function()
+		return vim.g.cmp_toggle
+	end,
 	snippet = {
 		expand = function(args)
 			-- For `luasnip` user.

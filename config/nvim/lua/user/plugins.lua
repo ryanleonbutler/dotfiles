@@ -58,3 +58,6 @@ require("nvim-lastplace").setup({
   },
   lastplace_open_folds = true,
 })
+
+-- doge
+vim.g.doge_doc_standard_python = "google"

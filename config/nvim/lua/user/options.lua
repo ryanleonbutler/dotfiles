@@ -3,6 +3,9 @@ local set = vim.opt
 -- global options
 vim.g.mapleader = " "
 
+-- autocomplete
+vim.g.cmp_toggle = true
+
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25

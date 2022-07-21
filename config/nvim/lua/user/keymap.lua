@@ -89,4 +89,10 @@ M.nmap("T", "<Plug>Sneak_T")
 -- Toggle blame
 M.nmap("<Leader>gb", ":GitBlameToggle<CR>")
 
+-- Toggle auto complete
+function TOGGLE_CMP()
+    vim.g.cmp_toggle = not vim.g.cmp_toggle
+end
+M.nmap("<Leader>cc", ":lua TOGGLE_CMP()<CR>")
+
 return M
