@@ -83,6 +83,19 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
+require("nvim-lsp-installer").setup({
+	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+	ensure_installed = {"bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
+    "vetur", "vuels", "pyright"},
+	ui = {
+		icons = {
+			server_installed = "✓",
+			server_pending = "➜",
+			server_uninstalled = "✗"
+		}
+	}
+})
+
 _G.load_config = function()
 	local nvim_lsp = require("lspconfig")
 	local on_attach = function()
@@ -215,7 +228,10 @@ if not configs.barium then
 			root_dir = function(fname)
 				return lspconfig.util.find_git_ancestor(fname)
 			end,
-			settings = {}, }, } end
+			settings = {},
+		},
+	}
+end
 lspconfig.barium.setup({})
 
 -- null_ls
@@ -238,11 +254,10 @@ null_ls.setup({
 		formatting.trim_whitespace,
 		formatting.black,
 		formatting.isort,
-		formatting.stylua,
 		formatting.jq,
 	},
 })
 
 vim.diagnostic.config({
-  virtual_text = false,
+	virtual_text = false,
 })

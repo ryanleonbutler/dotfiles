@@ -4,7 +4,12 @@ local set = vim.opt
 vim.g.mapleader = " "
 
 -- autocomplete
-vim.g.cmp_toggle = true
+vim.g.cmp_toggle = false
+
+-- indent blankline
+vim.g.optlist = true
+-- set.listchars:append "space:⋅"
+-- set.listchars:append "eol:↴"
 
 -- netrw
 vim.g.netrw_banner = 0

@@ -93,19 +93,15 @@ alias gp "git push"
 alias gw "git clone --bare"
 alias gf "git fetch --all"
 
+# ASDF
+source /usr/local/opt/asdf/libexec/asdf.fish
+
 # AWS CLI
 set -gx AWS_PAGER 
 
 # Pipx
 set -gx PATH $HOME/.local/bin $PATH
-set -gx PIPX_DEFAULT_PYTHON $HOME/.pyenv/shims/python
-
-# Pyenv details
-set -gx PYENV_ROOT $HOME/.pyenv
-set -gx PATH $PYENV_ROOT/bin $PATH
-set -gx PATH /usr/local/opt/bzip2/bin $PATH
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
+set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
 set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 

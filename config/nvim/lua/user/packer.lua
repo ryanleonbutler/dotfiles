@@ -50,7 +50,7 @@ return require("packer").startup(function(use)
 	use("f-person/git-blame.nvim")
 
 	-- Lsp
-	use("neovim/nvim-lspconfig")
+	use { "williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig" }
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
@@ -103,6 +103,9 @@ return require("packer").startup(function(use)
 	use("ethanholz/nvim-lastplace")
 
 	-- we all need docs
-	use({"kkoomen/vim-doge", run = ":call doge#install()"})
+	use({ "kkoomen/vim-doge", run = ":call doge#install()" })
+
+	-- better indents and shows context
+	use("lukas-reineke/indent-blankline.nvim")
 
 end)
