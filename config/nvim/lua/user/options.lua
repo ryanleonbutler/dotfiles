@@ -4,7 +4,7 @@ local set = vim.opt
 vim.g.mapleader = " "
 
 -- autocomplete
-vim.g.cmp_toggle = false
+vim.g.cmp_toggle = true
 
 -- indent blankline
 vim.g.optlist = true

@@ -19,7 +19,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-repeat")
-	use("tpope/vim-sleuth")
 
 	-- Auto pairs
 	use({
@@ -107,5 +106,5 @@ return require("packer").startup(function(use)
 
 	-- better indents and shows context
 	use("lukas-reineke/indent-blankline.nvim")
-
+    
 end)

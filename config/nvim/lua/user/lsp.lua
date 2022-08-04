@@ -7,20 +7,21 @@ local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 local source_mapping = {
-	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
-	path = "[Path]",
 	luasnip = "[Snippet]",
+	path = "[Path]",
+	buffer = "[Buffer]",
 	nvim_lua = "[Lua]",
 }
 
 cmp.setup({
 	enabled = function()
+        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+	    if buftype == "prompt" then return false end
 		return vim.g.cmp_toggle
 	end,
 	snippet = {
 		expand = function(args)
-			-- For `luasnip` user.
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
@@ -59,8 +60,8 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp" },
-		{ name = "path" },
 		{ name = "luasnip" },
+		{ name = "path" },
 		{ name = "buffer" },
 	},
 })
@@ -207,11 +208,16 @@ _G.load_config = function()
 	}
 	require("symbols-outline").setup(opts)
 
-	require("luasnip.loaders.from_vscode").lazy_load({
-		-- paths = snippets_paths(),
-		include = nil, -- Load all languages
-		exclude = {},
-	})
+	luasnip.filetype_extend("javascript", {"html"})
+	luasnip.filetype_extend("javascriptreact", {"html"})
+	luasnip.filetype_extend("typescriptreact", {"html"})
+	luasnip.filetype_extend("javascript", {"javascriptreact"})
+
+    require("luasnip.loaders.from_vscode").lazy_load({
+        -- paths = snippets_paths(),
+        include = nil, -- Load all languages
+        exclude = {},
+    })
 end
 
 _G.load_config()
@@ -245,15 +251,19 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 -- local code_actions = null_ls.builtins.code_actions
+local completion = null_ls.builtins.completion
 
 null_ls.setup({
 	debug = false,
 	sources = {
+		diagnostics.eslint,
 		diagnostics.flake8,
 		diagnostics.jsonlint,
-		formatting.trim_whitespace,
+		formatting.prettier,
 		formatting.black,
 		formatting.isort,
+		formatting.stylua,
+		formatting.trim_whitespace,
 		formatting.jq,
 	},
 })
