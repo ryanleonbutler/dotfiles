@@ -93,7 +93,6 @@ lvim.builtin.terminal.active = false
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.bufferline.options.diagnostics_indicator = false
 lvim.builtin.bufferline.options.custom_filter = false
 
@@ -248,7 +247,19 @@ lvim.plugins = {
     "joshdick/onedark.vim"
   },
   {
+    "folke/tokyonight.nvim"
+  },
+  {
     "gruvbox-community/gruvbox"
+  },
+  {
+    "lifepillar/vim-gruvbox8"
+  },
+  {
+    "chriskempson/base16-vim"
+  },
+  {
+    "arcticicestudio/nord-vim"
   },
   {
     "ojroques/vim-oscyank",

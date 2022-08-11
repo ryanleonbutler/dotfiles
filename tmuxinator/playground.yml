@@ -1,0 +1,16 @@
+# /Users/butryan/.config/tmuxinator/playground.yml
+
+name: playground
+root: ~/development/playground
+
+windows:
+  - python:
+      layout: even-horizontal
+      panes:
+        - av && vim
+        - av && clear && tree
+  - node:
+      layout: even-horizontal
+      panes:
+        - vim
+        - clear && tree

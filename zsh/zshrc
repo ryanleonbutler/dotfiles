@@ -1,0 +1,96 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+bindkey -v
+
+unsetopt BEEP
+
+export TERM="screen-256color"
+ZSH_THEME="robbyrussell"
+
+plugins=(z git zsh-autosuggestions fzf aws vi-mode)
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#75B8C8'
+# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+source $ZSH/oh-my-zsh.sh
+
+# Favourites
+alias vim="nvim"
+alias v="vim"
+alias vi="vim"
+export EDITOR="nvim"
+alias sz="source ~/.zshrc"
+alias ls="ls -GFh"
+alias ll="ls -GFhl"
+alias fishrc="vim ~/.config/fish/config.fish"
+alias zshrc="vim ~/.zshrc"
+alias starrc="vim ~/.config/starship.toml"
+alias tmuxrc="vim ~/.tmux.conf"
+alias sshrc="vim ~/.ssh/config"
+alias vimrc="vim ~/.config/nvim"
+alias kittyrc="vim ~/.config/kitty/kitty.conf"
+alias filesopen="sudo lsof -n | cut -f1 -d' ' | uniq -c | sort | tail"
+alias ranger="TERM=xterm-kitty ranger"
+alias chrome="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
+alias secretsrc="v ~/.env" # pragma: allowlist secret
+alias jupyter="${HOME}/development/jupyter_notebooks/.venv/bin/jupyter notebook --port 8888 --notebook-dir ${HOME}/development/jupyter_notebooks/src"
+alias cat="rich"
+
+# tmux
+alias t="tmux"
+alias tls="tmux ls"
+alias ta="tmux a -t"
+alias tk="tmux kill-session -t"
+alias tka="tmux kill-server"
+alias tx="tmuxinator"
+alias txl="tx list"
+
+# exa
+alias ll="exa -l -g --icons"
+alias ls="exa --icons"
+alias lla="ll -a"
+alias tree="exa --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
+
+# Git
+alias gs="git status"
+alias ga="git add -A"
+alias gl="git log"
+alias gd='git diff'
+alias gcm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gp="git push"
+alias gw="git clone --bare"
+alias gf="git fetch --all"
+
+# AWS CLI
+export AWS_PAGER=""
+
+# Pipx
+export PATH="$PATH:${HOME}/.local/bin"
+export PIPX_DEFAULT_PYTHON="${HOME}/.pyenv/shims/python"
+
+# Pyenv details
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/usr/local/opt/bzip2/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# fnm
+export PATH=$HOME/.fnm:$PATH
+eval "$(fnm env --use-on-cd)"
+
+export FZF_DEFAULT_OPTS='--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
+--color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+
+# Source secrets from .env
+SECRETS="${HOME}/.env"
+source $SECRETS
+
+# starship
+eval "$(starship init zsh)"

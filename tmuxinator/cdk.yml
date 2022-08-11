@@ -1,0 +1,11 @@
+# /Users/butryan/.config/tmuxinator/cdk.yml
+
+name: cdk
+root: ~/development/cdk
+
+tmux_command: sleep 1 && tmux
+
+windows:
+  - code: vim
+  - terminal: tree
+  - logs: tree
