@@ -2,21 +2,22 @@ local set = vim.opt
 
 -- global options
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- autocomplete
 vim.g.cmp_toggle = true
 
 -- indent blankline
-vim.g.optlist = true
+-- vim.g.optlist = true
 -- set.listchars:append "space:⋅"
 -- set.listchars:append "eol:↴"
 
 -- netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_keepdir = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_localcopydircmd = "cp -r"
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_winsize = 25
+-- vim.g.netrw_keepdir = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_localcopydircmd = "cp -r"
 
 -- window-scoped options
 vim.wo.colorcolumn = "119"

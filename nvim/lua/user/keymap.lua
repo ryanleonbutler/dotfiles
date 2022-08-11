@@ -13,6 +13,14 @@ M.xmap = function(lhs, rhs)
     vim.api.nvim_set_keymap('x', lhs, rhs, { noremap = true, silent = true })
 end
 
+-- keep more or less same place
+M.nmap("n", "nzzzv")
+M.nmap("N", "nzzzv")
+
+-- Stay in indent mode
+M.vmap("<", "<gv")
+M.vmap(">", ">gv")
+
 -- Nerdtree
 M.nmap("<Leader>e", ":NvimTreeToggle<CR>")
 

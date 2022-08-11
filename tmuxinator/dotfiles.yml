@@ -5,4 +5,4 @@ root: ~/development/dotfiles
 
 windows:
   - root: tree
-  - vim: cd ~/development/dotfiles/config/nvim
+  - vim: cd ~/development/dotfiles/nvim

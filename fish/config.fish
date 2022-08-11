@@ -41,16 +41,13 @@ alias vi "nvim"
 alias vim "nvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
-alias tmuxrc "vim ~/development/dotfiles/tmux.conf"
-alias zshrc "vim ~/development/dotfiles/zshrc"
-alias fishrc "vim ~/development/dotfiles/config/fish/config.fish"
-alias starrc "vim ~/development/dotfiles/config/starship.toml"
+alias tmuxrc "vim ~/development/dotfiles/tmux/tmux.conf"
+alias zshrc "vim ~/development/dotfiles/zsh/zshrc"
+alias fishrc "vim ~/development/dotfiles/fish/config.fish"
+alias starrc "vim ~/development/dotfiles/starship/starship.toml"
 alias sshrc "vim ~/.ssh/config"
-alias vimrc "vim ~/development/dotfiles/config/nvim"
-alias kittyrc "vim ~/development/dotfiles/config/kitty/kitty.conf"
-alias yabairc "vim ~/development/dotfiles/yabairc"
-alias skhdrc "vim ~/development/dotfiles/skhdrc"
-alias spacebarrc "vim ~/development/dotfiles/config/spacebar/spacebarrc"
+alias vimrc "vim ~/development/dotfiles/nvim"
+alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
@@ -63,6 +60,7 @@ alias cht "~/.cht.sh"
 alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
 alias av "source .venv/bin/activate.fish"
 alias dv "deactivate"
+alias cat "bat"
 
 # tmux
 alias t "tmux"
@@ -117,5 +115,12 @@ set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
+# zoxide
+zoxide init fish | source
+
 # Fish
 starship init fish | source
+
+# Generated for envman. Do not edit.
+test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
+

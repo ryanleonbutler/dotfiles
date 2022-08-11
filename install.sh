@@ -24,10 +24,11 @@ ln -s ~/development/dotfiles/tmux/tmux-gruvbox-dark.conf ~/.tmux-gruvbox-dark.co
 # tmuxanitor
 rm -rf ~/.config/tmuxinator
 ln -s ~/development/dotfiles/tmuxinator ~/.config/tmuxinator
+wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.fish ~/.config/fish/completions/
 
 # kitty
 rm -rf ~/.config/kitty
-ln -s ~/development/dotfiles/kitty/kitty ~/.config/kitty
+ln -s ~/development/dotfiles/kitty ~/.config/kitty
 
 # nvim
 rm -rf ~/.config/nvim
@@ -42,6 +43,10 @@ rm -rf ~/.cht.sh ~/.tmux-cht-command ~/.tmux-cht-languages
 ln -s ~/development/dotfiles/cht.sh/cht.sh ~/.cht.sh
 ln -s ~/development/dotfiles/cht.sh/tmux-cht-command ~/.tmux-cht-command
 ln -s ~/development/dotfiles/cht.sh/tmux-cht-languages ~/.tmux-cht-languages
+
+# unison
+rm -rf ~/.unison/default.prf 
+ln -s ~/development/dotfiles/unison/default.prf ~/.unison/default.prf
 
 # bin
 cp -R ~/development/dotfiles/bin/* ~/bin

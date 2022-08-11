@@ -4,10 +4,13 @@ name: heap
 root: ~/workspace/HEAP-AL2/src/Aws-ps-heap-main
 
 windows:
-  - code: clear && tree
+  - local:
+      layout: main-horizontal
+      panes:
+        - clear && pwd 
+        - clear && cdd-heap
   - cdd-heap:
       layout: even-horizontal
       panes:
         - clear && cdd-heap
         - clear && cdd-heap
-  - heap-prod: heap-prod
