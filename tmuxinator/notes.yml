@@ -1,0 +1,8 @@
+# /Users/butryan/.config/tmuxinator/notes.yml
+
+name: notes
+root: ~/Documents
+
+windows:
+  - todo: vim todo.md
+  - notes: vim notes.md

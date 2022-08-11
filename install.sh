@@ -21,6 +21,10 @@ ln -s ~/development/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -s ~/development/dotfiles/tmux/tmux-tokyonight.conf ~/.tmux-tokyonight.conf
 ln -s ~/development/dotfiles/tmux/tmux-gruvbox-dark.conf ~/.tmux-gruvbox-dark.conf
 
+# tmuxanitor
+rm -rf ~/.config/tmuxinator
+ln -s ~/development/dotfiles/tmuxinator ~/.config/tmuxinator
+
 # kitty
 rm -rf ~/.config/kitty
 ln -s ~/development/dotfiles/kitty/kitty ~/.config/kitty
@@ -32,3 +36,12 @@ ln -s ~/development/dotfiles/nvim ~/.config/nvim
 # ranger
 rm -rf ~/.config/ranger
 ln -s ~/development/dotfiles/ranger ~/.config/ranger
+
+# cht.sh
+rm -rf ~/.cht.sh ~/.tmux-cht-command ~/.tmux-cht-languages
+ln -s ~/development/dotfiles/cht.sh/cht.sh ~/.cht.sh
+ln -s ~/development/dotfiles/cht.sh/tmux-cht-command ~/.tmux-cht-command
+ln -s ~/development/dotfiles/cht.sh/tmux-cht-languages ~/.tmux-cht-languages
+
+# bin
+cp -R ~/development/dotfiles/bin/* ~/bin

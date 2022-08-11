@@ -1,0 +1,15 @@
+# /Users/butryan/.config/tmuxinator/dante-casebuddy.yml
+
+name: dante-casebuddy
+root: ~/workspace/Dante/src/Dante-CaseBuddy
+
+tmux_command: sleep 1 && tmux
+
+windows:
+  - code: vim
+  - terminal: exa --tree --level 2
+  - cdd:
+      layout: even-horizontal
+      panes:
+        - cdd-dante
+        - cdd-dante

@@ -1,0 +1,13 @@
+# /Users/butryan/.config/tmuxinator/heap.yml
+
+name: heap
+root: ~/workspace/HEAP-AL2/src/Aws-ps-heap-main
+
+windows:
+  - code: clear && tree
+  - cdd-heap:
+      layout: even-horizontal
+      panes:
+        - clear && cdd-heap
+        - clear && cdd-heap
+  - heap-prod: heap-prod

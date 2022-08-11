@@ -1,0 +1,21 @@
+# /Users/butryan/.config/tmuxinator/study.yml
+
+name: study
+root: ~/development
+
+windows:
+  - structy:
+      layout: even-horizontal
+      panes:
+        - cd ds_algo_exercises && av && clear 
+        - cd ds_algo_exercises && av && clear && fd -e 'py' | entr sh -c 'pytest -v'
+  - examples:
+      layout: even-horizontal
+      panes:
+        - cd examples && av && clear 
+        - cd examples && av && clear && fd -e 'py' | entr sh -c 'pytest -v'
+  - leetcode:
+      layout: even-horizontal
+      panes:
+        - cd leetcode && av && clear
+        - cd leetcode && av && clear
