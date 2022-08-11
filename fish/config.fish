@@ -73,6 +73,7 @@ alias txl "tx list"
 alias txs "tx start"
 alias txe "tx edit"
 alias txn "tx new"
+alias tmxs "tmux-sessionizer"
 
 # exa
 if type -q exa
