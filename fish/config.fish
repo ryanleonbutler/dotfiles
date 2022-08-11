@@ -31,6 +31,8 @@ set -g theme_hostname no
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+# Rust
+set -gx PATH $HOME/cargo/bin $PATH
 
 # aliases
 set -gx EDITOR nvim
@@ -70,7 +72,9 @@ alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
 alias tx "tmuxinator"
 alias txl "tx list"
-alias txwork "tx start unisync && tx start notes && tx start dotfiles && tx start playground"
+alias txs "tx start"
+alias txe "tx edit"
+alias txn "tx new"
 
 # exa
 if type -q exa

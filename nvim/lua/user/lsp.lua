@@ -87,7 +87,7 @@ cmp.setup.cmdline(":", {
 require("nvim-lsp-installer").setup({
 	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
 	ensure_installed = {"bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
-    "vetur", "vuels", "pyright"},
+    "vetur", "vuels", "pyright", "rust_analyzer"},
 	ui = {
 		icons = {
 			server_installed = "✓",
@@ -162,6 +162,12 @@ _G.load_config = function()
 				},
 			},
 		},
+	})
+
+	nvim_lsp["rust_analyzer"].setup({
+		-- cmd = cmd,
+		on_attach = on_attach,
+		settings = {},
 	})
 
 	nvim_lsp["sumneko_lua"].setup({
