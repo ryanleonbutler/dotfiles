@@ -25,6 +25,7 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 			"nvim-telescope/telescope-project.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
+            "LinArcX/telescope-command-palette.nvim"
 		},
 	})
 

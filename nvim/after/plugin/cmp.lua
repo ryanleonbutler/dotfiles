@@ -1,7 +1,10 @@
 -- nvim-cmp
 local status, cmp = pcall(require, "cmp")
-if (not status) then return end
+if not status then
+	return
+end
 
+local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 local source_mapping = {
@@ -14,8 +17,10 @@ local source_mapping = {
 
 cmp.setup({
 	enabled = function()
-        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-	    if buftype == "prompt" then return false end
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		if buftype == "prompt" then
+			return false
+		end
 		return vim.g.cmp_toggle
 	end,
 	snippet = {
