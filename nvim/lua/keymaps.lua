@@ -98,4 +98,15 @@ function TOGGLE_CMP()
 end
 M.nmap("<Leader>cc", ":lua TOGGLE_CMP()<CR>")
 
+-- Telescope
+M.nmap("<C-p>", ":Telescope <CR>")
+M.nmap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<CR>")
+M.nmap("<leader>s", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
+M.nmap("<leader>b", "<cmd>lua require('telescope.builtin').buffers()<CR>")
+M.nmap("<leader>t", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
+M.nmap("<leader>e", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>")
+M.nmap("<leader>p", "<cmd>lua require'telescope'.extensions.project.project{}<CR>")
+M.nmap("<leader>,", ":Telescope harpoon marks<cr>")
+M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+
 return M

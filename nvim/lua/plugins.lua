@@ -18,9 +18,15 @@ return require("packer").startup(function(use)
 
 	-- Telescope
 	use("nvim-lua/plenary.nvim")
-	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
-	use("nvim-telescope/telescope-file-browser.nvim")
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			"nvim-telescope/telescope-project.nvim",
+			"nvim-telescope/telescope-file-browser.nvim",
+		},
+	})
 
 	-- Git worktree, Harpoon
 	use("ThePrimeagen/git-worktree.nvim")
@@ -44,6 +50,7 @@ return require("packer").startup(function(use)
 		run = ":TSUpdate",
 	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	-- Pairs, tags, color, buffers
 	use({
