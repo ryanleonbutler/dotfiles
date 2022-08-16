@@ -1,7 +1,7 @@
 scan_timeout = 500
 command_timeout = 500
 add_newline = false
-right_format = """$cmd_duration"""
+# right_format = """$cmd_duration"""
 
 [cmd_duration]
 min_time_to_notify = 200_000

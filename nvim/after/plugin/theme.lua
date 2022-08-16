@@ -1,9 +1,9 @@
-vim.cmd[[colorscheme gruvbox]]
--- vim.g.tokyonight_tranparent_sidebar = true
--- vim.g.tokyonight_tranparent = true
-vim.g.gruvbox_contrast_dark = "dark"
-vim.g.gruvbox_transparent_bg = true
-vim.g.gruvbox_insert_selection = "0"
+vim.cmd[[colorscheme tokyonight]]
+vim.g.tokyonight_tranparent_sidebar = true
+vim.g.tokyonight_tranparent = true
+-- vim.g.gruvbox_contrast_dark = "dark"
+-- vim.g.gruvbox_transparent_bg = true
+-- vim.g.gruvbox_insert_selection = "0"
 
 local hl = function(thing, opts)
     vim.api.nvim_set_hl(0, thing, opts)
@@ -31,8 +31,8 @@ hl("Nontext", {
 })
 
 hl("LineNR", {
-    -- fg = "#5eacd3",  -- Tokyonight
-    fg = "#7DB669",  -- Gruvbox
+    fg = "#5eacd3",  -- Tokyonight
+    -- fg = "#7DB669",  -- Gruvbox
 })
 
 -- hl("netrwDir", {

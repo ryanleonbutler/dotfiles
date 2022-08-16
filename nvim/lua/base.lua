@@ -67,3 +67,4 @@ set.writebackup = false -- if a file is being edited by another program (or was 
 vim.number = true
 vim.numberwidth = 2
 vim.wo.colorcolumn = "119"
+vim.wo.fillchars='eob: '
