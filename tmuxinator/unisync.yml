@@ -3,8 +3,5 @@
 name: unisync
 root: ~/workspace
 
-tmux_command: sleep 1 && tmux
-
 windows:
   - unisync: uni-sync
-  - logs: tail -f ~/.unison/unison.log 

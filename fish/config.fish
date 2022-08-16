@@ -2,6 +2,13 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# theme
+# set -g theme_color_scheme terminal-dark
+# set -g fish_prompt_pwd_dir_length 1
+# set -g theme_display_user yes
+# set -g theme_hide_hostname no
+# set -g theme_hostname always
+
 # vi key bindings
 function fish_user_key_bindings
   bind yy fish_clipboard_copy
@@ -73,7 +80,7 @@ alias txl "tx list"
 alias txs "tx start"
 alias txe "tx edit"
 alias txn "tx new"
-alias tmxs "tmux-sessionizer"
+alias tuxs "tmux-sessionizer"
 
 # exa
 if type -q exa

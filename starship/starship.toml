@@ -1,14 +1,19 @@
 scan_timeout = 500
 command_timeout = 500
 add_newline = false
+right_format = """$cmd_duration"""
 
 [cmd_duration]
 min_time_to_notify = 200_000
 
 [character] 
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
-vimcmd_symbol = "[❮](bold blue)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold yellow)"
+# success_symbol = "[➜](bold green)"
+# error_symbol = "[➜](bold red)"
+# vimcmd_symbol = "[❮](bold blue)"
+# [❯]
 # vimcmd_replace_one_symbol = "[❮](bold purple)"
 # vimcmd_replace_symbol = "[❮](bold purple)"
 # vimcmd_visual_symbol = "[❮](bold yellow)"
