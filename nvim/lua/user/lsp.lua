@@ -16,8 +16,10 @@ local source_mapping = {
 
 cmp.setup({
 	enabled = function()
-        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-	    if buftype == "prompt" then return false end
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		if buftype == "prompt" then
+			return false
+		end
 		return vim.g.cmp_toggle
 	end,
 	snippet = {
@@ -86,15 +88,28 @@ cmp.setup.cmdline(":", {
 
 require("nvim-lsp-installer").setup({
 	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-	ensure_installed = {"bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
-    "vetur", "vuels", "pyright", "rust_analyzer"},
+	ensure_installed = {
+		"bashls",
+		"cssls",
+		"eslint",
+		"graphql",
+		"html",
+		"jsonls",
+		"sumneko_lua",
+		"tailwindcss",
+		"tsserver",
+		"vetur",
+		"vuels",
+		"pyright",
+		"rust_analyzer",
+	},
 	ui = {
 		icons = {
 			server_installed = "✓",
 			server_pending = "➜",
-			server_uninstalled = "✗"
-		}
-	}
+			server_uninstalled = "✗",
+		},
+	},
 })
 
 _G.load_config = function()
@@ -103,9 +118,7 @@ _G.load_config = function()
 		local opts = { noremap = true, silent = true }
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 		-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
@@ -122,22 +135,6 @@ _G.load_config = function()
 		-- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 		vim.keymap.set("n", "<C-f>", vim.lsp.buf.formatting, opts)
 	end
-
-	-- Add the server that troubles you here
-	-- local name = "pyright"
-	-- local cmd = { "pyright-langserver", "--stdio" } -- needed for elixirls, omnisharp, sumneko_lua
-	-- if not name then
-	--     print "You have not defined a server name, please edit minimal_init.lua"
-	-- end
-	-- if not nvim_lsp[name].document_config.default_config.cmd and not cmd then
-	--     print [[You have not defined a server default cmd for a server
-	--     that requires it please edit minimal_init.lua]]
-	-- end
-
-	-- nvim_lsp[name].setup {
-	--     -- cmd = cmd,
-	--     on_attach = on_attach,
-	-- }
 
 	nvim_lsp["tsserver"].setup({
 		cmd = { "typescript-language-server", "--stdio" },
@@ -167,7 +164,6 @@ _G.load_config = function()
 	})
 
 	nvim_lsp["rust_analyzer"].setup({
-		-- cmd = cmd,
 		on_attach = on_attach,
 		settings = {},
 	})
@@ -198,34 +194,25 @@ _G.load_config = function()
 	})
 
 	nvim_lsp["jsonls"].setup({
-		-- cmd = "",
 		on_attach = on_attach,
-		-- settings = {},
 	})
 
 	local opts = {
-		-- whether to highlight the currently hovered symbol
-		-- disable if your cpu usage is higher than you want it
-		-- or you just hate the highlight
-		-- default: true
 		highlight_hovered_item = true,
-
-		-- whether to show outline guides
-		-- default: true
 		show_guides = true,
 	}
 	require("symbols-outline").setup(opts)
 
-	luasnip.filetype_extend("javascript", {"html"})
-	luasnip.filetype_extend("javascriptreact", {"html"})
-	luasnip.filetype_extend("typescriptreact", {"html"})
-	luasnip.filetype_extend("javascript", {"javascriptreact"})
+	luasnip.filetype_extend("javascript", { "html" })
+	luasnip.filetype_extend("javascriptreact", { "html" })
+	luasnip.filetype_extend("typescriptreact", { "html" })
+	luasnip.filetype_extend("javascript", { "javascriptreact" })
 
-    require("luasnip.loaders.from_vscode").lazy_load({
-        -- paths = snippets_paths(),
-        include = nil, -- Load all languages
-        exclude = {},
-    })
+	require("luasnip.loaders.from_vscode").lazy_load({
+		-- paths = snippets_paths(),
+		include = nil, -- Load all languages
+		exclude = {},
+	})
 end
 
 _G.load_config()
@@ -254,11 +241,8 @@ if not null_ls_status_ok then
 	return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
--- local code_actions = null_ls.builtins.code_actions
 local completion = null_ls.builtins.completion
 
 null_ls.setup({

@@ -1,55 +1,83 @@
--- Harpoon
-require("harpoon").setup({
-    menu = {
-        width = vim.api.nvim_win_get_width(0) - 4,
-    },
-    global_settings = {
-        -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-        save_on_toggle = false,
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+	packer_bootstrap =
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	vim.cmd([[packadd packer.nvim]])
+end
 
-        -- saves the harpoon file upon every change. disabling is unrecommended.
-        save_on_change = true,
+return require("packer").startup(function(use)
+	-- packer
+	use("wbthomason/packer.nvim")
 
-        -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-        enter_on_sendcmd = false,
+	-- tpope
+	use("tpope/vim-surround")
+	use("tpope/vim-commentary")
+	use("tpope/vim-repeat")
 
-        -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-        tmux_autoclose_windows = false,
+	-- Telescope / Plenary
+	use("nvim-lua/plenary.nvim")
+	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("nvim-telescope/telescope-file-browser.nvim")
 
-        -- filetypes that you want to prevent from adding to the harpoon list menu.
-        excluded_filetypes = { "harpoon" },
+	-- Git
+	use("f-person/git-blame.nvim")
+	use("ThePrimeagen/git-worktree.nvim")
 
-        -- set marks specific to each git branch inside git repository
-        mark_branch = false,
-    }
-})
+	-- Lsp
+	use({ "williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig" })
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/nvim-cmp")
+	use("onsails/lspkind-nvim")
+	use("nvim-lua/lsp_extensions.nvim")
+	use("simrat39/symbols-outline.nvim")
+	use("L3MON4D3/LuaSnip")
+	use("saadparwaiz1/cmp_luasnip")
+	use("rafamadriz/friendly-snippets")
 
--- better-escape.vim
-vim.g.better_escape_interval = 200
-vim.g.better_escape_shortcut = { "jk" }
+	-- Treesitter
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use("nvim-treesitter/nvim-treesitter-context")
 
--- git blame
-vim.g.gitblame_enabled = 0
+	-- UI, Theme
+	use("folke/tokyonight.nvim")
+	use("akinsho/bufferline.nvim")
+	use("preservim/tagbar")
+	use("lukas-reineke/indent-blankline.nvim")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
 
--- last-place
-require("nvim-lastplace").setup({
-    lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-    lastplace_ignore_filetype = {
-        "gitcommit", "gitrebase", "svn", "hgcommit",
-    },
-    lastplace_open_folds = true,
-})
+	-- Quality if live
+	use("folke/which-key.nvim")
+	use("justinmk/vim-sneak")
+	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
+	use("ethanholz/nvim-lastplace")
+	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
+	use({
+		"ojroques/vim-oscyank",
+		config = function()
+			vim.cmd([[let g:oscyank_term = 'tmux']])
+		end,
+	})
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 
--- doge
-vim.g.doge_doc_standard_python = "google"
+	-- Docs and Productivity
+	use("jkramer/vim-checkbox")
+	use({ "kkoomen/vim-doge", run = ":call doge#install()" })
 
--- indent line
-require("indent_blankline").setup {
-    indentLine_enabled = 1,
-    indent_blankline_char = " ",
-    space_char_blankline = " ",
-    show_current_context = true,
-    indent_blankline_context_char_list = "▏",
-    show_current_context_start = false,
-    indent_blankline_show_first_indent_level = false,
-}
+	if packer_bootstrap then
+		require("packer").sync()
+	end
+end)

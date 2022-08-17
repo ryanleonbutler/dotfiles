@@ -2,6 +2,13 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# theme
+# set -g theme_color_scheme terminal-dark
+# set -g fish_prompt_pwd_dir_length 1
+# set -g theme_display_user yes
+# set -g theme_hide_hostname no
+# set -g theme_hostname always
+
 # vi key bindings
 function fish_user_key_bindings
   bind yy fish_clipboard_copy
@@ -22,15 +29,16 @@ ulimit -n 10240
 set -g fish_term24bit 1
 
 # theme
-set -g theme_color_scheme terminal-dark
-set -g fish_prompt_pwd_dir_length 1
-set -g theme_display_user no
-set -g theme_hide_hostname yes 
-set -g theme_hostname no
+# set -g theme_color_scheme terminal-dark
+# set -g fish_prompt_pwd_dir_length 1
+# set -g theme_display_user no
+# set -g theme_hide_hostname yes 
+# set -g theme_hostname no
 
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+
 # Rust
 set -gx PATH $HOME/cargo/bin $PATH
 
@@ -73,6 +81,7 @@ alias txl "tx list"
 alias txs "tx start"
 alias txe "tx edit"
 alias txn "tx new"
+alias tuxs "tmux-sessionizer"
 
 # exa
 if type -q exa

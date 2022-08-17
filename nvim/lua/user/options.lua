@@ -7,6 +7,9 @@ vim.g.maplocalleader = " "
 -- autocomplete
 vim.g.cmp_toggle = true
 
+-- git blame
+vim.g.gitblame_enabled = 0
+
 -- indent blankline
 -- vim.g.optlist = true
 -- set.listchars:append "space:⋅"
@@ -41,7 +44,7 @@ set.mouse = "a" -- allow the mouse to be used in neovim
 set.number = true -- set numbered lines
 set.numberwidth = 2 -- set number column width to 2 {default 4}
 set.pumheight = 10 -- pop up menu height
-set.relativenumber = true -- set relative numbered lines
+set.relativenumber = false -- set relative numbered lines
 set.scrolloff = 8 -- is one of my fav
 set.shiftwidth = 4 -- the number of spaces inserted for each indentation
 set.showmode = false -- we don't need to see things like -- INSERT -- anymore

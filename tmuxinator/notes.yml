@@ -4,5 +4,4 @@ name: notes
 root: ~/Documents
 
 windows:
-  - todo: vim todo.md
-  - notes: vim notes.md
+  - notes: vim todo.md notes.md
