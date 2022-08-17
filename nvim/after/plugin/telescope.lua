@@ -17,17 +17,17 @@ telescope.setup({
 		use_less = false,
 		prompt_prefix = " >",
 		color_devicons = true,
-        vimgrep_arguments = {
-            "rg",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--hidden",
-            "--glob=!.git",
-        },
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+			"--glob=!.git",
+		},
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
@@ -63,12 +63,24 @@ telescope.setup({
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
 		},
+		file_browser = {
+			theme = "ivy",
+			-- disables netrw and use telescope-file-browser in its place
+			hijack_netrw = true,
+			mappings = {
+				["i"] = {
+					-- your custom insert mode mappings
+				},
+				["n"] = {
+					-- your custom normal mode mappings
+				},
+			},
+		},
 	},
 })
 require("telescope").load_extension("fzf")
-
+require("telescope").load_extension("file_browser")
 require("telescope").load_extension("git_worktree")
-
 require("telescope").load_extension("harpoon")
 
 M.find_files = function()
@@ -81,10 +93,13 @@ end
 
 -- normal
 nmap("<C-p>", ":Telescope <CR>")
-nmap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
-nmap("<leader>s", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-nmap("<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
-nmap("<leader>t", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
+nmap("<leader>e", "<cmd>Telescope file_browser<CR>")
+nmap("<leader>f", "<cmd>Telescope find_files<CR>")
+nmap("<leader>s", "<cmd>Telescope live_grep<CR>")
+nmap("<leader>b", "<cmd>Telescope buffers<CR>")
+nmap("<leader>t", "<cmd>Telescope help_tags<CR>")
+nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+
 
 -- harpoon
 nmap("<leader>,", ":Telescope harpoon marks<cr>")

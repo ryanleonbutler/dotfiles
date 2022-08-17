@@ -21,9 +21,6 @@ M.nmap("N", "nzzzv")
 M.vmap("<", "<gv")
 M.vmap(">", ">gv")
 
--- Nerdtree
-M.nmap("<Leader>e", ":NvimTreeToggle<CR>")
-
 -- TagBar
 M.nmap("<F8>", ":TagbarToggle<CR>")
 
@@ -80,9 +77,6 @@ M.nmap("<Up>", "<Nop>")
 M.nmap("<Down>", "<Nop>")
 M.nmap("<Left>", "<Nop>")
 M.nmap("<Right>", "<Nop>")
-
--- Git-worktree
-M.nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 
 -- Lets go harpooning
 -- M.nmap("<Leader>,", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
