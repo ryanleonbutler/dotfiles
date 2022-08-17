@@ -15,34 +15,15 @@ return require("packer").startup(function(use)
 	use("tpope/vim-commentary")
 	use("tpope/vim-repeat")
 
-	-- Auto pairs
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
-
-	-- Yank from SSH/Tmux
-	use({
-		"ojroques/vim-oscyank",
-		config = function()
-			vim.cmd([[let g:oscyank_term = 'tmux']])
-		end,
-	})
-
 	-- Telescope / Plenary
 	use("nvim-lua/plenary.nvim")
 	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use("nvim-telescope/telescope-file-browser.nvim")
 
-	-- the man himself, what a legend!
-	use("ThePrimeagen/git-worktree.nvim")
-	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
-
-	-- git blame
+	-- Git
 	use("f-person/git-blame.nvim")
+	use("ThePrimeagen/git-worktree.nvim")
 
 	-- Lsp
 	use({ "williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig" })
@@ -63,38 +44,37 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/nvim-treesitter-context")
 
-	-- Tabbar
-	use("romgrk/barbar.nvim")
-
-	-- Statusline
+	-- UI, Theme
+	use("folke/tokyonight.nvim")
+    use("akinsho/bufferline.nvim")
+	use("preservim/tagbar")
+	use("lukas-reineke/indent-blankline.nvim")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
-	-- Colorschemes
-	use("folke/tokyonight.nvim")
-
-	-- very very sneaky
+    -- Quality if live
 	use("justinmk/vim-sneak")
-
-	-- class outline
-	use("preservim/tagbar")
-
-	-- Faster escape
 	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
-
-	-- for those todo lists
-	use("jkramer/vim-checkbox")
-
-	-- as you were...
 	use("ethanholz/nvim-lastplace")
+	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
+	use({
+		"ojroques/vim-oscyank",
+		config = function()
+			vim.cmd([[let g:oscyank_term = 'tmux']])
+		end,
+	})
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 
-	-- we all need docs
+    -- Docs and Productivity
+	use("jkramer/vim-checkbox")
 	use({ "kkoomen/vim-doge", run = ":call doge#install()" })
-
-	-- better indents and shows context
-	use("lukas-reineke/indent-blankline.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
