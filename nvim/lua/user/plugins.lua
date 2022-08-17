@@ -46,7 +46,7 @@ return require("packer").startup(function(use)
 
 	-- UI, Theme
 	use("folke/tokyonight.nvim")
-    use("akinsho/bufferline.nvim")
+	use("akinsho/bufferline.nvim")
 	use("preservim/tagbar")
 	use("lukas-reineke/indent-blankline.nvim")
 	use({
@@ -54,7 +54,8 @@ return require("packer").startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
-    -- Quality if live
+	-- Quality if live
+	use("folke/which-key.nvim")
 	use("justinmk/vim-sneak")
 	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
 	use("ethanholz/nvim-lastplace")
@@ -72,7 +73,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-    -- Docs and Productivity
+	-- Docs and Productivity
 	use("jkramer/vim-checkbox")
 	use({ "kkoomen/vim-doge", run = ":call doge#install()" })
 

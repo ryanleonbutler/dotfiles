@@ -28,9 +28,6 @@ require("harpoon").setup({
 vim.g.better_escape_interval = 200
 vim.g.better_escape_shortcut = { "jk" }
 
--- git blame
-vim.g.gitblame_enabled = 0
-
 -- last-place
 require("nvim-lastplace").setup({
     lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
