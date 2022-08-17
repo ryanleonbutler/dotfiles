@@ -60,7 +60,6 @@ return require('packer').startup(function(use)
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("nvim-treesitter/nvim-treesitter-textobjects")
-    use('nvim-treesitter/nvim-treesitter-context')
 
     -- Tabbar
     use("romgrk/barbar.nvim")
@@ -102,9 +101,6 @@ return require('packer').startup(function(use)
 
     -- better indents and shows context
     use("lukas-reineke/indent-blankline.nvim")
-
-    -- LSP saga
-    use({ "glepnir/lspsaga.nvim", branch = "main" })
 
     if packer_bootstrap then
         require('packer').sync()
