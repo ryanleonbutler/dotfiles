@@ -105,7 +105,7 @@ alias gw "git clone --bare"
 alias gf "git fetch --all"
 
 # ASDF
-source /usr/local/opt/asdf/libexec/asdf.fish
+source ~/.asdf/asdf.fish
 
 # AWS CLI
 set -gx AWS_PAGER 

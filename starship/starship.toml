@@ -29,8 +29,8 @@ disabled = true
 
 [hostname]
 ssh_only = false
-format = "\\[[MBP]($style)\\] "
-style = "bold blue"
+format = "\\[[CDD]($style)\\] "
+style = "bold red"
 
 [aws]
 disabled = true
