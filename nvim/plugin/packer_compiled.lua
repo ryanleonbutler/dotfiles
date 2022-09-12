@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["aerial.nvim"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/aerial.nvim",
+    url = "https://github.com/stevearc/aerial.nvim"
+  },
   ["better-escape.vim"] = {
     loaded = false,
     needs_bufread = false,
@@ -85,6 +90,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
+  },
+  catppuccin = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
+  ["cinnamon.nvim"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/cinnamon.nvim",
+    url = "https://github.com/declancm/cinnamon.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -182,11 +197,6 @@ _G.packer_plugins = {
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
-  ["nvim-treesitter-context"] = {
-    loaded = true,
-    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
-  },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
@@ -212,11 +222,6 @@ _G.packer_plugins = {
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
-  tagbar = {
-    loaded = true,
-    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/tagbar",
-    url = "https://github.com/preservim/tagbar"
-  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -236,6 +241,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["true-zen.nvim"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/true-zen.nvim",
+    url = "https://github.com/Pocco81/true-zen.nvim"
   },
   ["vim-checkbox"] = {
     loaded = true,

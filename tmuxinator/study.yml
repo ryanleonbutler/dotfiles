@@ -7,15 +7,15 @@ windows:
   - structy:
       layout: even-horizontal
       panes:
-        - cd ds_algo_exercises && av && clear 
-        - cd ds_algo_exercises && av && clear && fd -e 'py' | entr sh -c 'pytest -v'
-  - examples:
-      layout: even-horizontal
-      panes:
-        - cd examples && av && clear 
-        - cd examples && av && clear && fd -e 'py' | entr sh -c 'pytest -v'
+        - cd ds_algo_exercises && av && sleep 0.5 && clear 
+        - cd ds_algo_exercises && av && sleep 0.5 && clear
   - leetcode:
       layout: even-horizontal
       panes:
-        - cd leetcode && av && clear
-        - cd leetcode && av && clear
+        - cd leetcode && av && sleep 0.5 && clear
+        - cd leetcode && av && sleep 0.5 && clear
+  - cracking:
+      layout: even-horizontal
+      panes:
+        - cd cracking && av && sleep 0.5 && clear
+        - cd cracking && av && sleep 0.5 && clear

@@ -163,6 +163,10 @@ _G.load_config = function()
 		},
 	})
 
+	nvim_lsp["cssls"].setup({
+		on_attach = on_attach,
+	})
+
 	nvim_lsp["rust_analyzer"].setup({
 		on_attach = on_attach,
 		settings = {},

@@ -42,19 +42,20 @@ return require("packer").startup(function(use)
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-textobjects")
-	use("nvim-treesitter/nvim-treesitter-context")
 
 	-- UI, Theme
 	use("folke/tokyonight.nvim")
+    use({"catppuccin/nvim", as = "catppuccin"})
 	use("akinsho/bufferline.nvim")
-	use("preservim/tagbar")
 	use("lukas-reineke/indent-blankline.nvim")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
+	use("Pocco81/true-zen.nvim")
+	use("stevearc/aerial.nvim")
 
-	-- Quality if live
+	-- Quality of live
 	use("folke/which-key.nvim")
 	use("justinmk/vim-sneak")
 	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
@@ -72,6 +73,7 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({})
 		end,
 	})
+	use("declancm/cinnamon.nvim")
 
 	-- Docs and Productivity
 	use("jkramer/vim-checkbox")

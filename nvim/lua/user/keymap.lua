@@ -1,4 +1,4 @@
--- useful keymap wrapper
+-- useful keymap test
 local M = {}
 M.nmap = function(lhs, rhs)
     vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true, silent = true })
@@ -21,9 +21,6 @@ M.nmap("N", "nzzzv")
 M.vmap("<", "<gv")
 M.vmap(">", ">gv")
 
--- TagBar
-M.nmap("<F8>", ":TagbarToggle<CR>")
-
 -- Better save and quit
 M.nmap("<Leader>w", ":write<CR>")
 M.nmap("<Leader>q", ":qa<CR>")
@@ -39,6 +36,9 @@ M.nmap("<Leader>r", ":% so<CR>")
 
 -- Yank through ssh/tmux whatever...
 M.vmap("<C-c>", ":OSCYank<CR>")
+
+-- Visual Paste
+M.nmap("<Leader>p", "\"_dP")
 
 -- no highlight
 M.nmap("<Leader>h", ":nohlsearch<CR>")
@@ -96,5 +96,22 @@ function TOGGLE_CMP()
     vim.g.cmp_toggle = not vim.g.cmp_toggle
 end
 M.nmap("<Leader>cc", ":lua TOGGLE_CMP()<CR>")
+
+-- zen
+M.nmap("<leader>zn", ":TZNarrow<CR>")
+M.nmap("<leader>zn", ":'<,'>TZNarrow<CR>")
+M.nmap("<leader>zf", ":TZFocus<CR>")
+M.nmap("<leader>zm", ":TZMinimalist<CR>")
+M.nmap("<leader>za", ":TZAtaraxis<CR>")
+
+-- Aerial
+-- Toggle the aerial window with <leader>a
+M.nmap("<Leader>at", "<cmd>AerialToggle!<CR>")
+-- Jump forwards/backwards with '{' and '}'
+M.nmap('{', '<cmd>AerialPrev<CR>')
+M.nmap('}', '<cmd>AerialNext<CR>')
+-- Jump up the tree with '[[' or ']]'
+M.nmap('[[', '<cmd>AerialPrevUp<CR>')
+M.nmap(']]', '<cmd>AerialNextUp<CR>')
 
 return M

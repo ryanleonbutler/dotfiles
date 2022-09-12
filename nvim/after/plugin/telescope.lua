@@ -76,12 +76,16 @@ telescope.setup({
 				},
 			},
 		},
+        aerial = {
+            show_nesting = true
+        }
 	},
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("harpoon")
+require("telescope").load_extension("aerial")
 
 M.find_files = function()
 	telescope_builtin.find_files({
@@ -99,7 +103,7 @@ nmap("<leader>s", "<cmd>Telescope live_grep<CR>")
 nmap("<leader>b", "<cmd>Telescope buffers<CR>")
 nmap("<leader>t", "<cmd>Telescope help_tags<CR>")
 nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
-
+nmap("<Leader>a", "<cmd>Telescope aerial<CR>")
 
 -- harpoon
 nmap("<leader>,", ":Telescope harpoon marks<cr>")
