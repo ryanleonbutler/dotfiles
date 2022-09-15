@@ -27,6 +27,7 @@ set fish_greeting
 
 ulimit -n 10240 
 set -g fish_term24bit 1
+# set -g TERM "tmux-256color"
 
 # theme
 # set -g theme_color_scheme terminal-dark
@@ -68,12 +69,12 @@ alias cht "~/.cht.sh"
 alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
 alias av "source .venv/bin/activate.fish"
 alias dv "deactivate"
-alias cat "bat"
 
 # tmux
 alias t "tmux"
 alias tls "tmux ls"
 alias ta "tmux a -t"
+alias td "tmux detach"
 alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
 alias tx "tmuxinator"
@@ -124,12 +125,5 @@ set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
-# zoxide
-zoxide init fish | source
-
 # Fish
 starship init fish | source
-
-# Generated for envman. Do not edit.
-test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
-
