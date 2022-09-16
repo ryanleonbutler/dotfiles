@@ -42,6 +42,7 @@ return require("packer").startup(function(use)
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	-- UI, Theme
 	use("folke/tokyonight.nvim")
@@ -56,9 +57,7 @@ return require("packer").startup(function(use)
 	use("stevearc/aerial.nvim")
 
 	-- Quality of live
-	use("folke/which-key.nvim")
-	use("justinmk/vim-sneak")
-	use({ "jdhao/better-escape.vim", event = "InsertEnter" })
+	-- use("folke/which-key.nvim")
 	use("ethanholz/nvim-lastplace")
 	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
 	use({
@@ -67,13 +66,8 @@ return require("packer").startup(function(use)
 			vim.cmd([[let g:oscyank_term = 'tmux']])
 		end,
 	})
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
-	use("declancm/cinnamon.nvim")
+    use("wikitopian/hardmode")
+    use("mbbill/undotree")
 
 	-- Docs and Productivity
 	use("jkramer/vim-checkbox")

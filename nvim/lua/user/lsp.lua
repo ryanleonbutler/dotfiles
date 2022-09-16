@@ -116,7 +116,7 @@ _G.load_config = function()
 	local nvim_lsp = require("lspconfig")
 	local on_attach = function()
 		local opts = { noremap = true, silent = true }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -129,11 +129,12 @@ _G.load_config = function()
 		-- end, opts)
 		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "gD", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 		-- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 		vim.keymap.set("n", "<C-f>", vim.lsp.buf.formatting, opts)
+		vim.keymap.set("n", "<Leader>vrn", function() vim.lsp.buf.rename() end, opts)
 	end
 
 	nvim_lsp["tsserver"].setup({
@@ -252,14 +253,14 @@ local completion = null_ls.builtins.completion
 null_ls.setup({
 	debug = false,
 	sources = {
-		diagnostics.eslint,
+		-- diagnostics.eslint,
 		diagnostics.flake8,
 		diagnostics.jsonlint,
-		formatting.prettier,
+		-- formatting.prettier,
 		formatting.black,
 		formatting.isort,
-		formatting.stylua,
-		formatting.trim_whitespace,
+		-- formatting.stylua,
+		-- formatting.trim_whitespace,
 		formatting.jq,
 	},
 })

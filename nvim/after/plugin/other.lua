@@ -25,8 +25,8 @@ require("harpoon").setup({
 })
 
 -- better-escape.vim
-vim.g.better_escape_interval = 200
-vim.g.better_escape_shortcut = { "jk" }
+-- vim.g.better_escape_interval = 200
+-- vim.g.better_escape_shortcut = { "jk" }
 
 -- last-place
 require("nvim-lastplace").setup({
@@ -54,12 +54,12 @@ require("indent_blankline").setup({
 	indent_blankline_show_first_indent_level = false,
 })
 
-require("cinnamon").setup({
+-- require("cinnamon").setup({
 	-- extra_keymaps = true,
 	-- override_keymaps = true,
 	-- max_length = 500,
 	-- scroll_limit = -1,
-})
+-- })
 
 require("true-zen").setup({
 	{

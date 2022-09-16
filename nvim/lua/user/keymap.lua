@@ -37,8 +37,12 @@ M.nmap("<Leader>r", ":% so<CR>")
 -- Yank through ssh/tmux whatever...
 M.vmap("<C-c>", ":OSCYank<CR>")
 
--- Visual Paste
-M.nmap("<Leader>p", "\"_dP")
+-- Clipboard stuff
+-- M.xmap("<Leader>p", "\"_dP")
+-- M.nmap("<Leader>d", "\"_dP")
+-- M.vmap("<Leader>d", "\"_dP")
+M.nmap("<Leader>y", "\"+y")
+M.vmap("<Leader>y", "\"+y")
 
 -- no highlight
 M.nmap("<Leader>h", ":nohlsearch<CR>")
@@ -55,6 +59,14 @@ M.imap("<C-a>", "<HOME>")
 M.nmap("<TAB>", ":bnext<CR>")
 M.nmap("<S-TAB>", ":bprevious<CR>")
 
+-- Move up and down and center cursor
+M.nmap("<C-d>", "<C-d>zz")
+M.nmap("<C-u>", "<C-u>zz")
+
+-- Move a line up or down
+M.vmap("J", ":m '>+1<CR>gv=gv")
+M.vmap("K", ":m '<-2<CR>gv=gv")
+
 -- Walking the splits
 M.nmap("<C-k>", ":wincmd k<CR>")
 M.nmap("<C-j>", ":wincmd j<CR>")
@@ -69,14 +81,17 @@ M.nmap("<Up>", "<Nop>")
 M.nmap("<Down>", "<Nop>")
 M.nmap("<Left>", "<Nop>")
 M.nmap("<Right>", "<Nop>")
-M.nmap("<Up>", "<Nop>")
-M.nmap("<Down>", "<Nop>")
-M.nmap("<Left>", "<Nop>")
-M.nmap("<Right>", "<Nop>")
-M.nmap("<Up>", "<Nop>")
-M.nmap("<Down>", "<Nop>")
-M.nmap("<Left>", "<Nop>")
-M.nmap("<Right>", "<Nop>")
+M.vmap("<Up>", "<Nop>")
+M.vmap("<Down>", "<Nop>")
+M.vmap("<Left>", "<Nop>")
+M.vmap("<Right>", "<Nop>")
+M.imap("<Up>", "<Nop>")
+M.imap("<Down>", "<Nop>")
+M.imap("<Left>", "<Nop>")
+M.imap("<Right>", "<Nop>")
+
+-- Find and replace
+M.nmap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Lets go harpooning
 -- M.nmap("<Leader>,", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
