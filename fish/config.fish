@@ -71,6 +71,11 @@ alias av "source .venv/bin/activate.fish"
 alias dv "deactivate"
 alias cat "bat"
 
+# better cd
+alias .. "cd .."
+alias .... "cd ../.."
+alias ...... "cd ../../.."
+
 # tmux
 alias t "tmux"
 alias tls "tmux ls"

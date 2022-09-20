@@ -265,6 +265,11 @@ _G.packer_plugins = {
     path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-doge",
     url = "https://github.com/kkoomen/vim-doge"
   },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/Users/butryan/.local/share/nvim/site/pack/packer/start/vim-floaterm",
+    url = "https://github.com/voldikss/vim-floaterm"
+  },
   ["vim-oscyank"] = {
     config = { "\27LJ\2\n?\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0 let g:oscyank_term = 'tmux'\bcmd\bvim\0" },
     loaded = true,

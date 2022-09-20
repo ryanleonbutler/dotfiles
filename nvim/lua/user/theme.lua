@@ -1,7 +1,15 @@
 vim.g.ryan_colorscheme = "catppuccin"
 
+local colors = require("catppuccin.palettes").get_palette()
+colors.none = "NONE"
+
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 require("catppuccin").setup({
+    custom_highlights = {
+        LineNR = { bg = colors.none, fg = colors.overlay0 },
+        CursorLine = { bg = colors.mantle },
+        CursorLineNR = { fg = colors.text, bg = colors.none },
+    },
     transparent_background = true,
     term_colors = true,
     compile = {
@@ -62,10 +70,10 @@ hl("Folded", {
     bg = "none",
 })
 
-hl("CursorLineNR", {
-    ctermbg = "none",
-    bg = "#555555",
-})
+-- hl("CursorLineNR", {
+--     ctermbg = "none",
+--     bg = "#555555",
+-- })
 
 hl("Normal", {
     ctermbg = "none",
@@ -82,12 +90,12 @@ hl("VertSplit", {
     bg = "none",
 })
 
-hl("LineNR", {
-    ctermbg = "none",
-    fg = "#525860",
-    -- fg = "#5eacd3",  -- Tokyonight
-    -- fg = "#7DB669",  -- Gruvbox
-})
+-- hl("LineNR", {
+--     ctermbg = "none",
+--     fg = "#525860",
+--     -- fg = "#5eacd3",  -- Tokyonight
+--     -- fg = "#7DB669",  -- Gruvbox
+-- })
 
 -- hl("netrwDir", {
 --     fg = "#5eacd3",

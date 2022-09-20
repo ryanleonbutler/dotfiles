@@ -101,7 +101,7 @@ nmap("<leader>e", "<cmd>Telescope file_browser<CR>")
 nmap("<leader>f", "<cmd>Telescope find_files<CR>")
 nmap("<leader>s", "<cmd>Telescope live_grep<CR>")
 nmap("<leader>b", "<cmd>Telescope buffers<CR>")
-nmap("<leader>t", "<cmd>Telescope help_tags<CR>")
+-- nmap("<leader>t", "<cmd>Telescope help_tags<CR>")
 nmap("<Leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 nmap("<Leader>a", "<cmd>Telescope aerial<CR>")
 

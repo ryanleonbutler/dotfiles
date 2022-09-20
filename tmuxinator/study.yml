@@ -19,3 +19,8 @@ windows:
       panes:
         - cd cracking && av && sleep 0.5 && clear
         - cd cracking && av && sleep 0.5 && clear
+  - last_algo:
+      layout: even-horizontal
+      panes:
+        - cd last_algo_ever_need && av && sleep 0.5 && clear
+        - cd last_algo_ever_need && av && sleep 0.5 && clear

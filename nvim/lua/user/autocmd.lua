@@ -22,3 +22,7 @@ vim.cmd([[autocmd BufNewFile * setlocal formatoptions-=cro]])
 
 -- Hard mode
 -- vim.cmd[[autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()]]
+
+-- LSP
+-- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float()]])
+-- vim.cmd([[autocmd CursorHold * lua vim.lsp.buf.hover()]])
