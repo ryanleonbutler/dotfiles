@@ -1,0 +1,7 @@
+{
+    "__init__": {
+        "prefix": "init",
+        "body": "def __init__(self):\n\tpass",
+        "description": "Adds init for class"
+    }
+}

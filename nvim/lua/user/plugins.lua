@@ -69,6 +69,8 @@ return require("packer").startup(function(use)
     use("wikitopian/hardmode")
     use("mbbill/undotree")
     use("voldikss/vim-floaterm")
+    use("windwp/nvim-autopairs")
+    use("windwp/nvim-ts-autotag")
 
     -- Docs and Productivity
     use("jkramer/vim-checkbox")

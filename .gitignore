@@ -6,3 +6,5 @@ __pycache__/
 .vscode/
 
 *.png
+
+nvim/plugin/packer_compiled.lua

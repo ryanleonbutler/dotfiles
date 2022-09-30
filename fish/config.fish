@@ -40,7 +40,7 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 # Rust
-set -gx PATH $HOME/cargo/bin $PATH
+set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # aliases
 set -gx EDITOR nvim
