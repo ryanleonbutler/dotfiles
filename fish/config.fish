@@ -41,7 +41,7 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 # Rust
-set -gx PATH $HOME/cargo/bin $PATH
+set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # aliases
 set -gx EDITOR nvim
@@ -50,6 +50,7 @@ alias vi "nvim"
 alias vim "nvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
+alias dotfiles="tuxs ~/development/dotfiles"
 alias tmuxrc "vim ~/development/dotfiles/tmux/tmux.conf"
 alias zshrc "vim ~/development/dotfiles/zsh/zshrc"
 alias fishrc "vim ~/development/dotfiles/fish/config.fish"
@@ -69,6 +70,11 @@ alias cht "~/.cht.sh"
 alias chg_kitty_bg "~/.config/kitty/background_changer.sh"
 alias av "source .venv/bin/activate.fish"
 alias dv "deactivate"
+
+# better cd
+alias .. "cd .."
+alias .... "cd ../.."
+alias ...... "cd ../../.."
 
 # tmux
 alias t "tmux"
@@ -116,10 +122,17 @@ set -gx PATH $HOME/.local/bin $PATH
 set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
---color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
---color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+# Tokyo
+# set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
+# --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
+# --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+# --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+
+# Catpuccin
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env

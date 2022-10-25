@@ -10,7 +10,7 @@ autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({
 			higroup = "IncSearch",
-			timeout = 1000,
+			timeout = 40,
 		})
 	end,
 })
@@ -19,3 +19,10 @@ autocmd("TextYankPost", {
 vim.cmd([[autocmd BufWinEnter * setlocal formatoptions-=cro]])
 vim.cmd([[autocmd BufRead * setlocal formatoptions-=cro]])
 vim.cmd([[autocmd BufNewFile * setlocal formatoptions-=cro]])
+
+-- Hard mode
+-- vim.cmd[[autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()]]
+
+-- LSP
+-- vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float()]])
+-- vim.cmd([[autocmd CursorHold * lua vim.lsp.buf.hover()]])
