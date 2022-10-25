@@ -13,6 +13,10 @@ M.xmap = function(lhs, rhs)
     vim.api.nvim_set_keymap('x', lhs, rhs, { noremap = true, silent = true })
 end
 
+-- commentary
+M.nmap("<leader>/", ":Commentary<CR>")
+M.vmap("<leader>/", ":Commentary<CR>")
+
 -- undotree
 M.nmap("<leader>u", ":UndotreeToggle<CR>")
 

@@ -114,14 +114,14 @@ require("nvim-lsp-installer").setup({
 
 _G.load_config = function()
     local nvim_lsp = require("lspconfig")
-    local on_attach = function()
+    local on_attach = function(client, bufnr)
         local opts = { noremap = true, silent = true }
         -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        -- vim.keymap.set("n", "<S-k>", vim.lsp.buf.signature_help, opts)
         -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
         -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
         -- vim.keymap.set("n", "<space>wl", function()
@@ -135,6 +135,7 @@ _G.load_config = function()
         -- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
         vim.keymap.set("n", "<C-f>", vim.lsp.buf.formatting, opts)
         vim.keymap.set("n", "<Leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        require("aerial").on_attach(client, bufnr)
     end
 
     nvim_lsp["tsserver"].setup({
@@ -235,7 +236,7 @@ _G.load_config = function()
 
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_vscode").lazy_load({
-        paths = {"./snippets"},
+        paths = { "./snippets" },
     })
 end
 

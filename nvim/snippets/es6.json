@@ -1,0 +1,7 @@
+{
+    "arrow function": {
+        "prefix": "afn",
+        "body": "const ${1:func_name} = (${2:params}) => {\n\t$0\n}",
+        "description": "Boilerplate for e6 arrow function"
+    }
+}
