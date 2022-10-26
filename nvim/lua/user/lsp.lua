@@ -33,24 +33,21 @@ cmp.setup({
         ["<C-i>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = function(fallback)
+
+        ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
             else
-                fallback()
+                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
-        end,
-        ["<S-Tab>"] = function(fallback)
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
             end
-        end,
+        end, { "i", "s" }),
+
     }),
     formatting = {
         format = function(entry, vim_item)
@@ -64,7 +61,12 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "buffer" },
+        { name = "buffer",
+            option = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end
+            } },
     },
 })
 
@@ -114,7 +116,7 @@ require("nvim-lsp-installer").setup({
 
 _G.load_config = function()
     local nvim_lsp = require("lspconfig")
-    local on_attach = function(client, bufnr)
+    local on_attach = function()
         local opts = { noremap = true, silent = true }
         -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
@@ -133,21 +135,21 @@ _G.load_config = function()
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
         -- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-        vim.keymap.set("n", "<C-f>", vim.lsp.buf.formatting, opts)
+        vim.keymap.set("n", "<C-f>", vim.lsp.buf.format, opts)
         vim.keymap.set("n", "<Leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        require("aerial").on_attach(client, bufnr)
+        -- require("aerial").on_attach(client, bufnr)
     end
 
     nvim_lsp["tsserver"].setup({
         cmd = { "typescript-language-server", "--stdio" },
-        filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-        },
+        -- filetypes = {
+        --     "javascript",
+        --     "javascriptreact",
+        --     "javascript.jsx",
+        --     "typescript",
+        --     "typescriptreact",
+        --     "typescript.tsx",
+        -- },
         on_attach = on_attach,
     })
 

@@ -25,6 +25,7 @@ vim.g.gitblame_enabled = 0
 -- window-scoped options
 vim.wo.colorcolumn = "100"
 
+set.autoread = true
 set.backup = false -- creates a backup file
 set.clipboard = "" -- does not allow neovim to access the system clipboard
 set.cmdheight = 1 -- more space in the neovim command line for displaying messages
