@@ -35,9 +35,9 @@ ulimit -n 10240
 # set -g theme_hide_hostname yes 
 # set -g theme_hostname no
 
-set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
 
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
@@ -122,10 +122,11 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
 # Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
- --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
- --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
- --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+set -Ux FZF_DEFAULT_OPTS "\
+    --color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb \ 
+    --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 \
+    --color=info:#88909f,prompt:#ec7279,pointer:#d38aea \
+    --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1"
 
 # Catpuccin
 # set -Ux FZF_DEFAULT_OPTS "\
