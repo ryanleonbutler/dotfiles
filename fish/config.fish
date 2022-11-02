@@ -26,8 +26,7 @@ set fish_greeting
 # end 
 
 ulimit -n 10240 
-set -g fish_term24bit 1
-# set -g TERM "tmux-256color"
+# set -g fish_term24bit 1
 
 # theme
 # set -g theme_color_scheme terminal-dark
@@ -138,5 +137,4 @@ set -Ux FZF_DEFAULT_OPTS "\
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
-# Fish
 starship init fish | source
