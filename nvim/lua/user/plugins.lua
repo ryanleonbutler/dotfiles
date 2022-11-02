@@ -45,6 +45,7 @@ return require("packer").startup(function(use)
     use("nvim-treesitter/nvim-treesitter-context")
 
     -- UI, Theme
+    use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
     use({ "catppuccin/nvim", as = "catppuccin" })
     use("akinsho/bufferline.nvim")

@@ -33,21 +33,24 @@ cmp.setup({
         ["<C-i>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
             else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                fallback()
             end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function()
+        end,
+        ["<S-TAB>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
             end
-        end, { "i", "s" }),
-
+        end,
     }),
     formatting = {
         format = function(entry, vim_item)
@@ -61,12 +64,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "buffer",
-            option = {
-                get_bufnrs = function()
-                    return vim.api.nvim_list_bufs()
-                end
-            } },
+        { name = "buffer" },
     },
 })
 
@@ -142,14 +140,14 @@ _G.load_config = function()
 
     nvim_lsp["tsserver"].setup({
         cmd = { "typescript-language-server", "--stdio" },
-        -- filetypes = {
-        --     "javascript",
-        --     "javascriptreact",
-        --     "javascript.jsx",
-        --     "typescript",
-        --     "typescriptreact",
-        --     "typescript.tsx",
-        -- },
+        filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+        },
         on_attach = on_attach,
     })
 

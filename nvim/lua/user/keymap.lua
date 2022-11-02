@@ -106,7 +106,7 @@ M.xmap("<Left>", "<Nop>")
 M.xmap("<Right>", "<Nop>")
 
 -- Find and replace
-M.nmap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+M.nmap("<leader>ss", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Lets go harpooning
 M.nmap("<leader>m", ":lua require('harpoon.mark').toggle_file()<CR>")
