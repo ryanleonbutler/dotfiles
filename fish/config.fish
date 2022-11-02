@@ -122,16 +122,16 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
 # Tokyo
-# set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
-# --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
-# --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
-# --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
+ --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
+ --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+ --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 # Catpuccin
-set -Ux FZF_DEFAULT_OPTS "\
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# set -Ux FZF_DEFAULT_OPTS "\
+# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env

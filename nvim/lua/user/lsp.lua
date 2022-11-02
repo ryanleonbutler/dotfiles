@@ -42,7 +42,7 @@ cmp.setup({
                 fallback()
             end
         end,
-        ["<S-Tab>"] = function(fallback)
+        ["<S-TAB>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -114,7 +114,7 @@ require("nvim-lsp-installer").setup({
 
 _G.load_config = function()
     local nvim_lsp = require("lspconfig")
-    local on_attach = function(client, bufnr)
+    local on_attach = function()
         local opts = { noremap = true, silent = true }
         -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
@@ -133,9 +133,9 @@ _G.load_config = function()
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
         -- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-        vim.keymap.set("n", "<C-f>", vim.lsp.buf.formatting, opts)
+        vim.keymap.set("n", "<C-f>", vim.lsp.buf.format, opts)
         vim.keymap.set("n", "<Leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        require("aerial").on_attach(client, bufnr)
+        -- require("aerial").on_attach(client, bufnr)
     end
 
     nvim_lsp["tsserver"].setup({
