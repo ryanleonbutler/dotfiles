@@ -33,7 +33,7 @@ cmp.setup({
         ["<C-i>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = function(fallback)
+        ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -41,8 +41,8 @@ cmp.setup({
             else
                 fallback()
             end
-        end,
-        ["<S-TAB>"] = function(fallback)
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -50,7 +50,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end,
+        end, { "i", "s" }),
     }),
     formatting = {
         format = function(entry, vim_item)

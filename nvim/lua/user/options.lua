@@ -15,12 +15,8 @@ vim.g.gitblame_enabled = 0
 -- set.listchars:append "space:⋅"
 -- set.listchars:append "eol:↴"
 
--- netrw
--- vim.g.netrw_banner = 0
--- vim.g.netrw_winsize = 25
--- vim.g.netrw_keepdir = 0
--- vim.g.netrw_liststyle = 3
--- vim.g.netrw_localcopydircmd = "cp -r"
+-- OSCYANK
+vim.g.oscyank_term = "default"
 
 -- window-scoped options
 vim.wo.colorcolumn = "100"

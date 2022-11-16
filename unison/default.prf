@@ -2,7 +2,7 @@
 
 # Roots of the synchronization
 root = /Users/butryan/workspace
-root = ssh://dev-dsk-butryan-1c-11bea9d6.eu-west-1.amazon.com//home/butryan/workspace
+root = ssh://dev-dsk-butryan-1c-2e578ad0.eu-west-1.amazon.com//home/butryan/workspace
 
 # Specific paths to synchronize (or leave out to sync entire root)
 # Note that path will be included for the matches below so (for example) */.idea below will match workspace_name/.idea
@@ -91,7 +91,7 @@ terse = true
 contactquietly = true
 
 # path to unison executable on CloudDesk, if not in $PATH of non-login non-interactive shell
-# servercmd = /local/home/butryan/bin/unison
+servercmd = /home/linuxbrew/.linuxbrew/bin/unison
 
 # Load rules from another file in ~/.unison/ (can share a team .prf and still have local customizations)
 #include = local.config

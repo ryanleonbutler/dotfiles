@@ -47,9 +47,9 @@ vim.g.tokyonight_tranparent_sidebar = true
 vim.g.tokyonight_tranparent = true
 
 -- vim.g.ryan_colorscheme = "gruvbox"
--- vim.g.gruvbox_contrast_dark = "dark"
--- vim.g.gruvbox_transparent_bg = true
--- vim.g.gruvbox_insert_selection = "0"
+vim.g.gruvbox_contrast_dark = "dark"
+vim.g.gruvbox_transparent_bg = true
+vim.g.gruvbox_insert_selection = "0"
 
 vim.opt.background = "dark"
 vim.cmd("colorscheme " .. vim.g.ryan_colorscheme)
@@ -92,12 +92,12 @@ hl("VertSplit", {
     bg = "none",
 })
 
--- hl("LineNR", {
---     ctermbg = "none",
---     fg = "#525860",
---     -- fg = "#5eacd3",  -- Tokyonight
---     -- fg = "#7DB669",  -- Gruvbox
--- })
+hl("LineNR", {
+    ctermbg = "none",
+    fg = "#525860",
+    -- fg = "#5eacd3",  -- Tokyonight
+    -- fg = "#7DB669",  -- Gruvbox
+})
 
 -- hl("netrwDir", {
 --     fg = "#5eacd3",
