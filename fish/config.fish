@@ -3,6 +3,7 @@ if status is-interactive
 end
 
 # theme
+# theme_gruvbox dark hard
 # set -g theme_color_scheme terminal-dark
 # set -g fish_prompt_pwd_dir_length 1
 # set -g theme_display_user yes
@@ -26,7 +27,7 @@ set fish_greeting
 # end 
 
 ulimit -n 10240 
-# set -g fish_term24bit 1
+set -g fish_term24bit 1
 
 # theme
 # set -g theme_color_scheme terminal-dark
@@ -122,11 +123,14 @@ set -gx PATH $HOME/.local/bin $PATH
 set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
+# Gruvbox
+# export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+
 # Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb 
- --color=fg+:#c5cdd9,bg+:#262729,hl+:#5dbbc1 
- --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
- --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
+--color=fg+:#c5cdd9,hl+:#5dbbc1 
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 # Catpuccin
 # set -Ux FZF_DEFAULT_OPTS "\
@@ -143,7 +147,3 @@ zoxide init fish | source
 
 # Fish
 starship init fish | source
-
-# Generated for envman. Do not edit.
-test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
-

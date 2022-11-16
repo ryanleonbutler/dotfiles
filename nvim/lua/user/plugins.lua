@@ -47,14 +47,14 @@ return require("packer").startup(function(use)
     -- UI, Theme
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    -- use({ "catppuccin/nvim", as = "catppuccin" })
     use("akinsho/bufferline.nvim")
-    use("lukas-reineke/indent-blankline.nvim")
+    -- use("lukas-reineke/indent-blankline.nvim")
     use({
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
-    use("Pocco81/true-zen.nvim")
+    -- use("Pocco81/true-zen.nvim")
     use("stevearc/aerial.nvim")
 
     -- Quality of live
@@ -67,15 +67,18 @@ return require("packer").startup(function(use)
             vim.cmd([[let g:oscyank_term = 'tmux']])
         end,
     })
-    use("wikitopian/hardmode")
-    use("mbbill/undotree")
+    -- use("wikitopian/hardmode")
+    -- use("mbbill/undotree")
     use("voldikss/vim-floaterm")
     use("windwp/nvim-autopairs")
     use("windwp/nvim-ts-autotag")
 
     -- Docs and Productivity
     use("jkramer/vim-checkbox")
-    use({ "kkoomen/vim-doge", run = ":call doge#install()" })
+    -- use({ "kkoomen/vim-doge", run = ":call doge#install()" })
+
+    -- Xwiki syntax highlighting
+    use("ipkiss42/xwiki.vim")
 
     if packer_bootstrap then
         require("packer").sync()

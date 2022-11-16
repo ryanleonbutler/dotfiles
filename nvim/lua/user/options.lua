@@ -15,12 +15,8 @@ vim.g.gitblame_enabled = 0
 -- set.listchars:append "space:⋅"
 -- set.listchars:append "eol:↴"
 
--- netrw
--- vim.g.netrw_banner = 0
--- vim.g.netrw_winsize = 25
--- vim.g.netrw_keepdir = 0
--- vim.g.netrw_liststyle = 3
--- vim.g.netrw_localcopydircmd = "cp -r"
+-- OSCYANK
+vim.g.oscyank_term = "default"
 
 -- window-scoped options
 vim.wo.colorcolumn = "100"
@@ -57,7 +53,7 @@ set.spell = false
 set.spelllang = "en"
 set.splitbelow = true -- force all horizontal splits to go below current window
 set.splitright = true -- force all vertical splits to go to the right of current window
-set.softtabstop = 4
+-- set.softtabstop = 4
 set.swapfile = false -- creates a swapfile
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.termguicolors = true -- set term gui colors (most terminals support this)

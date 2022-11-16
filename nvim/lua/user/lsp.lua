@@ -14,6 +14,8 @@ local source_mapping = {
     nvim_lua = "[Lua]",
 }
 
+local select_opts = { behavior = cmp.SelectBehavior.Select }
+
 cmp.setup({
     enabled = function()
         local buftype = vim.api.nvim_buf_get_option(0, "buftype")
@@ -24,34 +26,15 @@ cmp.setup({
     end,
     snippet = {
         expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
+            luasnip.lsp_expand(args.body)
+        end
     },
-    mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-i>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end,
-        ["<S-TAB>"] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end,
-    }),
+    sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'luasnip' },
+    },
     formatting = {
         format = function(entry, vim_item)
             vim_item.kind = lspkind.presets.default[vim_item.kind]
@@ -60,30 +43,56 @@ cmp.setup({
             return vim_item
         end,
     },
-    sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "path" },
-        { name = "buffer" },
-    },
-})
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won"t work anymore).
-cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = "buffer" },
-    },
-})
+    mapping = {
+        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
 
--- Use cmdline & path source for ":" (if you enabled `native_menu`, this won"t work anymore).
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "path" },
-    }, {
-        { name = "cmdline" },
-    }),
+        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+        ['<C-d>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        ['<C-b>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            local col = vim.fn.col('.') - 1
+
+            if cmp.visible() then
+                cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+                fallback()
+            else
+                cmp.complete()
+            end
+        end, { 'i', 's' }),
+
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item(select_opts)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    },
 })
 
 require("nvim-lsp-installer").setup({
@@ -272,13 +281,13 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
     debug = false,
     sources = {
-        -- diagnostics.eslint,
+        diagnostics.eslint,
         diagnostics.flake8,
         diagnostics.jsonlint,
-        -- formatting.prettier,
+        formatting.prettier,
         formatting.black,
         formatting.isort,
-        -- formatting.stylua,
+        formatting.stylua,
         -- formatting.trim_whitespace,
         formatting.jq,
     },

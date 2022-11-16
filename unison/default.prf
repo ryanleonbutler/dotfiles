@@ -2,7 +2,7 @@
 
 # Roots of the synchronization
 root = /Users/butryan/workspace
-root = ssh://dev-dsk-butryan-1c-11bea9d6.eu-west-1.amazon.com//home/butryan/workspace
+root = ssh://dev-dsk-butryan-1c-2e578ad0.eu-west-1.amazon.com//home/butryan/workspace
 
 # Specific paths to synchronize (or leave out to sync entire root)
 # Note that path will be included for the matches below so (for example) */.idea below will match workspace_name/.idea
