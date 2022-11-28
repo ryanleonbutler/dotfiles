@@ -19,7 +19,7 @@ vim.g.gitblame_enabled = 0
 vim.g.oscyank_term = "default"
 
 -- window-scoped options
-vim.wo.colorcolumn = "100"
+vim.wo.colorcolumn = "119"
 
 set.autoread = true
 set.backup = false -- creates a backup file
