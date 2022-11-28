@@ -19,7 +19,7 @@ vim.g.gitblame_enabled = 0
 vim.g.oscyank_term = "default"
 
 -- window-scoped options
-vim.wo.colorcolumn = "100"
+vim.wo.colorcolumn = "119"
 
 set.autoread = true
 set.backup = false -- creates a backup file
@@ -33,7 +33,6 @@ set.expandtab = true -- convert tabs to spaces
 set.fileencoding = "utf-8" -- the encoding written to a file
 set.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 set.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
--- set.guicursor = ""
 set.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 set.hidden = true -- required to keep multiple buffers and open multiple buffers
 set.hlsearch = true -- highlight all matches on previous search pattern
@@ -54,7 +53,7 @@ set.spell = false
 set.spelllang = "en"
 set.splitbelow = true -- force all horizontal splits to go below current window
 set.splitright = true -- force all vertical splits to go to the right of current window
-set.softtabstop = 4
+-- set.softtabstop = 4
 set.swapfile = false -- creates a swapfile
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.termguicolors = true -- set term gui colors (most terminals support this)

@@ -42,9 +42,14 @@
 --     highlight_overrides = {},
 -- })
 
+require("tokyonight").setup({
+    style = "storm",
+    transparent = true,
+})
+
 vim.g.ryan_colorscheme = "tokyonight"
-vim.g.tokyonight_tranparent_sidebar = true
-vim.g.tokyonight_tranparent = true
+-- vim.g.tokyonight_tranparent_sidebar = true
+-- vim.g.tokyonight_tranparent = true
 
 -- vim.g.ryan_colorscheme = "gruvbox"
 vim.g.gruvbox_contrast_dark = "dark"
