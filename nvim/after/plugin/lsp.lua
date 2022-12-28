@@ -34,13 +34,8 @@ lsp.setup_servers({
     opts = lsp_opts,
 })
 
--- lsp.configure("tsserver", {
--- 	flags = {
--- 		debounce_text_changes = 150,
--- 	},
--- 	on_attach = function(client, bufnr)
--- 		print("tsserver")
--- 	end,
+-- lsp.set_preferences({
+-- 	sign_icons = { }
 -- })
 
 lsp.on_attach(function(client, bufnr)
@@ -51,18 +46,18 @@ lsp.on_attach(function(client, bufnr)
     bind("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
     bind("n", "K", vim.lsp.buf.hover, opts)
     bind("n", "gi", vim.lsp.buf.implementation, opts)
-    bind("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-    bind("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    bind("n", "<space>wl", function()
+    bind("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+    bind("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    bind("n", "<leader>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
     bind("n", "F", vim.lsp.buf.type_definition, opts)
-    bind("n", "<leader>rn", vim.lsp.buf.rename, opts)
     bind("n", "D", vim.diagnostic.open_float, opts)
     bind("n", "[d", vim.diagnostic.goto_prev, opts)
     bind("n", "]d", vim.diagnostic.goto_next, opts)
-    bind("n", "<C-f>", vim.lsp.buf.format, opts)
-    bind("n", "<Leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    bind("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+    bind("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+    bind("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 end)
 
 lsp.setup_nvim_cmp({
@@ -124,15 +119,8 @@ require("luasnip.loaders.from_vscode").lazy_load({
     paths = { "./snippets" },
 })
 
--- 	enabled = function()
--- 		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
--- 		if buftype == "prompt" then
--- 			return false
--- 		end
--- 		return vim.g.cmp_toggle
--- 	end,
 
--- -- null_ls
+-- null_ls
 -- local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 -- if not null_ls_status_ok then
 -- 	return
@@ -151,97 +139,7 @@ require("luasnip.loaders.from_vscode").lazy_load({
 -- 		formatting.black,
 -- 		formatting.isort,
 -- 		formatting.stylua,
--- 		-- formatting.trim_whitespace,
+		-- formatting.trim_whitespace,
 -- 		formatting.jq,
 -- 	},
 -- })
-
--- 	nvim_lsp["tsserver"].setup({
--- 		cmd = { "typescript-language-server", "--stdio" },
--- 		filetypes = {
--- 			"javascript",
--- 			"javascriptreact",
--- 			"javascript.jsx",
--- 			"typescript",
--- 			"typescriptreact",
--- 			"typescript.tsx",
--- 		},
--- 		on_attach = on_attach,
--- 	})
-
--- 	nvim_lsp["pyright"].setup({
--- 		cmd = { "pyright-langserver", "--stdio" },
--- 		on_attach = on_attach,
--- 		settings = {
--- 			python = {
--- 				analysis = {
--- 					autoSearchPaths = true,
--- 					diagnosticMode = "workspace",
--- 					useLibraryCodeForTypes = true,
--- 				},
--- 			},
--- 		},
--- 	})
-
--- 	nvim_lsp["cssls"].setup({
--- 		on_attach = on_attach,
--- 	})
-
--- 	nvim_lsp["rust_analyzer"].setup({
--- 		on_attach = on_attach,
--- 		-- cmd = { "rust-analyzer" },
--- 		-- filetypes = { "rust" },
--- 		-- root_dir = { "Cargo.toml", "rust-project.json" },
--- 		settings = {
--- 			["rust_analyzer"] = {
--- 				imports = {
--- 					granularity = {
--- 						group = "module",
--- 					},
--- 					prefix = "self",
--- 				},
--- 				cargo = {
--- 					buildScripts = {
--- 						enable = true,
--- 					},
--- 				},
--- 				procMacro = {
--- 					enable = true,
--- 				},
--- 			},
--- 		},
--- 	})
-
--- 	nvim_lsp["sumneko_lua"].setup({
--- 		-- cmd = cmd,
--- 		on_attach = on_attach,
--- 		settings = {
--- 			Lua = {
--- 				runtime = {
--- 					-- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
--- 					version = "LuaJIT",
--- 				},
--- 				diagnostics = {
--- 					-- Get the language server to recognize the `vim` global
--- 					globals = { "vim" },
--- 				},
--- 				workspace = {
--- 					-- Make the server aware of Neovim runtime files
--- 					library = vim.api.nvim_get_runtime_file("", true),
--- 				},
--- 				-- Do not send telemetry data containing a randomized but unique identifier
--- 				telemetry = {
--- 					enable = false,
--- 				},
--- 			},
--- 		},
--- 	})
-
--- 	nvim_lsp["jsonls"].setup({
--- 		on_attach = on_attach,
--- 	})
-
--- 	local opts = {
--- 		highlight_hovered_item = true,
--- 		show_guides = true,
--- 	}
