@@ -147,3 +147,4 @@ zoxide init fish | source
 
 # Fish
 starship init fish | source
+
