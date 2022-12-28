@@ -24,21 +24,36 @@ return require("packer").startup(function(use)
 	-- Git
 	use("f-person/git-blame.nvim")
 	use("ThePrimeagen/git-worktree.nvim")
-    use("tpope/vim-fugitive")
+	use("tpope/vim-fugitive")
 
 	-- Lsp
-	use({ "williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig" })
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/nvim-cmp")
-	use("onsails/lspkind-nvim")
-	use("nvim-lua/lsp_extensions.nvim")
-	use("simrat39/symbols-outline.nvim")
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
-	use("rafamadriz/friendly-snippets")
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+		},
+	})
+
+	-- use({ "williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig" })
+	-- use("jose-elias-alvarez/null-ls.nvim")
+	-- use("onsails/lspkind-nvim")
+	-- use("nvim-lua/lsp_extensions.nvim")
+	-- use("simrat39/symbols-outline.nvim")
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -59,15 +74,8 @@ return require("packer").startup(function(use)
 	use("stevearc/aerial.nvim")
 
 	-- Quality of live
-	-- use("folke/which-key.nvim")
 	use("ethanholz/nvim-lastplace")
 	use({ "ThePrimeagen/harpoon", requires = { "nvim-lua/plenary.nvim" } })
-	use({
-		"ojroques/vim-oscyank",
-		config = function()
-			vim.cmd([[let g:oscyank_term = 'tmux']])
-		end,
-	})
 	-- use("wikitopian/hardmode")
 	-- use("mbbill/undotree")
 	use("voldikss/vim-floaterm")
@@ -80,15 +88,6 @@ return require("packer").startup(function(use)
 
 	-- Xwiki syntax highlighting
 	use("ipkiss42/xwiki.vim")
-
-	-- Barium
-	use({
-		"butryan@git.amazon.com:pkg/NinjaHooks",
-		branch = "mainline",
-		cmd = vim.opt.rtp:append(
-			vim.fn.stdpath("data") .. "/site/pack/packer/start/NinjaHooks/configuration/vim/amazon/brazil-config"
-		),
-	})
 
 	if packer_bootstrap then
 		require("packer").sync()
