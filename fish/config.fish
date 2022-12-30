@@ -89,7 +89,7 @@ alias txl "tx list"
 alias txs "tx start"
 alias txe "tx edit"
 alias txn "tx new"
-alias tuxs "tmux-sessionizer"
+alias ts "tmux-sessionizer"
 
 # exa
 if type -q exa
@@ -126,11 +126,18 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 # Gruvbox
 # export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 
+# rosepine
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
+ --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
+ --color=fg+:#908caa,bg+:#232136,hl+:#908caa
+ --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
+ --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
+
 # Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
---color=fg+:#c5cdd9,hl+:#5dbbc1 
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
---color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+# set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
+# --color=fg+:#c5cdd9,hl+:#5dbbc1 
+# --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+# --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 # Catpuccin
 # set -Ux FZF_DEFAULT_OPTS "\
