@@ -123,11 +123,11 @@ set -gx PATH $HOME/.local/bin $PATH
 set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
-# Gruvbox
-# export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+# nav with tab
+set FZF_DEFAULT_OPTS "--bind=shift-tab:up,tab:down"
 
 # rosepine
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
+set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS" 
  --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
  --color=fg+:#908caa,bg+:#232136,hl+:#908caa
  --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
