@@ -119,27 +119,48 @@ require("luasnip.loaders.from_vscode").lazy_load({
     paths = { "./snippets" },
 })
 
+-- Null-ls
+local null_ls = require('null-ls')
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 
--- null_ls
--- local null_ls_status_ok, null_ls = pcall(require, "null-ls")
--- if not null_ls_status_ok then
--- 	return
--- end
-
--- local formatting = null_ls.builtins.formatting
--- local diagnostics = null_ls.builtins.diagnostics
-
--- null_ls.setup({
--- 	debug = false,
--- 	sources = {
--- 		diagnostics.eslint,
--- 		diagnostics.flake8,
--- 		diagnostics.jsonlint,
--- 		formatting.prettier,
--- 		formatting.black,
--- 		formatting.isort,
--- 		formatting.stylua,
-		-- formatting.trim_whitespace,
--- 		formatting.jq,
--- 	},
--- })
+null_ls.setup({
+    sources = {
+        -- https://github.com/JohnnyMorganz/StyLua#options
+        formatting.stylua.with({
+            extra_args = {
+                '--indent-type', 'spaces',
+                '--indent-width', '4',
+                '--column-width', '88',
+                '--quote-style', 'AutoPreferDouble',
+            },
+        }),
+        -- Prettier: Javascript, TypeScript, CSS, JSON, HTML, Yaml, Markdown
+        formatting.prettier.with({
+            extra_args = {
+                '--double-quote',
+                '--jsx-single-quote',
+            },
+        }),
+        -- Black: Python
+        formatting.black.with({
+            extra_args = {
+                '--line-length', '88',
+            }
+        }),
+        -- Isort: Python
+        formatting.isort.with({
+            extra_args = {
+                '--line-length', '88',
+            }
+        }),
+        -- Flake8: Python
+        -- https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+        diagnostics.flake8.with({
+            extra_args = {
+                '--max-line-length', '88',
+                '--ignore', 'W391', -- blank line at end of file
+            },
+        }),
+    },
+})

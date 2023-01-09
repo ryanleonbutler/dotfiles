@@ -15,4 +15,4 @@ local function file_exists(name)
 	end
 end
 
-file_exists("/Users/butryan/.config/nvim/lua/user/work.lua")
+-- file_exists("/Users/butryan/.config/nvim/lua/user/work.lua")

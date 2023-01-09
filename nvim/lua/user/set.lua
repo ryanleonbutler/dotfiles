@@ -7,7 +7,7 @@ vim.g.cmp_toggle = true
 vim.g.gitblame_enabled = 0
 
 -- window-scoped options
-vim.wo.colorcolumn = "80"
+vim.wo.colorcolumn = "88"
 
 set.autoread = true
 set.backup = false -- creates a backup file

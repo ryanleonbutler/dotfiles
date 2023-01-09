@@ -27,8 +27,6 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use("glepnir/dashboard-nvim")
-
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -79,6 +77,7 @@ return require('packer').startup(function(use)
     use("jkramer/vim-checkbox")
     use("ipkiss42/xwiki.vim")
     use("folke/zen-mode.nvim")
+    use("jose-elias-alvarez/null-ls.nvim")
 
     if packer_bootstrap then
         require('packer').sync()
