@@ -55,30 +55,36 @@ lsp.on_attach(function(client, bufnr)
     bind("n", "D", vim.diagnostic.open_float, opts)
     bind("n", "[d", vim.diagnostic.goto_prev, opts)
     bind("n", "]d", vim.diagnostic.goto_next, opts)
-    bind("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    bind("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    bind("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    bind("n", "<leader>vca", function()
+        vim.lsp.buf.code_action()
+    end, opts)
+    bind("n", "<leader>vrr", function()
+        vim.lsp.buf.references()
+    end, opts)
+    bind("n", "<leader>vrn", function()
+        vim.lsp.buf.rename()
+    end, opts)
 end)
 
 lsp.setup_nvim_cmp({
     sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp', keyword_length = 3 },
-        { name = 'buffer', keyword_length = 3 },
-        { name = 'luasnip', keyword_length = 2 },
+        { name = "path" },
+        { name = "nvim_lsp", keyword_length = 3 },
+        { name = "buffer", keyword_length = 3 },
+        { name = "luasnip", keyword_length = 2 },
     },
     formatting = {
         -- changing the order of fields so the icon is the first
-        fields = { 'menu', 'abbr', 'kind' },
+        fields = { "menu", "abbr", "kind" },
 
         -- here is where the change happens
         format = function(entry, item)
             local menu_icon = {
-                nvim_lsp = 'λ',
-                luasnip = '⋗',
-                buffer = 'Ω',
-                path = '🖫',
-                nvim_lua = 'Π',
+                nvim_lsp = "λ",
+                luasnip = "⋗",
+                buffer = "Ω",
+                path = "🖫",
+                nvim_lua = "Π",
             }
 
             item.menu = menu_icon[entry.source.name]
@@ -88,12 +94,12 @@ lsp.setup_nvim_cmp({
     documentation = {
         max_height = 15,
         max_width = 60,
-        border = 'rounded',
+        border = "rounded",
         col_offset = 0,
         side_padding = 1,
-        winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
-        zindex = 1001
-    }
+        winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
+        zindex = 1001,
+    },
 })
 
 lsp.nvim_workspace()
@@ -120,46 +126,64 @@ require("luasnip.loaders.from_vscode").lazy_load({
 })
 
 -- Null-ls
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+local null_opts = lsp.build_options("null-ls", {})
 
 null_ls.setup({
+    on_attach = function(client, bufnr)
+        null_opts.on_attach(client, bufnr)
+        ---
+        -- you can add other stuff here....
+        ---
+    end,
     sources = {
+        --- configure sources
+        formatting.trim_whitespace,
+        formatting.trim_newlines,
+
         -- https://github.com/JohnnyMorganz/StyLua#options
         formatting.stylua.with({
             extra_args = {
-                '--indent-type', 'spaces',
-                '--indent-width', '4',
-                '--column-width', '88',
-                '--quote-style', 'AutoPreferDouble',
+                "--indent-type",
+                "spaces",
+                "--indent-width",
+                "4",
+                "--column-width",
+                "88",
+                "--quote-style",
+                "AutoPreferDouble",
             },
         }),
+
         -- Prettier: Javascript, TypeScript, CSS, JSON, HTML, Yaml, Markdown
         formatting.prettier.with({
             extra_args = {
-                '--double-quote',
-                '--jsx-single-quote',
+                "--double-quote",
+                "--jsx-single-quote",
+                "--print-width",
+                "88",
             },
         }),
-        -- Black: Python
-        formatting.black.with({
+        diagnostics.eslint,
+
+        -- ruff: Python
+        formatting.ruff.with({
             extra_args = {
-                '--line-length', '88',
-            }
+                "--line-length",
+                "88",
+            },
         }),
-        -- Isort: Python
-        formatting.isort.with({
-            extra_args = {
-                '--line-length', '88',
-            }
-        }),
-        -- Flake8: Python
         -- https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
-        diagnostics.flake8.with({
+        diagnostics.ruff.with({
             extra_args = {
-                '--max-line-length', '88',
-                '--ignore', 'W391', -- blank line at end of file
+                "--line-length",
+                "88",
+                "--max-complexity",
+                "10",
+                "--ignore",
+                "W391", -- blank line at end of file
             },
         }),
     },

@@ -26,6 +26,7 @@ set.hidden = true -- required to keep multiple buffers and open multiple buffers
 set.hlsearch = false -- highlight all matches on previous search pattern
 set.ignorecase = true -- ignore case in search patterns
 set.incsearch = true
+set.mouse="" -- disable mouse
 set.number = true -- set numbered lines
 set.numberwidth = 2 -- set number column width to 2 {default 4}
 set.pumheight = 10 -- pop up menu height
