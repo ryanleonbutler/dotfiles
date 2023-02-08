@@ -69,27 +69,27 @@ end)
 lsp.setup_nvim_cmp({
     sources = {
         { name = "path" },
-        { name = "nvim_lsp", keyword_length = 3 },
-        { name = "buffer", keyword_length = 3 },
-        { name = "luasnip", keyword_length = 2 },
+        { name = "nvim_lsp", keyword_length = 1 },
+        { name = "buffer", keyword_length = 1 },
+        { name = "luasnip", keyword_length = 1 },
     },
     formatting = {
         -- changing the order of fields so the icon is the first
         fields = { "menu", "abbr", "kind" },
 
         -- here is where the change happens
-        format = function(entry, item)
-            local menu_icon = {
-                nvim_lsp = "λ",
-                luasnip = "⋗",
-                buffer = "Ω",
-                path = "🖫",
-                nvim_lua = "Π",
-            }
+        -- format = function(entry, item)
+        --     local menu_icon = {
+        --         nvim_lsp = "λ",
+        --         luasnip = "⋗",
+        --         buffer = "Ω",
+        --         path = "🖫",
+        --         nvim_lua = "Π",
+        --     }
 
-            item.menu = menu_icon[entry.source.name]
-            return item
-        end,
+        --     item.menu = menu_icon[entry.source.name]
+        --     return item
+        -- end,
     },
     documentation = {
         max_height = 15,
@@ -151,7 +151,7 @@ null_ls.setup({
                 "--indent-width",
                 "4",
                 "--column-width",
-                "88",
+                "119",
                 "--quote-style",
                 "AutoPreferDouble",
             },
@@ -163,7 +163,7 @@ null_ls.setup({
                 "--double-quote",
                 "--jsx-single-quote",
                 "--print-width",
-                "88",
+                "119",
             },
         }),
         diagnostics.eslint,
@@ -172,14 +172,14 @@ null_ls.setup({
         formatting.ruff.with({
             extra_args = {
                 "--line-length",
-                "88",
+                "119",
             },
         }),
         -- https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
         diagnostics.ruff.with({
             extra_args = {
                 "--line-length",
-                "88",
+                "119",
                 "--max-complexity",
                 "10",
                 "--ignore",
