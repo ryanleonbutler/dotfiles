@@ -127,11 +127,11 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 set FZF_DEFAULT_OPTS "--bind=shift-tab:up,tab:down"
 
 # rosepine
-set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS" 
- --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
- --color=fg+:#908caa,bg+:#232136,hl+:#908caa
- --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
- --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
+# set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS" 
+# --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
+# --color=fg+:#908caa,bg+:#232136,hl+:#908caa
+# --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
+# --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
 
 # Tokyo
 # set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
@@ -152,6 +152,41 @@ source $SECRETS
 # zoxide
 zoxide init fish | source
 
-# Fish
+# starship
 starship init fish | source
 
+# Nightfox Color Palette
+# Style: nightfox
+# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nightfox/nightfox_fish.fish
+set -l foreground cdcecf
+set -l selection 2b3b51
+set -l comment 738091
+set -l red c94f6d
+set -l orange f4a261
+set -l yellow dbc074
+set -l green 81b29a
+set -l purple 9d79d6
+set -l cyan 63cdcf
+set -l pink d67ad2
+
+# Syntax Highlighting Colors
+set -g fish_color_normal $foreground
+set -g fish_color_command $cyan
+set -g fish_color_keyword $pink
+set -g fish_color_quote $yellow
+set -g fish_color_redirection $foreground
+set -g fish_color_end $orange
+set -g fish_color_error $red
+set -g fish_color_param $purple
+set -g fish_color_comment $comment
+set -g fish_color_selection --background=$selection
+set -g fish_color_search_match --background=$selection
+set -g fish_color_operator $green
+set -g fish_color_escape $pink
+set -g fish_color_autosuggestion $comment
+
+# Completion Pager Colors
+set -g fish_pager_color_progress $comment
+set -g fish_pager_color_prefix $cyan
+set -g fish_pager_color_completion $foreground
+set -g fish_pager_color_description $comment

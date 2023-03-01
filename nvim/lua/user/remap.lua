@@ -18,11 +18,10 @@ map("", "<right>", "<nop>")
 
 -- Save/CloseBuffer/Quit/Escape/SourceConfig
 map("n", "<leader>w", ":w <CR>")
-map("n", "<leader>x", ":b#<bar>bd#<CR>")
+map("n", "<leader>x", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
 map("i", "jk", "<ESC>")
-map("i", "<C-c>", "<ESC>")
 map("n", "<leader>r", ":so %<CR>")
 
 -- Clear highlight
@@ -34,6 +33,10 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
+
+-- Stay in indent mode
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Move a line up or down
 map("v", "J", ":m '>+1<CR>gv=gv")
@@ -48,6 +51,9 @@ map("x", "<leader>p", "\"_dp")
 map("n", "<leader>y", "\"+y")
 map("v", "<leader>y", "\"+y")
 map("n", "<leader>Y", "\"+Y")
+
+-- Yank through ssh/tmux whatever...
+map("v", "<C-c>", ":OSCYank<CR>")
 
 -- format
 map("n", "<C-f>", function()

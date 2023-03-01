@@ -9,7 +9,7 @@ lsp.ensure_installed({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "sumneko_lua",
+    "lua_ls",
     "tailwindcss",
     "tsserver",
 })
@@ -28,15 +28,15 @@ lsp.setup_servers({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "sumneko_lua",
+    "lua_ls",
     "tailwindcss",
     "tsserver",
     opts = lsp_opts,
 })
 
--- lsp.set_preferences({
--- 	sign_icons = { }
--- })
+lsp.set_preferences({
+    sign_icons = {},
+})
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -70,7 +70,15 @@ lsp.setup_nvim_cmp({
     sources = {
         { name = "path" },
         { name = "nvim_lsp", keyword_length = 1 },
-        { name = "buffer", keyword_length = 1 },
+        {
+            name = "buffer",
+            keyword_length = 1,
+            option = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end,
+            },
+        },
         { name = "luasnip", keyword_length = 1 },
     },
     formatting = {
@@ -108,7 +116,7 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,
-    update_in_insert = false,
+    update_in_insert = true,
     underline = true,
     severity_sort = false,
     float = true,
