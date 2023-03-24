@@ -30,6 +30,10 @@ wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/t
 rm -rf ~/.config/kitty
 ln -s ~/development/dotfiles/kitty ~/.config/kitty
 
+# kitty
+rm -rf ~/.config/alacritty
+ln -s ~/development/dotfiles/alacritty ~/.config/alacritty
+
 # nvim
 rm -rf ~/.config/nvim
 ln -s ~/development/dotfiles/nvim ~/.config/nvim

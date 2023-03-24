@@ -11,10 +11,11 @@ end
 # set -g theme_hostname always
 
 # vi key bindings
+fish_vi_key_bindings default
 function fish_user_key_bindings
-  bind yy fish_clipboard_copy
-  bind Y fish_clipboard_copy
-  bind p fish_clipboard_paste
+    bind yy fish_clipboard_copy
+    bind Y fish_clipboard_copy
+    bind p fish_clipboard_paste
 end
 
 set fish_greeting
@@ -39,6 +40,7 @@ set -g fish_term24bit 1
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH /opt/homebrew/bin $PATH
 
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
@@ -58,6 +60,7 @@ alias starrc "vim ~/development/dotfiles/starship/starship.toml"
 alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/development/dotfiles/nvim"
 alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
+alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
@@ -76,6 +79,11 @@ alias cat "bat"
 alias .. "cd .."
 alias .... "cd ../.."
 alias ...... "cd ../../.."
+
+# mosh / ssh
+# function ssh --wraps rm --description 'alias ssh=mosh REMOTE -- tmux -u new-session -A -s ${%n}'
+#     mosh -n --ssh='ssh -p 22' $argv -- tmux -u new-session -A -s $argv
+# end
 
 # tmux
 alias t "tmux"
@@ -113,7 +121,7 @@ alias gw "git clone --bare"
 alias gf "git fetch --all"
 
 # ASDF
-source /usr/local/opt/asdf/libexec/asdf.fish
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 # AWS CLI
 set -gx AWS_PAGER 
@@ -134,10 +142,10 @@ set FZF_DEFAULT_OPTS "--bind=shift-tab:up,tab:down"
 # --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
 
 # Tokyo
-# set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
-# --color=fg+:#c5cdd9,hl+:#5dbbc1 
-# --color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
-# --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
+--color=fg+:#c5cdd9,hl+:#5dbbc1 
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 # Catpuccin
 # set -Ux FZF_DEFAULT_OPTS "\
@@ -154,39 +162,3 @@ zoxide init fish | source
 
 # starship
 starship init fish | source
-
-# Nightfox Color Palette
-# Style: nightfox
-# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nightfox/nightfox_fish.fish
-set -l foreground cdcecf
-set -l selection 2b3b51
-set -l comment 738091
-set -l red c94f6d
-set -l orange f4a261
-set -l yellow dbc074
-set -l green 81b29a
-set -l purple 9d79d6
-set -l cyan 63cdcf
-set -l pink d67ad2
-
-# Syntax Highlighting Colors
-set -g fish_color_normal $foreground
-set -g fish_color_command $cyan
-set -g fish_color_keyword $pink
-set -g fish_color_quote $yellow
-set -g fish_color_redirection $foreground
-set -g fish_color_end $orange
-set -g fish_color_error $red
-set -g fish_color_param $purple
-set -g fish_color_comment $comment
-set -g fish_color_selection --background=$selection
-set -g fish_color_search_match --background=$selection
-set -g fish_color_operator $green
-set -g fish_color_escape $pink
-set -g fish_color_autosuggestion $comment
-
-# Completion Pager Colors
-set -g fish_pager_color_progress $comment
-set -g fish_pager_color_prefix $cyan
-set -g fish_pager_color_completion $foreground
-set -g fish_pager_color_description $comment

@@ -1,5 +1,5 @@
 local function map(m, k, v)
-	vim.keymap.set(m, k, v, { silent = true })
+    vim.keymap.set(m, k, v, { silent = true })
 end
 
 vim.g.mapleader = " "
@@ -18,7 +18,7 @@ map("", "<right>", "<nop>")
 
 -- Save/CloseBuffer/Quit/Escape/SourceConfig
 map("n", "<leader>w", ":w <CR>")
-map("n", "<leader>x", ":bd<CR>")
+map("n", "<leader>b", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
 map("i", "jk", "<ESC>")
@@ -53,7 +53,13 @@ map("v", "<leader>y", "\"+y")
 map("n", "<leader>Y", "\"+Y")
 
 -- Yank through ssh/tmux whatever...
-map("v", "<C-c>", ":OSCYank<CR>")
+function copy()
+    if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+        require('osc52').copy_register('+')
+    end
+end
+
+vim.api.nvim_create_autocmd('TextYankPost', { callback = copy })
 
 -- format
 map("n", "<C-f>", function()
@@ -93,3 +99,11 @@ map("n", "<C-k>", ":wincmd k<CR>")
 map("n", "<C-j>", ":wincmd j<CR>")
 map("n", "<C-h>", ":wincmd h<CR>")
 map("n", "<C-l>", ":wincmd l<CR>")
+
+-- Trouble
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")

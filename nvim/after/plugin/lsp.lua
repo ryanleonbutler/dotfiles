@@ -9,7 +9,7 @@ lsp.ensure_installed({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "lua_ls",
+    "luau_lsp",
     "tailwindcss",
     "tsserver",
 })
@@ -28,7 +28,7 @@ lsp.setup_servers({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "lua_ls",
+    "luau_lsp",
     "tailwindcss",
     "tsserver",
     opts = lsp_opts,
@@ -84,7 +84,6 @@ lsp.setup_nvim_cmp({
     formatting = {
         -- changing the order of fields so the icon is the first
         fields = { "menu", "abbr", "kind" },
-
         -- here is where the change happens
         -- format = function(entry, item)
         --     local menu_icon = {
@@ -181,6 +180,7 @@ null_ls.setup({
             extra_args = {
                 "--line-length",
                 "119",
+                "--fix"
             },
         }),
         -- https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
