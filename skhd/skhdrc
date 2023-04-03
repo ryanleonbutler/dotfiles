@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# change window focus within space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# change focus between external displays (left and right)
+shift + alt - h: yabai -m display --focus west
+shift + alt - l: yabai -m display --focus east
+
+# rotate layout clockwise
+ctrl + alt - r : yabai -m space --rotate 270
+
+# flip along y-axis
+ctrl + alt - y : yabai -m space --mirror y-axis
+
+# flip along x-axis
+ctrl + alt - x : yabai -m space --mirror x-axis
+
+# toggle window float
+ctrl + alt - t : yabai -m window --toggle float
+
+# swap windows
+ctrl + shift - j : yabai -m window --swap south
+ctrl + shift - k : yabai -m window --swap north
+ctrl + shift - h : yabai -m window --swap west
+ctrl + shift - l : yabai -m window --swap east
+
+# move window to prev and next space
+ctrl + alt + cmd - p : yabai -m window --space prev
+ctrl + alt + cmd - n : yabai -m window --space next
+
+# move window to space
+ctrl + alt + cmd - 1 : yabai -m window --space 1
+ctrl + alt + cmd - 2 : yabai -m window --space 2
+ctrl + alt + cmd - 3 : yabai -m window --space 3
+ctrl + alt + cmd - 4 : yabai -m window --space 4
+ctrl + alt + cmd - 5 : yabai -m window --space 5

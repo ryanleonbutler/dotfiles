@@ -118,6 +118,8 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use("mfussenegger/nvim-dap-python")
 
 	-- Perf
 	use("nathom/filetype.nvim")

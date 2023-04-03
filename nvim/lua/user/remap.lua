@@ -18,7 +18,7 @@ map("", "<right>", "<nop>")
 
 -- Save/CloseBuffer/Quit/Escape/SourceConfig
 map("n", "<leader>w", ":w <CR>")
-map("n", "<leader>b", ":bd<CR>")
+map("n", "<leader>x", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
 map("i", "jk", "<ESC>")
@@ -107,3 +107,8 @@ map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
 map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
+
+-- DAP
+map("n", "<leader>d", "<cmd>lua require'dapui'.toggle()<cr>")
+map("n", "<leader>c", "<cmd>lua require'dap'.continue()<cr>")
+map("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")

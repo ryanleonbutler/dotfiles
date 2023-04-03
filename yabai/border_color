@@ -1,0 +1,8 @@
+#!/bin/bash
+
+a=("0xF073CBFF")
+
+while true
+do
+  yabai -m config active_window_border_color $(shuf -n1 -e "${a[@]}")
+done

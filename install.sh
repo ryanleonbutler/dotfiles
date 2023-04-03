@@ -26,11 +26,7 @@ rm -rf ~/.config/tmuxinator
 ln -s ~/development/dotfiles/tmuxinator ~/.config/tmuxinator
 wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.fish ~/.config/fish/completions/
 
-# kitty
-rm -rf ~/.config/kitty
-ln -s ~/development/dotfiles/kitty ~/.config/kitty
-
-# kitty
+# alacritty
 rm -rf ~/.config/alacritty
 ln -s ~/development/dotfiles/alacritty ~/.config/alacritty
 
@@ -41,6 +37,14 @@ ln -s ~/development/dotfiles/nvim ~/.config/nvim
 # ranger
 rm -rf ~/.config/ranger
 ln -s ~/development/dotfiles/ranger ~/.config/ranger
+
+# yabai
+rm -rf ~/.config/yabai
+ln -s ~/development/dotfiles/yabai ~/.config/yabai
+
+# skhd
+rm -rf ~/.config/skhd
+ln -s ~/development/dotfiles/skhd ~/.config/skhd
 
 # cht.sh
 rm -rf ~/.cht.sh ~/.tmux-cht-command ~/.tmux-cht-languages

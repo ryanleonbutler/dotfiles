@@ -61,6 +61,7 @@ alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/development/dotfiles/nvim"
 alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
 alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
+alias yabairc "vim ~/development/dotfiles/yabai/yabairc"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
@@ -79,11 +80,6 @@ alias cat "bat"
 alias .. "cd .."
 alias .... "cd ../.."
 alias ...... "cd ../../.."
-
-# mosh / ssh
-# function ssh --wraps rm --description 'alias ssh=mosh REMOTE -- tmux -u new-session -A -s ${%n}'
-#     mosh -n --ssh='ssh -p 22' $argv -- tmux -u new-session -A -s $argv
-# end
 
 # tmux
 alias t "tmux"
