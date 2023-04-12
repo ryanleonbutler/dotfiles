@@ -23,18 +23,18 @@ set fish_greeting
 #     echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
 # end
 
-# function fish_greeting 
-#    fish_logo red brred yellow 
-# end 
+# function fish_greeting
+#    fish_logo red brred yellow
+# end
 
-ulimit -n 10240 
+ulimit -n 10240
 set -g fish_term24bit 1
 
 # theme
 # set -g theme_color_scheme terminal-dark
 # set -g fish_prompt_pwd_dir_length 1
 # set -g theme_display_user no
-# set -g theme_hide_hostname yes 
+# set -g theme_hide_hostname yes
 # set -g theme_hostname no
 
 set -gx PATH bin $PATH
@@ -58,7 +58,7 @@ alias zshrc "vim ~/development/dotfiles/zsh/zshrc"
 alias fishrc "vim ~/development/dotfiles/fish/config.fish"
 alias starrc "vim ~/development/dotfiles/starship/starship.toml"
 alias sshrc "vim ~/.ssh/config"
-alias vimrc "vim ~/development/dotfiles/nvim"
+alias vimrc "vim ~/development/nvim/init.lua"
 alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
 alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
 alias yabairc "vim ~/development/dotfiles/yabai/yabairc"
@@ -120,7 +120,7 @@ alias gf "git fetch --all"
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 # AWS CLI
-set -gx AWS_PAGER 
+set -gx AWS_PAGER
 
 # Pipx
 set -gx PATH $HOME/.local/bin $PATH
@@ -131,16 +131,16 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 set FZF_DEFAULT_OPTS "--bind=shift-tab:up,tab:down"
 
 # rosepine
-# set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS" 
+# set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS"
 # --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
 # --color=fg+:#908caa,bg+:#232136,hl+:#908caa
 # --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
 # --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
 
 # Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
---color=fg+:#c5cdd9,hl+:#5dbbc1 
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb
+--color=fg+:#c5cdd9,hl+:#5dbbc1
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea
 --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 # Catpuccin
