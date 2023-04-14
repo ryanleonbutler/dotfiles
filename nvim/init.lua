@@ -40,7 +40,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
-
     -- LSP
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -71,6 +70,8 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
     },
+    { "folke/neodev.nvim" },
+    dependencies = { "hrsh7th/nvim-cmp" },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
         "lewis6991/gitsigns.nvim",
@@ -157,7 +158,7 @@ require("lazy").setup({
     -- Syntax highlighting
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
         build = ":TSUpdate",
         opts = {
             ensure_installed = {
@@ -184,7 +185,7 @@ require("lazy").setup({
             },
             highlight = {
                 enable = true,
-                disable = { "lua" },
+                -- disable = { "lua" },
                 additional_vim_regex_highlighting = false,
             },
             indent = {
@@ -213,12 +214,10 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
     {
         "windwp/nvim-ts-autotag",
-        event = "VeryLazy",
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
     { "tpope/vim-surround" },
@@ -241,9 +240,24 @@ require("lazy").setup({
             })
         end,
     },
+    -- Best plugs ever
     { "ThePrimeagen/harpoon" },
     { "ThePrimeagen/vim-be-good" },
-
+    -- Debugging
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            {
+                "jay-babu/mason-nvim-dap.nvim",
+                dependencies = { "nvim-dap" },
+                cmd = { "DapInstall", "DapUninstall" },
+                opts = { handlers = {} },
+            },
+            { "rcarriga/nvim-dap-ui" },
+            { "theHamsta/nvim-dap-virtual-text" },
+            { "mfussenegger/nvim-dap-python" },
+        },
+    },
     -- { import = 'custom.plugins' },
 }, {})
 
@@ -355,7 +369,7 @@ map("", "<down>", "<nop>")
 map("", "<left>", "<nop>")
 map("", "<right>", "<nop>")
 -- Save/CloseBuffer/Quit/Escape/SourceConfig
-map("n", "<leader>w", ":w <CR>")
+map("n", "<leader>w", ":w! <CR>")
 map("n", "<leader>x", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
@@ -497,6 +511,9 @@ require("nvim-treesitter.configs").setup({
     indent = { enable = true, disable = { "python" } },
     incremental_selection = {
         enable = true,
+        -- disable = function(lang, bufnr) -- Disable in large C++ buffers
+        --     return api.nvim_buf_line_count(bufnr) > 50000
+        -- end,
         keymaps = {
             init_selection = "<c-space>",
             node_incremental = "<c-space>",
@@ -794,6 +811,43 @@ local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 map("n", "<leader>m", mark.toggle_file)
 map("n", "<leader>,", ui.toggle_quick_menu)
+
+-- ==============================================================================================================
+-- [[ DAP setup ]]
+-- keymap
+map("n", "<F5>", ":lua require'dap'.continue()<CR>")
+map("n", "<F10>", ":lua require'dap'.step_over()<CR>")
+map("n", "<F11>", ":lua require'dap'.step_into()<CR>")
+map("n", "<F12>", ":lua require'dap'.step_out()<CR>")
+map("n", "<Leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
+map("n", "<Leader>dr", ":lua require'dap'.repl.open()<CR>")
+
+-- VAR virtual text
+require("nvim-dap-virtual-text").setup()
+
+--lua
+local dap = require "dap"
+
+dap.configurations.lua = {
+    {
+        type = "nlua",
+        request = "attach",
+        name = "Attach to running Neovim instance",
+        host = function() return "127.0.0.1" end,
+        port = function()
+            local val = 54231
+            return val
+        end
+    }
+}
+
+dap.adapters.nlua = function(callback, config)
+    callback({type = 'server', host = config.host, port = config.port})
+end
+
+-- Python
+require("dap-python").setup("/Users/butryan/.asdf/shims/python")
+require("dap-python").test_runner = "pytest"
 
 -- ==============================================================================================================
 
