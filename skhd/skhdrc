@@ -11,16 +11,19 @@ shift + alt - h: yabai -m display --focus west
 shift + alt - l: yabai -m display --focus east
 
 # rotate layout clockwise
-ctrl + alt - r : yabai -m space --rotate 270
+ctrl + shift - r : yabai -m space --rotate 270
+
+# balance
+ctrl + shift - b : yabai -m space --balance
 
 # flip along y-axis
-ctrl + alt - y : yabai -m space --mirror y-axis
+ctrl + shift - y : yabai -m space --mirror y-axis
 
 # flip along x-axis
-ctrl + alt - x : yabai -m space --mirror x-axis
+ctrl + shift - x : yabai -m space --mirror x-axis
 
 # toggle window float
-ctrl + alt - t : yabai -m window --toggle float
+ctrl + shift - t : yabai -m window --toggle float
 
 # swap windows
 ctrl + shift - j : yabai -m window --swap south

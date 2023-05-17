@@ -38,6 +38,10 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 
 require("lazy").setup({
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false,
+    },
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
     -- LSP
@@ -88,40 +92,51 @@ require("lazy").setup({
     },
     {
         -- Theme
-        "folke/tokyonight.nvim",
-        priority = 1000,
+        "catppuccin/nvim",
+        name = "catppuccin",
         config = function()
-            require("tokyonight").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-                light_style = "day", -- The theme is used when the background is set to light
-                transparent = true, -- Enable this to disable setting the background color
-                terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = true },
-                    keywords = { italic = true },
-                    functions = {},
-                    variables = {},
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "transparent", -- style for sidebars, see below
-                    floats = "dark", -- style for floating windows
+            require("catppuccin").setup({
+                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                background = {
+                    -- :h background
+                    light = "latte",
+                    dark = "mocha",
                 },
-                sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-                day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-                hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-                dim_inactive = false, -- dims inactive windows
-                lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-                --- You can override specific color groups to use other groups or a hex color
-                --- function will be called with a ColorScheme table
-                on_colors = function(colors) end,
-                --- You can override specific highlights to use other groups or a hex color
-                --- function will be called with a Highlights and ColorScheme table
-                on_highlights = function(highlights, colors) end,
+                transparent_background = true,
+                show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+                term_colors = false,
+                dim_inactive = {
+                    enabled = true,
+                    shade = "dark",
+                    percentage = 0.15,
+                },
+                no_italic = false, -- Force no italic
+                no_bold = false, -- Force no bold
+                styles = {
+                    comments = { "italic" },
+                    conditionals = { "italic" },
+                    loops = {},
+                    functions = {},
+                    keywords = {},
+                    strings = {},
+                    variables = {},
+                    numbers = {},
+                    booleans = {},
+                    properties = {},
+                    types = {},
+                    operators = {},
+                },
+                color_overrides = {},
+                custom_highlights = {},
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    telescope = true,
+                    notify = false,
+                    mini = false,
+                },
             })
-            cmd.colorscheme("tokyonight-night")
         end,
     },
     {
@@ -130,7 +145,7 @@ require("lazy").setup({
         opts = {
             options = {
                 icons_enabled = false,
-                theme = "tokyonight",
+                theme = "catppuccin",
                 component_separators = "|",
                 section_separators = "",
             },
@@ -322,8 +337,11 @@ vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#555555" })
 set.number = true
 set.rnu = true
 
--- Enable mouse mode
--- set.mouse = 'a'
+-- Disable mouse
+set.mouse = ""
+
+-- ctags
+-- set.tags = "~/tags"
 
 -- Sync clipboard between OS and Neovim.
 set.clipboard = ""
@@ -394,7 +412,7 @@ set.hidden = true -- required to keep multiple buffers and open multiple buffers
 set.pumheight = 10 -- pop up menu height
 set.scrolloff = 8 -- is one of my fav
 set.shiftwidth = 4 -- the number of spaces inserted for each indentation
-set.showmode = true -- we don't need to see things like -- INSERT -- anymore
+set.showmode = false -- we don't need to see things like -- INSERT -- anymore
 set.sidescrolloff = 8
 set.spell = false
 set.spelllang = "en"
@@ -470,25 +488,30 @@ map("x", "<C-a>", "<HOME>")
 map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 -- Walking the splits
-map("n", "<C-k>", ":wincmd k<CR>")
-map("n", "<C-j>", ":wincmd j<CR>")
-map("n", "<C-h>", ":wincmd h<CR>")
-map("n", "<C-l>", ":wincmd l<CR>")
+-- map("n", "<C-k>", ":wincmd k<CR>")
+-- map("n", "<C-j>", ":wincmd j<CR>")
+-- map("n", "<C-h>", ":wincmd h<CR>")
+-- map("n", "<C-l>", ":wincmd l<CR>")
+map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
+map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
+map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
+map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
 -- Copy file paths
 function YankFullPathToOsc()
-        local file_path = vim.fn.expand('%:p')
-        vim.fn.setreg("+", file_path)
-        require("osc52").copy_register("+")
+    local file_path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", file_path)
+    require("osc52").copy_register("+")
 end
+
 function YankRelativePathToOsc()
-        local file_path = vim.fn.expand('%:.')
-        vim.fn.setreg("+", file_path)
-        require("osc52").copy_register("+")
+    local file_path = vim.fn.expand("%:.")
+    vim.fn.setreg("+", file_path)
+    require("osc52").copy_register("+")
 end
+
 map("n", "<leader>yr", ":lua YankRelativePathToOsc()<CR>")
 map("n", "<leader>yf", ":lua YankFullPathToOsc()<CR>")
 map("n", "<leader>z", ":ZenMode<CR>")
-
 
 -- ==============================================================================================================
 -- [[ Autocmd's ]]
@@ -547,9 +570,10 @@ end, { desc = "[/] Fuzzily search in current buffer" })
 
 vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
-vim.keymap.set("n", "<leader>fw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
+vim.keymap.set("n", "<leader>ft", require("telescope.builtin").current_buffer_tags, { desc = "[S]earch [T]ags" })
 
 -- ==============================================================================================================
 -- [[ Configure Treesitter ]]
@@ -821,12 +845,7 @@ null_ls.setup({
 
         -- Prettier: Javascript, TypeScript, CSS, JSON, HTML, Yaml, Markdown
         formatting.prettier.with({
-            extra_args = {
-                "--double-quote",
-                "--jsx-single-quote",
-                "--print-width",
-                "119",
-            },
+            extra_args = {},
         }),
         diagnostics.eslint,
 
@@ -904,6 +923,7 @@ require("dap-python").setup("/Users/butryan/.asdf/shims/python")
 require("dap-python").test_runner = "pytest"
 
 -- ==============================================================================================================
+vim.cmd.colorscheme("catppuccin-mocha")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

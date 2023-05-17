@@ -47,6 +47,7 @@ set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # aliases
 set -gx EDITOR nvim
+alias c "clear"
 alias v "nvim"
 alias vi "nvim"
 alias vim "nvim"
@@ -62,10 +63,10 @@ alias vimrc "vim ~/development/dotfiles/nvim/init.lua"
 alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
 alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
 alias yabairc "vim ~/development/dotfiles/yabai/yabairc"
+alias skhdrc "vim ~/development/dotfiles/skhd/skhdrc"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
 alias secretsrc "vim ~/.env"
-alias c "clear"
 alias todo "vim ~/Documents/todo.md"
 alias notes "vim ~/Documents/notes.md"
 alias unirc "vim ~/.unison/default.prf"
@@ -128,26 +129,13 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
 # nav with tab
-set FZF_DEFAULT_OPTS "--bind=shift-tab:up,tab:down"
-
-# rosepine
-# set FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS"
-# --color=fg:#e0def4,bg:#2a273f,hl:#6e6a86
-# --color=fg+:#908caa,bg+:#232136,hl+:#908caa
-# --color=info:#9ccfd8,prompt:#f6c177,pointer:#c4a7e7
-# --color=marker:#ea9a97,spinner:#eb6f92,header:#ea9a97"
-
-# Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb
---color=fg+:#c5cdd9,hl+:#5dbbc1
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea
---color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
+set FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
 
 # Catpuccin
-# set -Ux FZF_DEFAULT_OPTS "\
-# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
