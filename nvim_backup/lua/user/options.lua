@@ -1,13 +1,25 @@
 local set = vim.opt
 
+-- global options
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- autocomplete
 vim.g.cmp_toggle = true
 
 -- git blame
 vim.g.gitblame_enabled = 0
 
+-- indent blankline
+-- vim.g.optlist = true
+-- set.listchars:append "space:⋅"
+-- set.listchars:append "eol:↴"
+
+-- OSCYANK
+vim.g.oscyank_term = "default"
+
 -- window-scoped options
-vim.wo.colorcolumn = "80"
+vim.wo.colorcolumn = "119"
 
 set.autoread = true
 set.backup = false -- creates a backup file
@@ -23,25 +35,25 @@ set.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based fo
 set.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
 set.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 set.hidden = true -- required to keep multiple buffers and open multiple buffers
-set.hlsearch = false -- highlight all matches on previous search pattern
+set.hlsearch = true -- highlight all matches on previous search pattern
 set.ignorecase = true -- ignore case in search patterns
-set.incsearch = true
+-- set.mouse = "a" -- allow the mouse to be used in neovim
 set.number = true -- set numbered lines
 set.numberwidth = 2 -- set number column width to 2 {default 4}
 set.pumheight = 10 -- pop up menu height
 set.rnu = true -- set relative numbered lines
-set.scrolloff = 8 -- is one of my fav
+-- set.scrolloff = 8 -- is one of my fav
 set.shiftwidth = 4 -- the number of spaces inserted for each indentation
-set.showmode = true -- we don't need to see things like -- INSERT -- anymore
+set.showmode = false -- we don't need to see things like -- INSERT -- anymore
 set.showtabline = 2 -- always show tabs
-set.sidescrolloff = 8
+-- set.sidescrolloff = 8
 set.signcolumn = "yes" -- always show the sign column otherwise it would shift the text each time
 set.smartindent = true
 set.spell = false
 set.spelllang = "en"
 set.splitbelow = true -- force all horizontal splits to go below current window
 set.splitright = true -- force all vertical splits to go to the right of current window
-set.softtabstop = 4
+-- set.softtabstop = 4
 set.swapfile = false -- creates a swapfile
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.termguicolors = true -- set term gui colors (most terminals support this)
@@ -50,6 +62,6 @@ set.title = true -- set the title of window to the value of the titlestring
 set.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 set.undodir = os.getenv("HOME") .. "/.vim/undodir"
 set.undofile = true -- enable persistent undo
-set.updatetime = 50 -- faster completion
+set.updatetime = 500 -- faster completion
 set.wrap = false -- display lines as one long line
 set.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited

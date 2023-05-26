@@ -22,23 +22,23 @@ set fish_greeting
 #     echo The time is (set_color yellow; date +%T; set_color normal) and this machine is called $hostname
 # end
 
-# function fish_greeting 
-#    fish_logo red brred yellow 
-# end 
+# function fish_greeting
+#    fish_logo red brred yellow
+# end
 
-ulimit -n 10240 
+ulimit -n 10240
 set -g fish_term24bit 1
 
 # theme
 # set -g theme_color_scheme terminal-dark
 # set -g fish_prompt_pwd_dir_length 1
 # set -g theme_display_user no
-# set -g theme_hide_hostname yes 
+# set -g theme_hide_hostname yes
 # set -g theme_hostname no
 
+set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
-set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
 
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
@@ -56,7 +56,7 @@ alias zshrc "vim ~/development/dotfiles/zsh/zshrc"
 alias fishrc "vim ~/development/dotfiles/fish/config.fish"
 alias starrc "vim ~/development/dotfiles/starship/starship.toml"
 alias sshrc "vim ~/.ssh/config"
-alias vimrc "vim ~/development/dotfiles/nvim"
+alias vimrc "vim ~/development/dotfiles/nvim/init.lua"
 alias kittyrc "vim ~/development/dotfiles/kitty/kitty.conf"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
 alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
@@ -115,7 +115,7 @@ alias gf "git fetch --all"
 source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.fish
 
 # AWS CLI
-set -gx AWS_PAGER 
+set -gx AWS_PAGER
 
 # Pipx
 set -gx PATH $HOME/.local/bin $PATH
@@ -126,9 +126,9 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 # export FZF_DEFAULT_OPTS='--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 
 # Tokyo
-set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb 
---color=fg+:#c5cdd9,hl+:#5dbbc1 
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea 
+set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb
+--color=fg+:#c5cdd9,hl+:#5dbbc1
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea
 --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1'
 
 
@@ -141,6 +141,9 @@ set FZF_DEFAULT_OPTS '--color=fg:#c5cdd9,hl:#6cb6eb
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
 source $SECRETS
+
+# AWS CLI automcomplete
+# set -gx PATH /usr/local/bin/aws_completer $PATH
 
 # zoxide
 zoxide init fish | source
