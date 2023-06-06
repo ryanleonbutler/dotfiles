@@ -7,7 +7,6 @@
 
 local set = vim.opt
 local g = vim.g
-local cmd = vim.cmd
 local function map(m, k, v, desc)
     if desc then
         desc = "Desc: " .. desc
@@ -151,16 +150,8 @@ require("lazy").setup({
             },
         },
     },
-    -- {
-    --     -- Add indentation guides even on blank lines
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     opts = {
-    --         char = "┊",
-    --         show_trailing_blankline_indent = false,
-    --     },
-    -- },
     -- "gc" to comment visual regions/lines
-    { "numToStr/Comment.nvim", opts = {} },
+    { "tpope/vim-commentary" },
     -- Fuzzy Finder (files, lsp, etc)
     { "nvim-telescope/telescope.nvim", version = "*", dependencies = { "nvim-lua/plenary.nvim" } },
     {
@@ -323,6 +314,11 @@ require("lazy").setup({
             })
         end,
     },
+    -- "https://git.amazon.com/pkg/AmazonCodeWhispererVimPlugin",
+    --{
+    -- dir = "~/development/codewhisperer",
+    --  name = "codewhisperer"
+    -- }
     -- { import = 'custom.plugins' },
 }, {})
 
@@ -339,12 +335,6 @@ set.rnu = true
 
 -- Disable mouse
 set.mouse = ""
-
--- ctags
-set.tags = ".tags"
-function RTags()
-  vim.cmd [[!ctags -f .tags --languages=python,javascript,typescript,rust --exclude=.git -R .]]
-end
 
 -- Sync clipboard between OS and Neovim.
 set.clipboard = ""
@@ -494,8 +484,6 @@ map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
 map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
 map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
 map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
--- refresh ctags
-map("n", "rt", RTags)
 -- Copy file paths
 function YankFullPathToOsc()
     local file_path = vim.fn.expand("%:p")
@@ -661,7 +649,7 @@ lsp.set_preferences({
 })
 
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
     update_in_insert = true,
     underline = true,
@@ -817,11 +805,13 @@ cmp.setup({
 -- [[ null-ls setup ]]
 
 local null_ls = require("null-ls")
+local helpers = require("null-ls.helpers")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local null_opts = lsp.build_options("null-ls", {})
 
 null_ls.setup({
+    debug = true,
     on_attach = function(client, bufnr)
         null_opts.on_attach(client, bufnr)
     end,
@@ -875,6 +865,54 @@ null_ls.setup({
     },
 })
 
+local code_whisperer = {
+    name = "Amazon CodeWhisperer",
+    method = null_ls.methods.COMPLETION,
+    filetypes = {},
+    -- null_ls.generator creates an async source
+    -- that spawns the command with the given arguments and options
+    generator = null_ls.generator({
+        async = true,
+        use_cache = false,
+        command = "aws",
+        args = {
+            "codewhisperer",
+            "generate-recommendations",
+            "--file-context",
+            "leftFileContent=addfunction,rightFileContent=string,filename=hello.java,programmingLanguage={languageName=java}",
+            "--profile",
+            "Isen_Admin",
+            "--region",
+            "us-east-1",
+        },
+        to_stdin = true,
+        from_stderr = true,
+        -- choose an output format (raw, json, or line)
+        format = "line",
+        check_exit_code = function(code, stderr)
+            local success = code <= 1
+
+            if not success then
+                -- can be noisy for things that run often (e.g. diagnostics), but can
+                -- be useful for things that run on demand (e.g. formatting)
+                print(stderr)
+            end
+
+            return success
+        end,
+        -- use helpers to parse the output from string matchers,
+        -- or parse it manually with a function
+        on_stdout = function(_, data, _)
+            if data then
+                for _, word in ipairs(data) do
+                    print(word)
+                end
+            end
+        end,
+    }),
+}
+null_ls.register(code_whisperer)
+
 -- ==============================================================================================================
 -- [[ harpoon setup ]]
 
@@ -890,8 +928,8 @@ map("n", "<F5>", ":lua require'dap'.continue()<CR>")
 map("n", "<F10>", ":lua require'dap'.step_over()<CR>")
 map("n", "<F11>", ":lua require'dap'.step_into()<CR>")
 map("n", "<F12>", ":lua require'dap'.step_out()<CR>")
-map("n", "<Leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
-map("n", "<Leader>dr", ":lua require'dap'.repl.open()<CR>")
+map("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
+map("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
 
 -- VAR virtual text
 require("nvim-dap-virtual-text").setup()
@@ -925,5 +963,9 @@ require("dap-python").test_runner = "pytest"
 -- ==============================================================================================================
 vim.cmd.colorscheme("catppuccin-mocha")
 
+-- ==============================================================================================================
+-- [[ CodeWhisperer setup ]]
+
+-- ==============================================================================================================
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
