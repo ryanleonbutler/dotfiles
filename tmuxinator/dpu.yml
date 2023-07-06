@@ -1,7 +1,7 @@
-# /Users/butryan/.config/tmuxinator/dotfiles.yml
+# /Users/butryan/.config/tmuxinator/dpu.yml
 
-name: dotfiles
-root: ~/development/dotfiles
+name: dpu
+root: ~/workspace/dpu
 
 # Optional tmux socket
 # socket_name: foo
@@ -47,18 +47,23 @@ root: ~/development/dotfiles
 windows:
   - editor:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
-        - vim
-        - ll -a
-        - pwd
+      - editor:
+          - ssh cdd-dpu
+          - cd ~/workspace/Dante-PackageUpdater/src/Dante-PackageUpdater
+      - tests:
+          - ssh cdd-dpu-tests
+          - cd ~/workspace/Dante-PackageUpdater/src/Dante-PackageUpdater
+          - fd -e py | entr sh -c 'brazil-build test'
+      - cli:
+          - ssh cdd-dpu-cli
+          - cd ~/workspace/Dante-PackageUpdater/src/Dante-PackageUpdater
+          - tree
+
   - logs:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
-        - tail -f ~/.cache/nvim/*
-        - pwd
+        - logs:
+          - ssh cdd-dpu-logs
+          - cd ~/workspace/Dante-PackageUpdater/src/Dante-PackageUpdater
+          - tree

@@ -23,8 +23,8 @@ function setup_space {
 
 setup_space 1 media_player
 setup_space 2 communicator
-setup_space 3 terminal_work_browser
-setup_space 4 personal_browser
+setup_space 3 terminal_work
+setup_space 4 browser
 
 for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
   yabai -m space --destroy 5
@@ -35,8 +35,7 @@ yabai -m rule --add app="^Slack$" space=2
 yabai -m rule --add app="^Amazon Chime$" space=2 manage=off
 yabai -m rule --add app="Outlook" space=2
 yabai -m rule --add app="Alacritty" space=3
-yabai -m rule --add app="Vivaldi" space=3
-yabai -m rule --add app="Brave" space=4
+yabai -m rule --add app="Vivaldi" space=4
 
 yabai -m rule --add app="^System Settings$" title='^$' space=1 manage=off
 yabai -m rule --add app="^Calculator$" space=1  manage=off
