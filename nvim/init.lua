@@ -14,6 +14,9 @@ local function map(m, k, v, desc)
     vim.keymap.set(m, k, v, { silent = true, remap = true }, { desc = desc })
 end
 
+-- git blame
+vim.g.gitblame_enabled = 0
+
 -- ==============================================================================================================
 -- [[ Package Manager ]]
 
@@ -39,7 +42,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         "christoomey/vim-tmux-navigator",
-        lazy = false,
+        event = "VeryLazy",
     },
     -- LSP
     {
@@ -58,9 +61,9 @@ require("lazy").setup({
             { "hrsh7th/cmp-nvim-lua" },
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
+            -- { "nvimdev/lspsaga.nvim" },
         },
     },
-    -- Formatting and linting
     {
         "jose-elias-alvarez/null-ls.nvim",
     },
@@ -78,7 +81,22 @@ require("lazy").setup({
     -- Autocompletion
     {
         "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+        },
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {
+            map_cr = true, --  map <CR> on insert mode
+            map_complete = true, -- it will auto insert `(` after select function or method item
+            ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
+            enable_check_bracket_line = false,
+        },
     },
     -- Neovim plugin dev
     {
@@ -88,6 +106,8 @@ require("lazy").setup({
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     {
         "lewis6991/gitsigns.nvim",
+        lazy = true,
+        event = "VeryLazy",
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
@@ -102,6 +122,7 @@ require("lazy").setup({
     -- Theme
     {
         "catppuccin/nvim",
+        lazy = true,
         name = "catppuccin",
         config = function()
             require("catppuccin").setup({
@@ -138,12 +159,33 @@ require("lazy").setup({
                 color_overrides = {},
                 custom_highlights = {},
                 integrations = {
+                    alpha = false,
                     cmp = true,
+                    flash = false,
                     gitsigns = true,
-                    nvimtree = true,
-                    telescope = true,
-                    notify = false,
+                    illuminate = true,
+                    indent_blankline = { enabled = true },
+                    lsp_trouble = true,
+                    mason = true,
                     mini = false,
+                    native_lsp = {
+                        enabled = true,
+                        underlines = {
+                            errors = { "undercurl" },
+                            hints = { "undercurl" },
+                            warnings = { "undercurl" },
+                            information = { "undercurl" },
+                        },
+                    },
+                    navic = { enabled = false, custom_bg = "lualine" },
+                    neotest = false,
+                    noice = false,
+                    notify = false,
+                    neotree = false,
+                    semantic_tokens = true,
+                    telescope = true,
+                    treesitter = true,
+                    which_key = false,
                 },
             })
         end,
@@ -175,6 +217,10 @@ require("lazy").setup({
                 },
             },
         },
+        extensions = {
+            "fugitive",
+            "nvim-dap-ui",
+        },
         sections = {
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff", "diagnostics" },
@@ -198,7 +244,6 @@ require("lazy").setup({
     -- Syntax highlighting
     {
         "nvim-treesitter/nvim-treesitter",
-        -- event = "VeryLazy",
         build = ":TSUpdate",
         opts = {
             ensure_installed = {
@@ -254,10 +299,6 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-    },
-    {
-        "windwp/nvim-ts-autotag",
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
     -- Other plugins
@@ -368,6 +409,206 @@ require("lazy").setup({
         end,
     },
     {
+        "tpope/vim-fugitive",
+    },
+    {
+        "f-person/git-blame.nvim",
+    },
+    {
+        "RRethy/vim-illuminate",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            delay = 200,
+            large_file_cutoff = 2000,
+            large_file_overrides = {
+                providers = { "lsp" },
+            },
+        },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+
+            local function map(key, dir, buffer)
+                vim.keymap.set("n", key, function()
+                    require("illuminate")["goto_" .. dir .. "_reference"](false)
+                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+            end
+
+            map("]]", "next")
+            map("[[", "prev")
+
+            -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    local buffer = vim.api.nvim_get_current_buf()
+                    map("]]", "next", buffer)
+                    map("[[", "prev", buffer)
+                end,
+            })
+        end,
+        keys = {
+            { "]]", desc = "Next Reference" },
+            { "[[", desc = "Prev Reference" },
+        },
+    },
+    {
+        "folke/trouble.nvim",
+        cmd = { "TroubleToggle", "Trouble" },
+        opts = { use_diagnostic_signs = true },
+        keys = {
+            { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+            { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+            { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+            { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+            {
+                "[q",
+                function()
+                    if require("trouble").is_open() then
+                        require("trouble").previous({ skip_groups = true, jump = true })
+                    else
+                        local ok, err = pcall(vim.cmd.cprev)
+                        if not ok then
+                            vim.notify(err, vim.log.levels.ERROR)
+                        end
+                    end
+                end,
+                desc = "Previous trouble/quickfix item",
+            },
+            {
+                "]q",
+                function()
+                    if require("trouble").is_open() then
+                        require("trouble").next({ skip_groups = true, jump = true })
+                    else
+                        local ok, err = pcall(vim.cmd.cnext)
+                        if not ok then
+                            vim.notify(err, vim.log.levels.ERROR)
+                        end
+                    end
+                end,
+                desc = "Next trouble/quickfix item",
+            },
+        },
+    },
+    {
+        "gbprod/yanky.nvim",
+        dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") } },
+        opts = function()
+            local mapping = require("yanky.telescope.mapping")
+            local mappings = mapping.get_defaults()
+            mappings.i["<c-p>"] = nil
+            return {
+                highlight = { timer = 200 },
+                ring = { storage = jit.os:find("Windows") and "shada" or "sqlite" },
+                picker = {
+                    telescope = {
+                        use_default_mappings = false,
+                        mappings = mappings,
+                    },
+                },
+            }
+        end,
+        keys = {
+            {
+                "<leader>p",
+                function()
+                    require("telescope").extensions.yank_history.yank_history({})
+                end,
+                desc = "Open Yank History",
+            },
+            {
+                "y",
+                "<Plug>(YankyYank)",
+                mode = { "n", "x" },
+                desc = "Yank text",
+            },
+            {
+                "p",
+                "<Plug>(YankyPutAfter)",
+                mode = { "n", "x" },
+                desc = "Put yanked text after cursor",
+            },
+            {
+                "P",
+                "<Plug>(YankyPutBefore)",
+                mode = { "n", "x" },
+                desc = "Put yanked text before cursor",
+            },
+            {
+                "gp",
+                "<Plug>(YankyGPutAfter)",
+                mode = { "n", "x" },
+                desc = "Put yanked text after selection",
+            },
+            {
+                "gP",
+                "<Plug>(YankyGPutBefore)",
+                mode = { "n", "x" },
+                desc = "Put yanked text before selection",
+            },
+            {
+                "[y",
+                "<Plug>(YankyCycleForward)",
+                desc = "Cycle forward through yank history",
+            },
+            {
+                "]y",
+                "<Plug>(YankyCycleBackward)",
+                desc = "Cycle backward through yank history",
+            },
+            {
+                "]p",
+                "<Plug>(YankyPutIndentAfterLinewise)",
+                desc = "Put indented after cursor (linewise)",
+            },
+            {
+                "[p",
+                "<Plug>(YankyPutIndentBeforeLinewise)",
+                desc = "Put indented before cursor (linewise)",
+            },
+            {
+                "]P",
+                "<Plug>(YankyPutIndentAfterLinewise)",
+                desc = "Put indented after cursor (linewise)",
+            },
+            {
+                "[P",
+                "<Plug>(YankyPutIndentBeforeLinewise)",
+                desc = "Put indented before cursor (linewise)",
+            },
+            {
+                ">p",
+                "<Plug>(YankyPutIndentAfterShiftRight)",
+                desc = "Put and indent right",
+            },
+            {
+                "<p",
+                "<Plug>(YankyPutIndentAfterShiftLeft)",
+                desc = "Put and indent left",
+            },
+            {
+                ">P",
+                "<Plug>(YankyPutIndentBeforeShiftRight)",
+                desc = "Put before and indent right",
+            },
+            {
+                "<P",
+                "<Plug>(YankyPutIndentBeforeShiftLeft)",
+                desc = "Put before and indent left",
+            },
+            {
+                "=p",
+                "<Plug>(YankyPutAfterFilter)",
+                desc = "Put after applying a filter",
+            },
+            {
+                "=P",
+                "<Plug>(YankyPutBeforeFilter)",
+                desc = "Put before applying a filter",
+            },
+        },
+    },
+    -- terminal
+    {
         "akinsho/toggleterm.nvim",
         lazy = false,
         version = "*",
@@ -387,12 +628,145 @@ require("lazy").setup({
             },
         },
     },
+    -- note taking - Obisdian
+    {
+        "epwalsh/obsidian.nvim",
+        lazy = false,
+        event = {},
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        opts = {
+            dir = "~/Documents/obsidian/work", -- no need to call 'vim.fn.expand' here
+            -- Optional, if you keep notes in a specific subdirectory of your vault.
+            notes_subdir = "notes",
+
+            -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
+            -- levels defined by "vim.log.levels.*" or nil, which is equivalent to DEBUG (1).
+            -- log_level = vim.log.levels.DEBUG,
+
+            daily_notes = {
+                -- Optional, if you keep daily notes in a separate directory.
+                folder = "notes/dailies",
+                -- Optional, if you want to change the date format for daily notes.
+                date_format = "%Y-%m-%d",
+            },
+
+            templates = {
+                subdir = "templates",
+                -- date_format = "%M-%m-%d-%a",
+                date_format = "%B %d, %Y",
+                time_format = "%H:%M",
+            },
+
+            -- Optional, completion.
+            completion = {
+                -- If using nvim-cmp, otherwise set to false
+                nvim_cmp = true,
+                -- Trigger completion at 2 chars
+                min_chars = 2,
+                -- Where to put new notes created from completion. Valid options are
+                --  * "current_dir" - put new notes in same directory as the current buffer.
+                --  * "notes_subdir" - put new notes in the default notes subdirectory.
+                new_notes_location = "current_dir",
+
+                -- Whether to add the output of the node_id_func to new notes in autocompletion.
+                -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
+                prepend_note_id = true,
+            },
+
+            -- Optional, key mappings.
+            mappings = {
+                -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+                -- ["gf"] = require("obsidian.mapping").gf_passthrough(),
+            },
+
+            -- Optional, customize how names/IDs for new notes are created.
+            note_id_func = function(title)
+                -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+                -- In this case a note with the title 'My new note' will given an ID that looks
+                -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+                local suffix = ""
+                if title ~= nil then
+                    -- If title is given, transform it into valid file name.
+                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                else
+                    -- If title is nil, just add 4 random uppercase letters to the suffix.
+                    for _ = 1, 4 do
+                        suffix = suffix .. string.char(math.random(65, 90))
+                    end
+                end
+                return tostring(os.time()) .. "-" .. suffix
+            end,
+
+            -- Optional, set to true if you don't want obsidian.nvim to manage frontmatter.
+            disable_frontmatter = false,
+
+            -- Optional, alternatively you can customize the frontmatter data.
+            note_frontmatter_func = function(note)
+                -- This is equivalent to the default frontmatter function.
+                local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+                -- `note.metadata` contains any manually added fields in the frontmatter.
+                -- So here we just make sure those fields are kept in the frontmatter.
+                if note.metadata ~= nil and require("obsidian").util.table_length(note.metadata) > 0 then
+                    for k, v in pairs(note.metadata) do
+                        out[k] = v
+                    end
+                end
+                return out
+            end,
+
+            -- Optional, for templates (see below).
+            -- templates = {
+            --     subdir = "templates",
+            --     date_format = "%Y-%m-%d-%a",
+            --     time_format = "%H:%M",
+            -- },
+
+            -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+            -- URL it will be ignored but you can customize this behavior here.
+            follow_url_func = function(url)
+                -- Open the URL in the default web browser.
+                vim.fn.jobstart({ "open", url }) -- Mac OS
+                -- vim.fn.jobstart({"xdg-open", url})  -- linux
+            end,
+
+            -- Optional, set to true if you use the Obsidian Advanced URI plugin.
+            -- https://github.com/Vinzent03/obsidian-advanced-uri
+            use_advanced_uri = true,
+
+            -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
+            open_app_foreground = false,
+
+            -- Optional, by default commands like `:ObsidianSearch` will attempt to use
+            -- telescope.nvim, fzf-lua, and fzf.nvim (in that order), and use the
+            -- first one they find. By setting this option to your preferred
+            -- finder you can attempt it first. Note that if the specified finder
+            -- is not installed, or if it the command does not support it, the
+            -- remaining finders will be attempted in the original order.
+            finder = "telescope.nvim",
+
+            -- Optional, determines whether to open notes in a horizontal split, a vertical split,
+            -- or replacing the current buffer (default)
+            -- Accepted values are "current", "hsplit" and "vsplit"
+            open_notes_in = "current",
+        },
+    },
     -- code suggestions
+    {
+        dir = "~/workspace/codewhisperer-nvim/src/AmazonCodeWhispererVimPlugin",
+        name = "codewhisperer",
+        dependencies = {
+            { "nvim-telescope/telescope.nvim" },
+        },
+    },
     -- {
-    --     dir = "~/development/codewhisperer",
-    --     name = "codewhisperer",
-    --     lazy = false,
-    -- },
+    -- 	"https://git.amazon.com/pkg/AmazonCodeWhispererVimPlugin",
+    -- 	branch = "nvim",
+    -- 	name = "codewhisperer",
+    -- 	build =
+    -- 	[[cat ~/.local/share/nvim/lazy/codewhisperer/service-2.json | jq '.metadata += {"serviceId":"codewhisperer"}' | tee /tmp/aws-coral-model.json && aws configure add-model --service-model file:///tmp/aws-coral-model.json --service-name codewhisperer]],
+    -- }
     -- { import = 'custom.plugins' },
 }, {})
 
@@ -671,16 +1045,16 @@ map("n", "<leader>fd", require("telescope.builtin").diagnostics, "[f]ind [d]iagn
 map("n", "<leader>fr", require("telescope.builtin").registers, "[f]ind [r]egisters")
 map("n", "<leader>fk", require("telescope.builtin").keymaps, "[f]ind [k]eymaps")
 map("n", "<leader>fj", require("telescope.builtin").jumplist, "[f]ind [j]umplist")
+map({ "n", "v" }, "<leader>fc", require("telescope.builtin").commands, "[f]ind [c]ommands")
 
 -- ==============================================================================================================
 -- [[ Configure Treesitter ]]
-
 require("nvim-treesitter.configs").setup({
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { "c", "cpp", "rust", "go", "lua", "python", "tsx", "typescript", "vimdoc", "vim", "bash" },
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
-    highlight = { enable = true },
+    highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
     indent = { enable = true },
     incremental_selection = {
         enable = true,
@@ -779,14 +1153,14 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "[[]Next [d]iagnostic" })
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "[]]Previous [d]iagnostic" })
-    vim.keymap.set("n", "<leader>vca", function()
-        vim.lsp.buf.code_action()
-    end, "[<leader>][v] [c]ode [a]ction")
-    vim.keymap.set("n", "<leader>vrn", function()
-        vim.lsp.buf.rename()
-    end, "[<leader>][v] [r]e[n]ame")
+    -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "[[]Next [d]iagnostic" })
+    -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "[]]Previous [d]iagnostic" })
+    -- vim.keymap.set("n", "<leader>vca", function()
+    --     vim.lsp.buf.code_action()
+    -- end, "[<leader>][v] [c]ode [a]ction")
+    -- vim.keymap.set("n", "<leader>vrn", function()
+    --     vim.lsp.buf.rename()
+    -- end, "[<leader>][v] [r]e[n]ame")
 
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
@@ -891,8 +1265,8 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = {
-        { name = "path" },
         { name = "nvim_lsp", keyword_length = 1 },
+        { name = "nvim_lsp_signature_help" },
         {
             name = "buffer",
             keyword_length = 1,
@@ -902,14 +1276,18 @@ cmp.setup({
                 end,
             },
         },
-        { name = "emoji" },
         { name = "luasnip", keyword_length = 1 },
+        { name = "path" },
+        { name = "emoji" },
     },
 })
 
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
 -- ==============================================================================================================
 -- [[ null-ls setup ]]
-
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -963,24 +1341,37 @@ null_ls.setup({
 
 -- ==============================================================================================================
 -- [[ harpoon setup ]]
-
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 map("n", "<leader>m", mark.toggle_file)
 map("n", "<leader>,", ui.toggle_quick_menu)
 
 -- ==============================================================================================================
--- [[ DAP setup ]]
-
+-- [[ nvim-dap setup ]]
 map("n", "<F5>", ":lua require'dap'.continue()<CR>")
 map("n", "<F10>", ":lua require'dap'.step_over()<CR>")
 map("n", "<F11>", ":lua require'dap'.step_into()<CR>")
 map("n", "<F12>", ":lua require'dap'.step_out()<CR>")
 map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
 map("n", "<leader>dpr", ":lua require'dap-python'.test_method()<CR>")
-
 -- ==============================================================================================================
--- g.loaded_codewhisperer_plugin = 1
+-- [[ nvim-autopairs setup ]]
+require("nvim-autopairs").remove_rule("'")
+require("nvim-autopairs").remove_rule('"')
+require("nvim-autopairs").remove_rule("`")
+-- ==============================================================================================================
+g.loaded_codewhisperer_plugin = 1
+g.cw_debugging = true
+map({ "n", "i" }, "<C-w>", ":CWGenerateNvim<CR>")
+vim.g.aws_profile = "Isen_Admin"
+-- ==============================================================================================================
+vim.keymap.set("n", "gf", function()
+    if require("obsidian").util.cursor_on_markdown_link() then
+        return "<cmd>ObsidianFollowLink<CR>"
+    else
+        return "gf"
+    end
+end, { noremap = false, expr = true })
 -- ==============================================================================================================
 vim.cmd.colorscheme("catppuccin-mocha")
 -- ==============================================================================================================
