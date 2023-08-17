@@ -946,4 +946,4 @@ hints:
   #highlight_damage: false
 
 import:
-  - ~/.config/alacritty/themes/themes/catppuccin.yaml
+  - ~/.config/alacritty/themes/themes/catppuccin-frappe.yaml

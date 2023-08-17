@@ -31,6 +31,7 @@ for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
 done
 
 yabai -m rule --add app="^Friendly Streaming$" space=1 manage=off
+yabai -m rule --add app="^Quip$" space=1 manage=off
 yabai -m rule --add app="^Slack$" space=2
 yabai -m rule --add app="^Amazon Chime$" space=2 manage=off
 yabai -m rule --add app="Outlook" space=2

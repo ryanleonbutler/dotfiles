@@ -121,20 +121,81 @@ require("lazy").setup({
     },
     -- Theme
     {
+        "rose-pine/neovim",
+        lazy = true,
+        config = function()
+            require("rose-pine").setup({
+                --- @usage 'auto'|'main'|'moon'|'dawn'
+                variant = "moon",
+                --- @usage 'main'|'moon'|'dawn'
+                dark_variant = "moon",
+                bold_vert_split = false,
+                dim_nc_background = true,
+                disable_background = true,
+                disable_float_background = true,
+                disable_italics = false,
+
+                --- @usage string hex value or named color from rosepinetheme.com/palette
+                groups = {
+                    background = "base",
+                    background_nc = "_experimental_nc",
+                    panel = "surface",
+                    panel_nc = "base",
+                    border = "highlight_med",
+                    comment = "muted",
+                    link = "iris",
+                    punctuation = "subtle",
+
+                    error = "love",
+                    hint = "iris",
+                    info = "foam",
+                    warn = "gold",
+
+                    headings = {
+                        h1 = "iris",
+                        h2 = "foam",
+                        h3 = "rose",
+                        h4 = "gold",
+                        h5 = "pine",
+                        h6 = "foam",
+                    },
+                    -- or set all headings at once
+                    headings = "subtle",
+                },
+
+                -- Change specific vim highlight groups
+                -- https://github.com/rose-pine/neovim/wiki/Recipes
+                highlight_groups = {
+                    ColorColumn = { bg = "gray" },
+                    Cursor = { fg = "#ffffff", bg = "#ffffff" },
+
+                    -- Blend colours against the "base" background
+                    CursorLine = { bg = "foam", blend = 10 },
+                    StatusLine = { fg = "love", bg = "love", blend = 10 },
+
+                    -- By default each group adds to the existing config.
+                    -- If you only want to set what is written in this config exactly,
+                    -- you can set the inherit option:
+                    Search = { bg = "gold", inherit = false },
+                },
+            })
+        end,
+    },
+    {
         "catppuccin/nvim",
         lazy = true,
         name = "catppuccin",
         config = function()
             require("catppuccin").setup({
-                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                flavour = "frappe", -- latte, frappe, macchiato, mocha
                 background = {
                     -- :h background
                     light = "latte",
-                    dark = "mocha",
+                    dark = "frappe",
                 },
                 transparent_background = true,
                 show_end_of_buffer = true, -- show the '~' characters after the end of buffers
-                term_colors = false,
+                term_colors = true,
                 dim_inactive = {
                     enabled = true,
                     shade = "dark",
@@ -157,7 +218,9 @@ require("lazy").setup({
                     operators = {},
                 },
                 color_overrides = {},
-                custom_highlights = {},
+                custom_highlights = {
+                    Cursor = { fg = "#ffffff", bg = "#ffffff" },
+                },
                 integrations = {
                     alpha = false,
                     cmp = true,
@@ -191,22 +254,21 @@ require("lazy").setup({
         end,
     },
     -- Add indentation guides even on blank lines
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        -- Enable `lukas-reineke/indent-blankline.nvim`
-        -- See `:help indent_blankline.txt`
-        opts = {
-            char = "┊",
-            show_trailing_blankline_indent = false,
-        },
-    },
+    -- {
+    -- 	"lukas-reineke/indent-blankline.nvim",
+    -- 	-- See `:help indent_blankline.txt`
+    -- 	opts = {
+    -- 		char = "┊",
+    -- 		show_trailing_blankline_indent = false,
+    -- 	},
+    -- },
     -- Set statusline
     {
         "nvim-lualine/lualine.nvim",
         opts = {
             options = {
                 icons_enabled = false,
-                theme = "catppuccin",
+                theme = "catppuccin-mocha",
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
                 ignore_focus = {},
@@ -1373,5 +1435,5 @@ vim.keymap.set("n", "gf", function()
     end
 end, { noremap = false, expr = true })
 -- ==============================================================================================================
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("catppuccin-frappe")
 -- ==============================================================================================================
