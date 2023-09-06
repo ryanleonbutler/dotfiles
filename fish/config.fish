@@ -45,6 +45,26 @@ set -gx PATH /opt/homebrew/bin $PATH
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
+# Golang
+# set -x PATH $PATH $GOPATH/bin
+# set -x GOPATH $HOME/go
+. ~/.asdf/plugins/golang/set-env.fish
+
+# Autossh
+function random_unused_port
+    set port $(shuf -i 2000-65000 -n 1)
+    netstat -lat | grep $port > /dev/null
+    if [ $status = 1 ];
+        set -gx AUTOSSH_PORT $port
+    else
+        random_unused_port
+	end
+end
+function ssh
+	random_unused_port
+	autossh $argv
+end
+
 # aliases
 set -gx EDITOR nvim
 alias c "clear"
@@ -66,7 +86,7 @@ alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
 alias yabairc "vim ~/development/dotfiles/yabai/yabairc"
 alias skhdrc "vim ~/development/dotfiles/skhd/skhdrc"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
-alias chrome "open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir /tmp/chrome_dev_test --disable-web-security --no-sandbox && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /tmp/chrome_dev_test/NativeMessagingHosts/"
+alias chrome "open -n -a /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --args --user-data-dir='/Users/butryan/temporary-vivalid-profile-dir' --disable-web-security --ignore-certificate-errors && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /Users/butryan/temporary-chrome-profile-dir"
 alias secretsrc "vim ~/.env"
 alias todo "vim ~/Documents/todo.md"
 alias notes "vim ~/Documents/notes.md"

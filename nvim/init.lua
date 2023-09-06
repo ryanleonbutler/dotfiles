@@ -228,7 +228,7 @@ require("lazy").setup({
                     gitsigns = true,
                     illuminate = true,
                     indent_blankline = { enabled = true },
-                    lsp_trouble = true,
+                    lsp_trouble = false,
                     mason = true,
                     mini = false,
                     native_lsp = {
@@ -280,7 +280,7 @@ require("lazy").setup({
             },
         },
         extensions = {
-            "fugitive",
+            -- "fugitive",
             "nvim-dap-ui",
         },
         sections = {
@@ -470,9 +470,9 @@ require("lazy").setup({
             })
         end,
     },
-    {
-        "tpope/vim-fugitive",
-    },
+    -- {
+    --     "tpope/vim-fugitive",
+    -- },
     {
         "f-person/git-blame.nvim",
     },
@@ -512,45 +512,45 @@ require("lazy").setup({
             { "[[", desc = "Prev Reference" },
         },
     },
-    {
-        "folke/trouble.nvim",
-        cmd = { "TroubleToggle", "Trouble" },
-        opts = { use_diagnostic_signs = true },
-        keys = {
-            { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-            { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-            { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-            { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
-            {
-                "[q",
-                function()
-                    if require("trouble").is_open() then
-                        require("trouble").previous({ skip_groups = true, jump = true })
-                    else
-                        local ok, err = pcall(vim.cmd.cprev)
-                        if not ok then
-                            vim.notify(err, vim.log.levels.ERROR)
-                        end
-                    end
-                end,
-                desc = "Previous trouble/quickfix item",
-            },
-            {
-                "]q",
-                function()
-                    if require("trouble").is_open() then
-                        require("trouble").next({ skip_groups = true, jump = true })
-                    else
-                        local ok, err = pcall(vim.cmd.cnext)
-                        if not ok then
-                            vim.notify(err, vim.log.levels.ERROR)
-                        end
-                    end
-                end,
-                desc = "Next trouble/quickfix item",
-            },
-        },
-    },
+    -- {
+    --     "folke/trouble.nvim",
+    --     cmd = { "TroubleToggle", "Trouble" },
+    --     opts = { use_diagnostic_signs = true },
+    --     keys = {
+    --         { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+    --         { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+    --         { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+    --         { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+    --         {
+    --             "[q",
+    --             function()
+    --                 if require("trouble").is_open() then
+    --                     require("trouble").previous({ skip_groups = true, jump = true })
+    --                 else
+    --                     local ok, err = pcall(vim.cmd.cprev)
+    --                     if not ok then
+    --                         vim.notify(err, vim.log.levels.ERROR)
+    --                     end
+    --                 end
+    --             end,
+    --             desc = "Previous trouble/quickfix item",
+    --         },
+    --         {
+    --             "]q",
+    --             function()
+    --                 if require("trouble").is_open() then
+    --                     require("trouble").next({ skip_groups = true, jump = true })
+    --                 else
+    --                     local ok, err = pcall(vim.cmd.cnext)
+    --                     if not ok then
+    --                         vim.notify(err, vim.log.levels.ERROR)
+    --                     end
+    --                 end
+    --             end,
+    --             desc = "Next trouble/quickfix item",
+    --         },
+    --     },
+    -- },
     {
         "gbprod/yanky.nvim",
         dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") } },
@@ -1215,14 +1215,14 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "[[]Next [d]iagnostic" })
-    -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "[]]Previous [d]iagnostic" })
-    -- vim.keymap.set("n", "<leader>vca", function()
-    --     vim.lsp.buf.code_action()
-    -- end, "[<leader>][v] [c]ode [a]ction")
-    -- vim.keymap.set("n", "<leader>vrn", function()
-    --     vim.lsp.buf.rename()
-    -- end, "[<leader>][v] [r]e[n]ame")
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "[[]Next [d]iagnostic" })
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "[]]Previous [d]iagnostic" })
+    vim.keymap.set({ "n", "v" }, "<leader>vca", function()
+        vim.lsp.buf.code_action()
+    end, { desc = "[<leader>][v] [c]ode [a]ction" })
+    vim.keymap.set({ "n", "v" }, "<leader>vrn", function()
+        vim.lsp.buf.rename()
+    end, { desc = "[<leader>][v]variable [r]e[n]ame" })
 
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
@@ -1258,7 +1258,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 require("mason").setup()
 require("mason-null-ls").setup({
     automatic_setup = true,
-    ensure_installed = { "stylua", "jq", "ruff", "black", "isort", "mypy", "debugpy", "eslint", "prettier" },
+    ensure_installed = { "stylua", "jq", "ruff", "black", "isort", "mypy", "debugpy", "eslint", "prettier", "goimports", "golines" },
 })
 
 -- Ensure the servers above are installed
@@ -1380,7 +1380,14 @@ null_ls.setup({
 
         -- Prettier: Javascript, TypeScript, CSS, JSON, HTML, Yaml, Markdown
         formatting.prettier.with({
-            extra_args = {},
+            extra_args = {
+                "--single-quote",
+                "true",
+                "--tab-width",
+                "4",
+				"--no-bracket-spacing",
+				"false"
+            },
         }),
         diagnostics.eslint,
 
@@ -1398,6 +1405,11 @@ null_ls.setup({
                 "W391", -- blank line at end of file
             },
         }),
+
+		-- Golang
+		formatting.gofmt.with({}),
+		formatting.goimports.with({}),
+		formatting.golines.with({}),
     },
 })
 

@@ -30,15 +30,21 @@ for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
   yabai -m space --destroy 5
 done
 
-yabai -m rule --add app="^Friendly Streaming$" space=1 manage=off
-yabai -m rule --add app="^Quip$" space=1 manage=off
+# space 1
+yabai -m rule --add app="Friendly Streaming" space=1 manage=off
+yabai -m rule --add app="Obsidian" space=1 manage=off
+yabai -m rule --add app="Quip" space=1 manage=off
+
+# space 2
 yabai -m rule --add app="^Slack$" space=2
+yabai -m rule --add app="Outlook" space=2 manage=off
 yabai -m rule --add app="^Amazon Chime$" space=2 manage=off
-yabai -m rule --add app="Outlook" space=2
+
+# space 3
 yabai -m rule --add app="Alacritty" space=3
-yabai -m rule --add app="Obsidian" space=3 manage=off
-yabai -m rule --add app="^Developer Tools - Vivaldi$" space=4 manage=off
-yabai -m rule --add app="^Vivaldi$" space=4
+
+# space 4
+yabai -m rule --add app="Vivaldi" space=4
 
 yabai -m rule --add app="^System Settings$" title='^$' space=1 manage=off
 yabai -m rule --add app="^Calculator$" space=1  manage=off
@@ -63,10 +69,10 @@ yabai -m config window_opacity off
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.90
 yabai -m config window_shadow off
-yabai -m config top_padding    8
-yabai -m config bottom_padding 8
-yabai -m config left_padding   8
-yabai -m config right_padding  8
-yabai -m config window_gap     10
+yabai -m config top_padding    5
+yabai -m config bottom_padding 5
+yabai -m config left_padding   5
+yabai -m config right_padding  5
+yabai -m config window_gap     5
 
 yabai -m config focus_follows_mouse off
