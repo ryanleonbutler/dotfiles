@@ -40,10 +40,21 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 
 require("lazy").setup({
+
+    -- TMUX / SPLIT navigation
     {
         "christoomey/vim-tmux-navigator",
         event = "VeryLazy",
     },
+
+    -- TPOPE
+    -- Detect tabstop and shiftwidth automatically
+    { "tpope/vim-sleuth" },
+    -- "gc" to comment visual regions/lines
+    { "tpope/vim-commentary" },
+    { "tpope/vim-surround" },
+    { "tpope/vim-repeat" },
+
     -- LSP
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -61,9 +72,10 @@ require("lazy").setup({
             { "hrsh7th/cmp-nvim-lua" },
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
-            -- { "nvimdev/lspsaga.nvim" },
         },
     },
+
+    -- Formatting / Linting
     {
         "jose-elias-alvarez/null-ls.nvim",
     },
@@ -78,6 +90,7 @@ require("lazy").setup({
         --     require("null-ls.config") -- require your null-ls config here (example below)
         -- end,
     },
+
     -- Autocompletion
     {
         "hrsh7th/nvim-cmp",
@@ -98,11 +111,13 @@ require("lazy").setup({
             enable_check_bracket_line = false,
         },
     },
+
     -- Neovim plugin dev
     {
         "folke/neodev.nvim",
         dependencies = { "hrsh7th/nvim-cmp" },
     },
+
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     {
         "lewis6991/gitsigns.nvim",
@@ -119,68 +134,8 @@ require("lazy").setup({
             },
         },
     },
+
     -- Theme
-    {
-        "rose-pine/neovim",
-        lazy = true,
-        config = function()
-            require("rose-pine").setup({
-                --- @usage 'auto'|'main'|'moon'|'dawn'
-                variant = "moon",
-                --- @usage 'main'|'moon'|'dawn'
-                dark_variant = "moon",
-                bold_vert_split = false,
-                dim_nc_background = true,
-                disable_background = true,
-                disable_float_background = true,
-                disable_italics = false,
-
-                --- @usage string hex value or named color from rosepinetheme.com/palette
-                groups = {
-                    background = "base",
-                    background_nc = "_experimental_nc",
-                    panel = "surface",
-                    panel_nc = "base",
-                    border = "highlight_med",
-                    comment = "muted",
-                    link = "iris",
-                    punctuation = "subtle",
-
-                    error = "love",
-                    hint = "iris",
-                    info = "foam",
-                    warn = "gold",
-
-                    headings = {
-                        h1 = "iris",
-                        h2 = "foam",
-                        h3 = "rose",
-                        h4 = "gold",
-                        h5 = "pine",
-                        h6 = "foam",
-                    },
-                    -- or set all headings at once
-                    headings = "subtle",
-                },
-
-                -- Change specific vim highlight groups
-                -- https://github.com/rose-pine/neovim/wiki/Recipes
-                highlight_groups = {
-                    ColorColumn = { bg = "gray" },
-                    Cursor = { fg = "#ffffff", bg = "#ffffff" },
-
-                    -- Blend colours against the "base" background
-                    CursorLine = { bg = "foam", blend = 10 },
-                    StatusLine = { fg = "love", bg = "love", blend = 10 },
-
-                    -- By default each group adds to the existing config.
-                    -- If you only want to set what is written in this config exactly,
-                    -- you can set the inherit option:
-                    Search = { bg = "gold", inherit = false },
-                },
-            })
-        end,
-    },
     {
         "catppuccin/nvim",
         lazy = true,
@@ -253,15 +208,17 @@ require("lazy").setup({
             })
         end,
     },
+
     -- Add indentation guides even on blank lines
-    -- {
-    -- 	"lukas-reineke/indent-blankline.nvim",
-    -- 	-- See `:help indent_blankline.txt`
-    -- 	opts = {
-    -- 		char = "┊",
-    -- 		show_trailing_blankline_indent = false,
-    -- 	},
-    -- },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        -- See `:help indent_blankline.txt`
+        opts = {
+            char = "┊",
+            show_trailing_blankline_indent = false,
+        },
+    },
+
     -- Set statusline
     {
         "nvim-lualine/lualine.nvim",
@@ -292,8 +249,7 @@ require("lazy").setup({
             lualine_z = { "location" },
         },
     },
-    -- "gc" to comment visual regions/lines
-    { "tpope/vim-commentary" },
+
     -- Fuzzy Finder (files, lsp, etc)
     { "nvim-telescope/telescope.nvim", version = "*", dependencies = { "nvim-lua/plenary.nvim" } },
     {
@@ -303,6 +259,7 @@ require("lazy").setup({
             return vim.fn.executable("make") == 1
         end,
     },
+
     -- Syntax highlighting
     {
         "nvim-treesitter/nvim-treesitter",
@@ -363,29 +320,7 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter-context",
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
-    -- Other plugins
-    { "tpope/vim-surround" },
-    { "tpope/vim-repeat" },
-    {
-        "ethanholz/nvim-lastplace",
-        config = function()
-            require("nvim-lastplace").setup()
-        end,
-    },
-    { "jkramer/vim-checkbox" },
-    { "ipkiss42/xwiki.vim" },
-    {
-        "ojroques/nvim-osc52",
-        config = function()
-            require("osc52").setup({
-                max_length = 0, -- Maximum length of selection (0 for no limit)
-                silent = false, -- Disable message on successful copy
-                trim = false, -- Trim surrounding whitespaces before copy
-            })
-        end,
-    },
-    { "ThePrimeagen/harpoon" },
-    { "ThePrimeagen/vim-be-good" },
+
     -- Debugging
     {
         "mfussenegger/nvim-dap",
@@ -420,6 +355,7 @@ require("lazy").setup({
             end
         end,
     },
+
     -- Zen mode
     {
         "folke/zen-mode.nvim",
@@ -470,12 +406,13 @@ require("lazy").setup({
             })
         end,
     },
-    -- {
-    --     "tpope/vim-fugitive",
-    -- },
+
+    -- Git blame
     {
         "f-person/git-blame.nvim",
     },
+
+    -- Word highlights
     {
         "RRethy/vim-illuminate",
         event = { "BufReadPost", "BufNewFile" },
@@ -512,45 +449,8 @@ require("lazy").setup({
             { "[[", desc = "Prev Reference" },
         },
     },
-    -- {
-    --     "folke/trouble.nvim",
-    --     cmd = { "TroubleToggle", "Trouble" },
-    --     opts = { use_diagnostic_signs = true },
-    --     keys = {
-    --         { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-    --         { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-    --         { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-    --         { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
-    --         {
-    --             "[q",
-    --             function()
-    --                 if require("trouble").is_open() then
-    --                     require("trouble").previous({ skip_groups = true, jump = true })
-    --                 else
-    --                     local ok, err = pcall(vim.cmd.cprev)
-    --                     if not ok then
-    --                         vim.notify(err, vim.log.levels.ERROR)
-    --                     end
-    --                 end
-    --             end,
-    --             desc = "Previous trouble/quickfix item",
-    --         },
-    --         {
-    --             "]q",
-    --             function()
-    --                 if require("trouble").is_open() then
-    --                     require("trouble").next({ skip_groups = true, jump = true })
-    --                 else
-    --                     local ok, err = pcall(vim.cmd.cnext)
-    --                     if not ok then
-    --                         vim.notify(err, vim.log.levels.ERROR)
-    --                     end
-    --                 end
-    --             end,
-    --             desc = "Next trouble/quickfix item",
-    --         },
-    --     },
-    -- },
+
+    -- Nice yank experience
     {
         "gbprod/yanky.nvim",
         dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") } },
@@ -669,6 +569,7 @@ require("lazy").setup({
             },
         },
     },
+
     -- terminal
     {
         "akinsho/toggleterm.nvim",
@@ -690,6 +591,7 @@ require("lazy").setup({
             },
         },
     },
+
     -- note taking - Obisdian
     {
         "epwalsh/obsidian.nvim",
@@ -814,6 +716,7 @@ require("lazy").setup({
             open_notes_in = "current",
         },
     },
+
     -- code suggestions
     {
         dir = "~/workspace/codewhisperer-nvim/src/AmazonCodeWhispererVimPlugin",
@@ -829,6 +732,29 @@ require("lazy").setup({
     -- 	build =
     -- 	[[cat ~/.local/share/nvim/lazy/codewhisperer/service-2.json | jq '.metadata += {"serviceId":"codewhisperer"}' | tee /tmp/aws-coral-model.json && aws configure add-model --service-model file:///tmp/aws-coral-model.json --service-name codewhisperer]],
     -- }
+
+    -- Other plugins
+    {
+        "ethanholz/nvim-lastplace",
+        config = function()
+            require("nvim-lastplace").setup()
+        end,
+    },
+    { "jkramer/vim-checkbox" },
+    { "ipkiss42/xwiki.vim" },
+    {
+        "ojroques/nvim-osc52",
+        config = function()
+            require("osc52").setup({
+                max_length = 0, -- Maximum length of selection (0 for no limit)
+                silent = false, -- Disable message on successful copy
+                trim = false, -- Trim surrounding whitespaces before copy
+            })
+        end,
+    },
+    { "ThePrimeagen/harpoon" },
+    { "ThePrimeagen/vim-be-good" },
+
     -- { import = 'custom.plugins' },
 }, {})
 
@@ -868,7 +794,7 @@ set.hlsearch = false
 set.signcolumn = "yes"
 
 -- Decrease update time
-set.updatetime = 50
+set.updatetime = 100
 set.timeout = true
 set.timeoutlen = 300
 
@@ -963,10 +889,6 @@ map("x", "<leader>p", '"_dp')
 map("n", "<leader>y", '"+y')
 map("v", "<leader>y", '"+y')
 map("n", "<leader>Y", '"+Y')
--- format
-map("n", "<C-f>", function()
-    vim.lsp.buf.format()
-end)
 -- tmux
 map("n", "<C-t>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- Find and replace
@@ -1006,7 +928,6 @@ end
 map("n", "<leader>yr", ":lua YankRelativePathToOsc()<CR>")
 map("n", "<leader>yf", ":lua YankFullPathToOsc()<CR>")
 map("n", "<leader>z", ":ZenMode<CR>")
-map("n", "<leader>M", ":Glow<CR>")
 
 -- ==============================================================================================================
 -- [[ Autocmd's ]]
@@ -1064,11 +985,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
+-- Hover Diagnostics
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+
 -- ==============================================================================================================
 -- [[ Configure Telescope ]]
 local telescope_dropdown_theme = require("telescope.themes").get_dropdown({
     winblend = 10,
-    previewer = false,
+    previewer = true,
 })
 
 require("telescope").setup({
@@ -1100,7 +1024,7 @@ vim.keymap.set("n", "<leader>/", function()
 end, { desc = "[/] Fuzzy search current buffer" })
 
 map("n", "<leader>ff", require("telescope.builtin").find_files, "[f]ind [f]iles")
-map("n", "<leader>fh", require("telescope.builtin").help_tags, "[f]ind [h]elp")
+map("n", "<leader>ft", require("telescope.builtin").help_tags, "[f]ind [h]elp")
 map("n", "<leader>fw", require("telescope.builtin").grep_string, "[f]ind [w]ord")
 map("n", "<leader>fg", require("telescope.builtin").live_grep, "[f]ind [g]rep")
 map("n", "<leader>fd", require("telescope.builtin").diagnostics, "[f]ind [d]iagnostics")
@@ -1180,11 +1104,17 @@ require("nvim-treesitter.configs").setup({
 -- [[ Configure LSP ]]
 
 -- LSP settings
-local lsp = require("lsp-zero")
-lsp.preset("recommended")
+local lsp = require("lsp-zero").preset("recommended")
+lsp.nvim_workspace()
 
 lsp.set_preferences({
-    sign_icons = {},
+    suggest_lsp_servers = false,
+    sign_icons = {
+        error = "E",
+        warn = "W",
+        hint = "H",
+        info = "I",
+    },
 })
 
 vim.diagnostic.config({
@@ -1193,42 +1123,50 @@ vim.diagnostic.config({
     update_in_insert = true,
     underline = true,
     severity_sort = false,
-    float = true,
+    float = false,
 })
 
-local on_attach = function(_, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
+lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
+    local opts = { buffer = bufnr }
     vim.keymap.set("n", "gr", function()
         require("telescope.builtin").lsp_references(telescope_dropdown_theme)
     end, opts, { desc = "[G]oto [R]eferences" })
     vim.keymap.set("n", "gd", function()
         require("telescope.builtin").lsp_definitions(telescope_dropdown_theme)
-    end, opts({ desc = "[G]oto [D]efinitions" }))
+    end, opts, { desc = "[G]oto [D]efinitions" })
     vim.keymap.set("n", "gt", function()
         require("telescope.builtin").lsp_type_definitions(telescope_dropdown_theme)
     end, opts, { desc = "[G]oto [T]ype Definitions" })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts, { desc = "[G]oto [I]mplementation" })
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts, { desc = "LSP Hover" })
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set("n", "<leader>wl", function()
+    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts, { desc = "[[]Next [d]iagnostic" })
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts, { desc = "[]]Previous [d]iagnostic" })
-    vim.keymap.set({ "n", "v" }, "<leader>vca", function()
+    vim.keymap.set("n", "<leader>a", function()
         vim.lsp.buf.code_action()
-    end, { desc = "[<leader>][v] [c]ode [a]ction" })
-    vim.keymap.set({ "n", "v" }, "<leader>vrn", function()
-        vim.lsp.buf.rename()
-    end, { desc = "[<leader>][v]variable [r]e[n]ame" })
+    end, { desc = "[<space>] code [a]ction" })
+    vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts, { desc = "[<leader>]code [a]ction" })
+    vim.keymap.set("n", "<C-f>", "<cmd>lua vim.lsp.buf.format()<CR>", opts, { desc = "[C]ode [f]ormat" })
+end)
 
-    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-        vim.lsp.buf.format()
-    end, { desc = "Format current buffer with LSP" })
-    vim.keymap.set("n", "<C-f>", "<cmd>Format<CR>", opts)
-end
+-- lsp.format_mapping('<C-f>', {
+-- 	format_opts = {
+-- 		async = false,
+-- 		timeout_ms = 10000,
+-- 	},
+-- 	servers = {
+-- 		['lua_ls'] = { 'lua' },
+-- 		['rust_analyzer'] = { 'rust' },
+-- 		['black'] = { 'python' },
+-- 		['gofmt'] = { 'go' },
+-- 		['prettier'] = { 'javascript', 'typescript', 'javascriptreact' },
+-- 	}
+-- })
 
 local servers = {
     bashls = {},
@@ -1239,6 +1177,8 @@ local servers = {
     clangd = {},
     pyright = {},
     tsserver = {},
+    gopls = {},
+    rust_analyzer = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -1258,7 +1198,19 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 require("mason").setup()
 require("mason-null-ls").setup({
     automatic_setup = true,
-    ensure_installed = { "stylua", "jq", "ruff", "black", "isort", "mypy", "debugpy", "eslint", "prettier", "goimports", "golines" },
+    ensure_installed = {
+        "stylua",
+        "jq",
+        "ruff",
+        "black",
+        "isort",
+        "mypy",
+        "debugpy",
+        "eslint",
+        "prettier",
+        "goimports",
+        "golines",
+    },
 })
 
 -- Ensure the servers above are installed
@@ -1385,8 +1337,10 @@ null_ls.setup({
                 "true",
                 "--tab-width",
                 "4",
-				"--no-bracket-spacing",
-				"false"
+                "--no-bracket-spacing",
+                "false",
+                "no-semi",
+                "false",
             },
         }),
         diagnostics.eslint,
@@ -1406,10 +1360,10 @@ null_ls.setup({
             },
         }),
 
-		-- Golang
-		formatting.gofmt.with({}),
-		formatting.goimports.with({}),
-		formatting.golines.with({}),
+        -- Golang
+        formatting.gofmt.with({}),
+        formatting.goimports.with({}),
+        formatting.golines.with({}),
     },
 })
 
