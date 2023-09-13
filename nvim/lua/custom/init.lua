@@ -98,6 +98,9 @@ local autocmd = vim.api.nvim_create_autocmd
 -- see https://www.reddit.com/r/vim/comments/3d4cpf/prevent_netrw_or_nerdtree_from_opening_when/
 vim.cmd([[autocmd VimEnter * silent! au! FileExplorer *]])
 
+-- spellcheck
+vim.cmd([[autocmd BufRead,BufNewFile *.md setlocal spell]])
+
 -- Yank through ssh/tmux whatever...
 local function copy()
     if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
@@ -116,28 +119,6 @@ autocmd("TextYankPost", {
             higroup = "IncSearch",
             timeout = 100,
         })
-    end,
-})
-
--- Set width and wrap on Markdown files
-autocmd("BufNew", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 100
-        end
-    end,
-})
-autocmd("BufWritePre", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 100
-        end
     end,
 })
 

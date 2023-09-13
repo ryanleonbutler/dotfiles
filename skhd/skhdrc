@@ -56,5 +56,6 @@ ctrl + alt + cmd - 4 : yabai -m window --space 4
 ctrl + alt + cmd - 5 : yabai -m window --space 5
 
 # Restart Yabai and SKHD
-hyper - s : yabai --stop-service
-hyper - r : skhd --start-service && yabai --start-service
+hyper - s : skhd --start-service && yabai --start-service
+hyper - e : yabai --stop-service
+hyper - r : skhd --restart-service && yabai --restart-service

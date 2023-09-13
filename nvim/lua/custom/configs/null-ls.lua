@@ -1,23 +1,32 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require "null-ls"
 local b = null_ls.builtins
 
 local opts = {
   sources = {
     -- b.diagnostics.eslint,
-    b.formatting.deno_fmt.with {
-      extra_args = {
-        "--indent-width",
-        4,
-        "--line-width",
-        150,
-        "--single-quote",
-      },
-    },
+    -- b.formatting.deno_fmt.with {
+      -- file_types = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+    --   extra_args = {
+    --     "--indent-width",
+    --     4,
+    --     "--line-width",
+    --     119,
+    --     "--single-quote",
+    --   },
+    -- },
 
     b.formatting.prettier.with {
-      file_types = { "html", "css", "json" },
-    },
+      -- file_types = { "html", "css", "json", "markdown" },
+		extra_args = {
+			"--print-width",
+			"119",
+			"--tab-width",
+			"4",
+			"--single-quote",
+			"true",
+		},
+	},
 
     b.formatting.stylua,
 
