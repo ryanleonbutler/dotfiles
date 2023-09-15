@@ -24,6 +24,27 @@ local plugins = {
 
 	-- edit exiting
 	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"bash",
+				"c",
+				"css",
+				"go",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"python",
+				"rust",
+				"tsx",
+				"typescript",
+				"vim",
+				"zig",
+			},
+		},
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		config = function()
 			require("custom.configs.telescope")

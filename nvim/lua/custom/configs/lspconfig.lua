@@ -64,7 +64,7 @@ require("mason-null-ls").setup({
 		"isort",
 		"mypy",
 		"debugpy",
-		-- "eslint",
+		"eslint",
 		"prettier",
 		"goimports",
 		"golines",

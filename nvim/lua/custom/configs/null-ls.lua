@@ -4,7 +4,7 @@ local b = null_ls.builtins
 
 local opts = {
   sources = {
-    -- b.diagnostics.eslint,
+    b.diagnostics.eslint,
     -- b.formatting.deno_fmt.with {
       -- file_types = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     --   extra_args = {
