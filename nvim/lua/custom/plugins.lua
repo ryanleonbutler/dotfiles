@@ -1,10 +1,6 @@
 local plugins = {
 	-- To make a plugin not be loaded
 	{
-		"windwp/nvim-autopairs",
-		enabled = false,
-	},
-	{
 		"NvChad/nvim-colorizer.lua",
 		enabled = false,
 	},
@@ -20,6 +16,35 @@ local plugins = {
 			hijack_netrw = false,
 		},
 		enabled = false,
+	},
+
+	-- override cmp
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"f3fora/cmp-spell",
+			"hrsh7th/cmp-emoji",
+		},
+		opts = {
+			sources = {
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" },
+				{ name = "buffer" },
+				{ name = "nvim_lua" },
+				{ name = "path" },
+				{
+					name = "spell",
+					option = {
+						keep_all_entries = false,
+						enable_in_context = function()
+							return true
+						end,
+					},
+				},
+				{ name = "emoji" },
+			},
+		},
 	},
 
 	-- edit exiting
@@ -58,19 +83,54 @@ local plugins = {
 			show_current_context_start = false,
 		},
 	},
-
+	{
+		"hrsh7th/nvim-cmp",
+		opts = {
+			enabled = function()
+				local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+				if buftype == "prompt" then
+					return false
+				end
+				return vim.g.cmp_toggle
+			end,
+		},
+		-- config = function()
+		-- 	-- If you want insert `(` after select function or method item
+		-- 	local cmp = require("cmp")
+		-- 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		-- 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		-- end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			map_cr = true, --  map <CR> on insert mode
+			map_complete = true, -- it will auto insert `(` after select function or method item
+			ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
+			enable_check_bracket_line = false,
+			-- fast_wrap = {},
+		},
+		config = function()
+			local npairs = require("nvim-autopairs")
+			npairs.setup({})
+			npairs.remove_rule("'")
+			npairs.remove_rule('"')
+			npairs.remove_rule("`")
+		end,
+	},
 	-- Custom plugins
 	{
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				"deno",
 				"typescript-language-server",
 				"eslint-lsp",
 				"prettier",
 				"js-debug-adapter",
 				"pyright",
 				"gopls",
-				"rust_analyzer",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -104,7 +164,6 @@ local plugins = {
 			"jose-elias-alvarez/null-ls.nvim",
 		},
 	},
-
 	-- NULL-LS alternatives --
 	-- {
 	-- 	"mfussenegger/nvim-lint",
@@ -457,9 +516,25 @@ local plugins = {
 			open_notes_in = "current",
 		},
 	},
+	-- nvim in the browser
+	{
+		"glacambre/firenvim",
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+		lazy = not vim.g.started_by_firenvim,
+		build = function()
+			os.execute("set -gx NVIM_APPNAME '~/.config/nvim/firenvim.lua'")
+			vim.fn["firenvim#install"](0)
+		end,
+	},
+	-- spell source
+	{
+		"f3fora/cmp-spell",
+	},
 	-- code suggestions
 	{
 		dir = "~/workspace/codewhisperer-nvim/src/AmazonCodeWhispererVimPlugin",
+		lazy = false,
 		name = "codewhisperer",
 		dependencies = {
 			{ "nvim-telescope/telescope.nvim" },

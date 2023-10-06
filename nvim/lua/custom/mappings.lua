@@ -24,7 +24,7 @@ M.dap = {
 		["<leader>h"] = { ":nohl<CR>", "no higlight", opts = { nowait = true } },
 
 		-- jumping
-		["<J>"] = { "mzJ`z", "same place", opts = { nowait = true } },
+		["J"] = { "mzJ`z", "same place", opts = { nowait = true } },
 		["<C-d>"] = { "<C-d>zz", "jump down", opts = { nowait = true } },
 		["<C-u>"] = { "<C-u>zz", "jump down", opts = { nowait = true } },
 
@@ -47,14 +47,21 @@ M.dap = {
 		-- harpoon
 		["<leader>m"] = { "<cmd> lua require('harpoon.mark').toggle_file()<CR>", opts = { nowait = true } },
 		["<leader>,"] = { "<cmd> lua require('harpoon.ui').toggle_quick_menu()<CR>", opts = { nowait = true } },
-		["J"] = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", opts = { nowait = true } },
-		["Q"] = { "<cmd> lua require('harpoon.ui').nav_file(1)<CR>", opts = { nowait = true } },
-		["W"] = { "<cmd> lua require('harpoon.ui').nav_file(2)<CR>", opts = { nowait = true } },
-		["E"] = { "<cmd> lua require('harpoon.ui').nav_file(3)<CR>", opts = { nowait = true } },
-		["R"] = { "<cmd> lua require('harpoon.ui').nav_file(4)<CR>", opts = { nowait = true } },
+		["W"] = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", opts = { nowait = true } },
+		["Q"] = { "<cmd> lua require('harpoon.ui').nav_prev()<CR>", opts = { nowait = true } },
 
 		-- CW
 		["<C-w>"] = { "<cmd>:CWGenerateNvim<CR>", opts = { nowait = true } },
+
+		-- toggle cmp
+		["<leader>cp"] = { "<cmd>lua require('cmp').setup({enabled = false})<CR>", opts = { nowait = true } },
+
+		-- toggle git blame
+		["<leader>gb"] = { "<cmd>:GitBlameToggle<CR>", opts = { nowait = true } },
+
+		-- function TOGGLE_CMP()
+		-- 	vim.g.cmp_toggle = not vim.g.cmp_toggle
+		-- end
 	},
 	i = {
 		["<C-e>"] = { "<END>", opts = { nowait = true } },

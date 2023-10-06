@@ -1,20 +1,12 @@
 -- [[ Options ]]
 local set = vim.opt
 local g = vim.g
--- snippets path
-vim.g.vscode_snippets_path = "./snippets"
--- autocomplete
-g.cmp_toggle = true
--- git blame
-g.gitblame_enabled = 0
 -- colorcolumn
 set.colorcolumn = "119"
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#555555" })
 -- Make line numbers default
 set.number = true
 set.rnu = true
--- Disable mouse
-set.mouse = ""
 -- Sync clipboard between OS and Neovim.
 set.clipboard = ""
 -- Enable break indent
@@ -53,10 +45,6 @@ set.cmdheight = 1
 set.conceallevel = 0
 -- highlight the current line
 set.cursorline = true
--- Netrw
-g.netrw_browse_split = 0
-g.netrw_banner = 0
-g.netrw_winsize = 25
 -- Other
 set.errorbells = false
 set.expandtab = true -- convert tabs to spaces
@@ -78,79 +66,4 @@ set.splitright = true -- force all vertical splits to go to the right of current
 set.softtabstop = 4
 set.tabstop = 4 -- insert 4 spaces for a tab
 set.title = true -- set the title of window to the value of the titlestring
-set.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 set.wrap = false -- display lines as one long line
--- Copy file paths
-function YankFullPathToOsc()
-    local file_path = vim.fn.expand("%:p")
-    vim.fn.setreg("+", file_path)
-    require("osc52").copy_register("+")
-end
-
-function YankRelativePathToOsc()
-    local file_path = vim.fn.expand("%:.")
-    vim.fn.setreg("+", file_path)
-    require("osc52").copy_register("+")
-end
-
--- [autocmd]
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
--- see https://github.com/nvim-tree/nvim-tree.lua/commit/ce2420b9dab282703fb08e72009f0787b1a7b097
--- see https://www.reddit.com/r/vim/comments/3d4cpf/prevent_netrw_or_nerdtree_from_opening_when/
-vim.cmd([[autocmd VimEnter * silent! au! FileExplorer *]])
-
--- spellcheck
-vim.cmd([[autocmd BufRead,BufNewFile *.md setlocal spell]])
-
--- Yank through ssh/tmux whatever...
-local function copy()
-    if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
-        require("osc52").copy_register("+")
-    end
-end
-vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
-
--- Highlight on yank
-local yank_group = augroup("HighlightYank", {})
-autocmd("TextYankPost", {
-    group = yank_group,
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 100,
-        })
-    end,
-})
-
--- Disable
-autocmd({ "FileType" }, {
-    pattern = "*",
-    callback = function()
-        set.formatoptions:remove({ "o", "r" })
-    end,
-})
-
--- Set width and wrap on Markdown files
-autocmd("BufNew", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 100
-        end
-    end,
-})
-autocmd("BufWritePre", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 100
-        end
-    end,
-})

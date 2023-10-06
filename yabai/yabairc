@@ -34,6 +34,7 @@ done
 yabai -m rule --add app="Friendly Streaming" space=1 manage=off
 yabai -m rule --add app="Obsidian" space=1 manage=off
 yabai -m rule --add app="Quip" space=1 manage=off
+yabai -m rule --add app="^Discord$" space=1 manage=off
 
 # space 2
 yabai -m rule --add app="^Slack$" space=2
