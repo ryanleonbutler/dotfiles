@@ -3,21 +3,22 @@ local null_ls = require("null-ls")
 local b = null_ls.builtins
 
 local opts = {
+	debug = true,
 	sources = {
 		b.diagnostics.eslint,
-		b.formatting.deno_fmt.with({
-			file_types = { "markdown" },
-			extra_args = {
-				"--indent-width",
-				4,
-				"--line-width",
-				119,
-				"--single-quote",
-			},
-		}),
+		-- b.formatting.deno_fmt.with({
+		-- 	file_types = { "markdown" },
+		-- 	extra_args = {
+		-- 		"--indent-width",
+		-- 		4,
+		-- 		"--line-width",
+		-- 		119,
+		-- 		"--single-quote",
+		-- 	},
+		-- }),
 
 		b.formatting.prettier.with({
-			-- file_types = { "html", "css", "json", "markdown" },
+			file_types = { "html", "css", "json", "markdown", "javascript", "typescript", "javascriptreact" },
 			extra_args = {
 				"--print-width",
 				"119",
@@ -32,17 +33,17 @@ local opts = {
 
 		b.formatting.clang_format,
 
-		b.formatting.black,
-		b.formatting.isort,
-		b.diagnostics.mypy,
+		-- b.formatting.black,
+		-- b.formatting.isort,
+		-- b.diagnostics.mypy,
+		b.formatting.ruff.with({
+			extra_args = {
+				"--line-length=79",
+			},
+		}),
 		b.diagnostics.ruff.with({
 			extra_args = {
-				"--line-length",
-				"119",
-				"--max-complexity",
-				"10",
-				"--ignore",
-				"W391", -- blank line at end of file
+				"--line-length=79",
 			},
 		}),
 

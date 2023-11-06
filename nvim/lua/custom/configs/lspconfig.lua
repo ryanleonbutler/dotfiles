@@ -50,7 +50,7 @@ local on_attach = function(client, bufnr)
 	nmap("<leader>a", function()
 		vim.lsp.buf.code_action()
 	end, "[<space>] code [a]ction")
-	nmap("<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "[<leader>]code [a]ction")
+	nmap("<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "[<leader>l]var [r]ename")
 	nmap("<C-f>", "<cmd>lua vim.lsp.buf.format()<CR>", "[C]ode [f]ormat")
 end
 
@@ -60,9 +60,9 @@ require("mason-null-ls").setup({
 		"stylua",
 		"jq",
 		"ruff",
-		"black",
-		"isort",
-		"mypy",
+		-- "black",
+		-- "isort",
+		-- "mypy",
 		"debugpy",
 		"eslint",
 		"prettier",
@@ -103,6 +103,14 @@ mason_lspconfig.setup_handlers({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = servers[server_name],
+		})
+	end,
+	["html"] = function()
+		lspconfig.html.setup({
+			filetypes = {
+				"html",
+				"markdown",
+			},
 		})
 	end,
 })

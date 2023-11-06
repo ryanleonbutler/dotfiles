@@ -1,6 +1,9 @@
 -- [[ Options ]]
 local set = vim.opt
 local g = vim.g
+-- codewhisperer
+vim.g.loaded_codewhisperer_plugin = 1
+vim.g.aws_profile = "Isen_Admin"
 -- snippets path
 vim.g.vscode_snippets_path = "./snippets"
 -- autocomplete

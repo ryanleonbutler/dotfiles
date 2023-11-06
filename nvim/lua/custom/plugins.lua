@@ -84,24 +84,6 @@ local plugins = {
 		},
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		opts = {
-			enabled = function()
-				local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-				if buftype == "prompt" then
-					return false
-				end
-				return vim.g.cmp_toggle
-			end,
-		},
-		-- config = function()
-		-- 	-- If you want insert `(` after select function or method item
-		-- 	local cmp = require("cmp")
-		-- 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-		-- 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-		-- end,
-	},
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {
@@ -117,7 +99,23 @@ local plugins = {
 			npairs.remove_rule("'")
 			npairs.remove_rule('"')
 			npairs.remove_rule("`")
+			-- If you want insert `(` after select function or method item
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		opts = {
+			enabled = function()
+				local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+				if buftype == "prompt" then
+					return false
+				end
+				return vim.g.cmp_toggle
+			end,
+		},
 	},
 	-- Custom plugins
 	{
@@ -150,7 +148,7 @@ local plugins = {
 		end,
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = "VeryLazy",
 		opts = function()
 			return require("custom.configs.null-ls")
@@ -161,7 +159,7 @@ local plugins = {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
+			"nvimtools/none-ls.nvim",
 		},
 	},
 	-- NULL-LS alternatives --
@@ -378,18 +376,35 @@ local plugins = {
 		version = "*",
 		cmd = { "ToggleTerm", "TermExec" },
 		opts = {
-			size = 10,
+			size = function(term)
+				if term.direction == "horizontal" then
+					return 15
+				elseif term.direction == "vertical" then
+					return vim.o.columns * 0.4
+				end
+			end,
 			on_create = function()
 				vim.opt.foldcolumn = "0"
 				vim.opt.signcolumn = "no"
 			end,
-			open_mapping = [[<F7>]],
-			shading_factor = 2,
-			direction = "float",
+			autochdir = true,
+			hide_numbers = true,
+			open_mapping = [[<C-t>]],
 			float_opts = {
 				border = "curved",
 				highlights = { border = "Normal", background = "Normal" },
 			},
+			shade_filetypes = {},
+			shade_terminals = true, -- NOTE: this option takes priority over highlights specified so if you specify Normal highlights you should set this to false
+			shading_factor = "-30", -- the percentage by which to lighten terminal background, default: -30 (gets multiplied by -3 if background is light)
+			start_in_insert = true,
+			-- insert_mappings = true, -- whether or not the open mapping applies in insert mode
+			terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+			persist_size = true,
+			persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
+			auto_scroll = true,
+			direction = "horizontal",
+			close_on_exit = true,
 		},
 	},
 	-- note taking - Obisdian
@@ -540,5 +555,9 @@ local plugins = {
 			{ "nvim-telescope/telescope.nvim" },
 		},
 	},
+	{
+		lazy = false,
+		"TabbyML/vim-tabby"
+	}
 }
 return plugins
