@@ -897,4 +897,4 @@ hints:
   #highlight_damage: false
 
 import:
-- ~/.config/alacritty/themes/rose-pine.yml
+- ~/.config/alacritty/themes/rose-pine.yaml
