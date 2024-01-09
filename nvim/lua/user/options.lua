@@ -1,6 +1,5 @@
 local set = vim.opt
 local g = vim.g
-local cmd = vim.cmd
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -11,7 +10,11 @@ set.signcolumn = "yes"
 set.cmdheight = 1
 set.hidden = true
 set.guicursor ="n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
-set.laststatus = 2 -- Or 3 for global statusline
+set.laststatus = 0
+set.showmode = false
+set.completeopt = "menuone,noselect"
+set.showtabline = 2
+set.cursorline = true
 
 set.nu = true
 set.rnu = true
@@ -43,13 +46,16 @@ set.clipboard = ""
 set.fileencoding = "utf-8"
 set.errorbells = false
 set.spell = false
+set.spelllang = "en"
 set.title = true
 set.titlestring = "%<%F%=%l/%L - nvim"
 
 set.splitbelow = true
 set.splitright = true
 
-set.conceallevel = 0  -- `` is visible in markdown files
+set.conceallevel = 1
+
+set.mouse = ""
 
 -- NETRW
 g.netrw_browse_split = 0

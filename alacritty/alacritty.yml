@@ -105,7 +105,7 @@ window:
   # Resize increments
   #
   # Prefer resizing window by discrete steps equal to cell dimensions.
-  resize_increments: true
+  # resize_increments: true
 
   # Make `Option` key behave as `Alt` (macOS only):
   #   - OnlyLeft
@@ -114,10 +114,10 @@ window:
   #   - None (default)
   #option_as_alt: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 1000000
+  history: 100000
 
   # Scrolling distance multiplier.
   #multiplier: 3
@@ -133,9 +133,10 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: JetBrainsMono Nerd Font Mono
+    # family: FiraMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Light
 
   # Bold font face
   bold:
@@ -144,9 +145,10 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     family: JetBrainsMono Nerd Font Mono
+    # family: FiraMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Regular
 
   # Italic font face
   italic:
@@ -155,9 +157,10 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     family: JetBrainsMono Nerd Font Mono
+    # family: FiraMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: Light Italic
 
   # Bold italic font face
   bold_italic:
@@ -166,12 +169,13 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     family: JetBrainsMono Nerd Font Mono
+    # family: FiraMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    style: Italic
 
   # Point size
-  size: 16.0
+  size: 15.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -372,7 +376,7 @@ font:
   #
   #command: None
 
-#selection:
+selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

@@ -49,10 +49,10 @@ map("n", "<leader>y", '"+y')
 map("v", "<leader>y", '"+y')
 map("n", "<leader>Y", '"+Y')
 
--- format
-map("n", "<C-f>", function()
-    vim.lsp.buf.format()
-end)
+-- -- format
+-- map("n", "<C-f>", function()
+--     vim.lsp.buf.format()
+-- end)
 
 -- tmux
 map("n", "<C-t>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

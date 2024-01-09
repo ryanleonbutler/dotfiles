@@ -26,84 +26,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("user.plugins")
 
 
--- [[ LSP ]]
-local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
-	lsp_zero.default_keymaps({ buffer = bufnr })
-end)
-require('mason').setup({})
-require('mason-lspconfig').setup({
-	ensure_installed = { 'tsserver', 'lua_ls', 'pyright', 'gopls', 'rust_analyzer', 'marksman', 'yamlls', 'jsonls', 'cssls', 'html', 'clangd' },
-	handlers = {
-		lsp_zero.default_setup,
-	}
-})
+-- [[ Diagnostics ]]
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
-
--- [[ Autocompletion ]]
-local cmp = require('cmp')
-local luasnip = require("luasnip")
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete({}),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}),
-	sources = {
-		{ name = "nvim_lsp",               keyword_length = 1 },
-		{ name = "nvim_lsp_signature_help" },
-		{
-			name = "buffer",
-			keyword_length = 1,
-			option = {
-				get_bufnrs = function()
-					return vim.api.nvim_list_bufs()
-				end,
-			},
-		},
-		{ name = "luasnip", keyword_length = 1 },
-		{ name = "path" },
-		{ name = "emoji" },
-	},
-})
-
-luasnip.config.setup({})
-luasnip.filetype_extend("javascript", { "html" })
-luasnip.filetype_extend("javascriptreact", { "html" })
-luasnip.filetype_extend("typescriptreact", { "html" })
-luasnip.filetype_extend("javascript", { "javascriptreact" })
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_vscode").lazy_load({
-	paths = { "./snippets" },
-})
 
 -- [[ Telescope ]]
 local telescope_dropdown_theme = require("telescope.themes").get_dropdown({
@@ -122,6 +51,7 @@ require("telescope").setup({
 		pickers = {},
 	},
 })
+
 
 -- Enable telescope fzf native, if installed
 pcall(require("telescope").load_extension, "fzf")
@@ -155,3 +85,4 @@ local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 map("n", "<leader>m", mark.toggle_file)
 map("n", "<leader>,", ui.toggle_quick_menu)
+
