@@ -17,37 +17,18 @@ return {
 						"typescript",
 						"javascriptreact",
 					},
-					extra_args = {
-						"--print-width",
-						"119",
-						"--tab-width",
-						"4",
-						"--single-quote",
-						"true",
-					},
 				}),
 
 				b.formatting.stylua,
 
 				b.formatting.clang_format,
 
-				-- b.formatting.black,
-				-- b.formatting.isort,
-				-- b.diagnostics.mypy,
-				b.formatting.ruff.with({
-					extra_args = {
-						"--line-length=79",
-					},
-				}),
-				b.diagnostics.ruff.with({
-					extra_args = {
-						"--line-length=79",
-					},
-				}),
+				b.formatting.ruff,
+				b.diagnostics.ruff,
 
-				b.formatting.gofmt.with({}),
-				b.formatting.goimports.with({}),
-				b.formatting.golines.with({}),
+				b.formatting.gofmt,
+				b.formatting.goimports,
+				b.formatting.golines,
 			})
 			return opts
 		end,

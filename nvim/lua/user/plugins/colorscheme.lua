@@ -44,11 +44,11 @@ return {
 				-- By default each group adds to the existing config.
 				-- If you only want to set what is written in this config exactly,
 				-- you can set the inherit option:
-				Search = { bg = "gold", inherit = false },
-				DiagnosticVirtualTextError = { fg = "love"},
-				DiagnosticVirtualTextInfo = { fg = "foam"},
-				DiagnosticVirtualTextWarn = { fg = "rose"},
-				DiagnosticVirtualTextHint = { fg = "pine"},
+				-- Search = { bg = "gold", inherit = false },
+				-- DiagnosticVirtualTextError = { fg = "love"},
+				-- DiagnosticVirtualTextInfo = { fg = "foam"},
+				-- DiagnosticVirtualTextWarn = { fg = "rose"},
+				-- DiagnosticVirtualTextHint = { fg = "pine"},
 			}
 		})
 		vim.cmd[[colorscheme rose-pine]]

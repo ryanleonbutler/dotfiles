@@ -53,7 +53,7 @@ set.titlestring = "%<%F%=%l/%L - nvim"
 set.splitbelow = true
 set.splitright = true
 
-set.conceallevel = 1
+set.conceallevel = 2
 
 set.mouse = ""
 

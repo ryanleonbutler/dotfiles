@@ -21,7 +21,7 @@ map("", "<right>", "<nop>")
 
 -- Save/CloseBuffer/Quit/Escape
 map("n", "<leader>w", ":w! <CR>")
-map("n", "<leader>x", ":bd<CR>")
+map("n", "<leader>d", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
 map("i", "jk", "<ESC>")

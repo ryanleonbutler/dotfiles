@@ -4,8 +4,5 @@ __pycache__/
 .vscode/
 *.png
 
-nvim/plugin/packer_compiled.lua
-nvim/lua/user/work.lua
-nvim/lazy-lock.json
-nvim/lua/core
-nvim/lua/plugins
+lazy-lock.json
+private.lua

@@ -1,18 +1,20 @@
 return {
     {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({})
-        end,
-    },
-    { "williamboman/mason-lspconfig.nvim" },
-    {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
+            {
+                "hrsh7th/cmp-nvim-lsp",
+                "williamboman/mason.nvim",
+                "williamboman/mason-lspconfig.nvim",
+                "j-hui/fidget.nvim",
+            },
         },
         config = function()
+            require("mason").setup({})
+            require("fidget").setup({})
+
             local lspconfig = require("lspconfig")
+            local configs = require("lspconfig.configs")
             local mason_lspconfig = require("mason-lspconfig")
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities =
@@ -27,6 +29,12 @@ return {
                     desc = "LSP: " .. desc
                 end
                 vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+            end
+            -- [[ Diagnostics ]]
+            local signs = { Error = "E", Warn = "W", Hint = "H", Info = "W" }
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
 
             local on_attach = function(client, bufnr)
@@ -143,6 +151,38 @@ return {
                     },
                 },
             })
+
+            if not configs.codewhisperer then
+                configs.codewhisperer = {
+                    default_config = {
+                        cmd = { "oliven-cwls" },
+                        root_dir = lspconfig.util.root_pattern(
+                            "packageInfo",
+                            "package.json",
+                            "tsconfig.json",
+                            "jsconfig.json",
+                            ".git"
+                        ),
+                        filetypes = {
+                            "java",
+                            "python",
+                            "typescript",
+                            "javascript",
+                            "csharp",
+                            "ruby",
+                            "kotlin",
+                            "shell",
+                            "sql",
+                            "c",
+                            "cpp",
+                            "go",
+                            "rust",
+                        },
+                        autostart = true,
+                    },
+                }
+            end
+            lspconfig.codewhisperer.setup({})
         end,
     },
     {
@@ -226,28 +266,6 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load({
                 paths = { "./snippets" },
             })
-        end,
-    },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {
-            map_cr = true, --  map <CR> on insert mode
-            map_complete = true, -- it will auto insert `(` after select function or method item
-            ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
-            enable_check_bracket_line = false,
-            -- fast_wrap = {},
-        },
-        config = function()
-            local npairs = require("nvim-autopairs")
-            npairs.setup({})
-            npairs.remove_rule("'")
-            npairs.remove_rule('"')
-            npairs.remove_rule("`")
-            -- If you want insert `(` after select function or method item
-            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-            local cmp = require("cmp")
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
     },
 }
