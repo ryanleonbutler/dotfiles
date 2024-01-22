@@ -1,15 +1,12 @@
 local set = vim.opt
 local g = vim.g
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
 
--- OPT
 set.termguicolors = true
 set.colorcolumn = "80"
 set.signcolumn = "yes"
 set.cmdheight = 1
 set.hidden = true
-set.guicursor ="n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+set.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 set.laststatus = 0
 set.showmode = false
 set.completeopt = "menuone,noselect"
@@ -29,7 +26,7 @@ set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
 set.smartindent = true
-set.expandtab = true  -- convert tabs to spaces
+set.expandtab = true
 
 set.wrap = false
 set.scrolloff = 8
@@ -53,7 +50,7 @@ set.titlestring = "%<%F%=%l/%L - nvim"
 set.splitbelow = true
 set.splitright = true
 
-set.conceallevel = 2
+set.conceallevel = 0
 
 set.mouse = ""
 
@@ -69,46 +66,3 @@ g.vscode_snippets_path = "./snippets"
 g.cmp_toggle = true
 -- git blame
 g.gitblame_enabled = 0
-
--- Highlight on yank
-local yank_group = augroup("HighlightYank", {})
-autocmd("TextYankPost", {
-    group = yank_group,
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 100,
-        })
-    end,
-})
-
--- Disable autocomment on new line
-autocmd({ "FileType" }, {
-    pattern = "*",
-    callback = function()
-        set.formatoptions:remove({ "o", "r" })
-    end,
-})
-
--- Set width and wrap on Markdown files
-autocmd("BufNew", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 80
-        end
-    end,
-})
-autocmd("BufWritePre", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            set.wrap = true
-            set.textwidth = 80
-        end
-    end,
-})

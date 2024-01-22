@@ -169,43 +169,28 @@ return {
             local ui = require("harpoon.ui")
             vim.keymap.set("n", "<leader>m", mark.toggle_file)
             vim.keymap.set("n", "<leader>,", ui.toggle_quick_menu)
-			vim.keymap.set("n", "<C-e>", ui.nav_next)
-			vim.keymap.set("n", "<C-r>", ui.nav_prev)
+            vim.keymap.set("n", "<leader>.", ui.nav_next)
         end,
     },
     { "ThePrimeagen/vim-be-good" },
 
-    { "tpope/vim-commentary", lazy = false },
-    { "tpope/vim-surround", lazy = false },
-    { "tpope/vim-repeat", lazy = false },
+    { "tpope/vim-commentary" },
+    { "tpope/vim-surround" },
+    { "tpope/vim-repeat" },
 
-    { "jkramer/vim-checkbox", lazy = false },
-    { "ipkiss42/xwiki.vim", lazy = false },
+    { "jkramer/vim-checkbox" },
+    { "ipkiss42/xwiki.vim" },
 
     {
-        "laytan/cloak.nvim",
+        "f-person/git-blame.nvim",
         config = function()
-            require("cloak").setup({
-                enabled = true,
-                cloak_character = "*",
-                -- highlight_group = "Comment",
-                -- patterns = {
-                --     file_pattern = { ".env", ".toml", ".secrets" },
-                --     cloak_pattern = "=.+",
-                -- },
-            })
+            require("gitblame").setup({})
         end,
     },
     {
-        "ellisonleao/glow.nvim",
+        "ethanholz/nvim-lastplace",
         config = function()
-            vim.keymap.set(
-                "n",
-                "<leader>g",
-                "<cmd>Glow<CR>",
-                { noremap = true }
-            )
+            require("nvim-lastplace").setup({})
         end,
-        cmd = "Glow",
     },
 }

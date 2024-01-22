@@ -1,21 +1,16 @@
+local function map(m, k, v, desc)
+    if desc then
+        desc = "Desc: " .. desc
+    end
+    vim.keymap.set(m, k, v, { silent = true, remap = true }, { desc = desc })
+end
+
 return {
     {
         "nvim-telescope/telescope.nvim",
         version = "*",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            local function map(m, k, v, desc)
-                if desc then
-                    desc = "Desc: " .. desc
-                end
-                vim.keymap.set(
-                    m,
-                    k,
-                    v,
-                    { silent = true, remap = true },
-                    { desc = desc }
-                )
-            end
             local telescope_dropdown_theme =
                 require("telescope.themes").get_dropdown({
                     winblend = 10,
@@ -114,9 +109,6 @@ return {
     },
     {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        cond = function()
-            return vim.fn.executable("make") == 1
-        end,
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     },
 }

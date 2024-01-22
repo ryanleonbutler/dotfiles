@@ -1,5 +1,3 @@
-local fn = vim.fn
-
 local function map(m, k, v, desc)
     if desc then
         desc = "Desc: " .. desc
@@ -21,7 +19,7 @@ map("", "<right>", "<nop>")
 
 -- Save/CloseBuffer/Quit/Escape
 map("n", "<leader>w", ":w! <CR>")
-map("n", "<leader>d", ":bd<CR>")
+map("n", "<leader>x", ":bd<CR>")
 map("n", "<leader>q", ":q <CR>")
 map("n", "<C-q>", ":qa! <CR>")
 map("i", "jk", "<ESC>")
@@ -48,11 +46,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "<leader>y", '"+y')
 map("v", "<leader>y", '"+y')
 map("n", "<leader>Y", '"+Y')
-
--- -- format
--- map("n", "<C-f>", function()
---     vim.lsp.buf.format()
--- end)
 
 -- tmux
 map("n", "<C-t>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -85,18 +78,17 @@ map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
 
 -- Copy file paths
 function YankFullPathToOsc()
-    local file_path = fn.expand("%:p")
-    fn.setreg("+", file_path)
+    local file_path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", file_path)
     require("osc52").copy_register("+")
 end
 
 function YankRelativePathToOsc()
-    local file_path = fn.expand("%:.")
-    fn.setreg("+", file_path)
+    local file_path = vim.fn.expand("%:.")
+    vim.fn.setreg("+", file_path)
     require("osc52").copy_register("+")
 end
 
 map("n", "<leader>yr", ":lua YankRelativePathToOsc()<CR>")
 map("n", "<leader>yf", ":lua YankFullPathToOsc()<CR>")
 map("n", "<leader>z", ":ZenMode<CR>")
-map("n", "<leader>M", ":Glow<CR>")
