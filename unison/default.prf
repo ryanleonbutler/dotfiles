@@ -35,7 +35,7 @@ ignore = Path */config/*
 # not sure if release-info harms anything, but it was syncing every time I built and it doesn't hurt to remove it.
 ignore = Path */release-info/*
 # bemol
-ignore = Path */.bemol/*
+# ignore = Path */.bemol/*
 
 # target of `WORKSPACE/src/PACKAGE/build` symlink
 # Ignore everything inside except for integration and unit test output

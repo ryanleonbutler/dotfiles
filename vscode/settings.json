@@ -1,485 +1,517 @@
 {
-    "[brazilPackageConfig]": {
-        "workbench.editor.languageDetection": false
+  "[brazilPackageConfig]": {
+    "workbench.editor.languageDetection": false
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "never"
     },
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "breadcrumbs.enabled": false,
+  "debug.allowBreakpointsEverywhere": true,
+  "debug.console.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "debug.console.fontSize": 15,
+  "debug.javascript.autoAttachFilter": "disabled",
+  "debug.onTaskErrors": "showErrors",
+  "debug.showBreakpointsInOverviewRuler": true,
+  "debug.showInStatusBar": "never",
+  "debug.terminal.clearBeforeReusing": true,
+  "diffEditor.codeLens": true,
+  "diffEditor.renderSideBySide": false,
+  "diffEditor.wordWrap": "off",
+  "editor.accessibilitySupport": "off",
+  "editor.codeLensFontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 2,
+  "editor.folding": false,
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 16,
+  "editor.glyphMargin": true,
+  "editor.guides.indentation": false,
+  "editor.hideCursorInOverviewRuler": false,
+  "editor.hover.enabled": true,
+  "editor.inlayHints.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "editor.minimap.enabled": false,
+  "editor.minimap.maxColumn": 200,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.occurrencesHighlight": "off",
+  "editor.overviewRulerBorder": true,
+  "editor.quickSuggestions": {
+    "comments": true,
+    "other": true,
+    "strings": true
+  },
+  "editor.quickSuggestionsDelay": 10,
+  "editor.rename.enablePreview": false,
+  "editor.renderWhitespace": "none",
+  "editor.rulers": [
+    119
+  ],
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.smoothScrolling": false,
+  "editor.suggestFontSize": 16,
+  "editor.suggestSelection": "first",
+  "editor.wordWrapColumn": 130,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.openEditors.visible": 0,
+  "explorer.sortOrder": "filesFirst",
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "*.toml": "ini"
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500,
+  "files.exclude": {
+    ".viceroy": true,
+    "apollo-overrides": true,
+    "release-info": true,
+    "src/*/build": true,
+    "build": true,
+    "env": true,
+    "packageInfo*": true,
+    ".bemol": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.pyc": true,
+    "**/*.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/build": true,
+    "**/build-tools": true,
+    "**/logs": true,
+    "**/node_modules/**": true,
+    "**/site-package/**": true,
+    "**build**": true,
+    ".rpm": true,
+    ".vscode": true,
+    "bin": true,
+    "build-tools": true
+  },
+  "files.insertFinalNewline": false,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/*.pyc": true,
+    "**/*.pytest_cache": true,
+    "**/*.svn": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true,
+    "**/build": true,
+    "**/build-tools": true,
+    "**/logs": true,
+    "**/node_modules/**": true,
+    "**/site-package/**": true,
+    "**build**": true,
+    ".bemol": true,
+    ".rpm": true,
+    ".viceroy": true,
+    ".vscode": true,
+    "apollo-overrides": true,
+    "bin": true,
+    "build": true,
+    "build-tools": true,
+    "env": true,
+    "packageInfo*": true,
+    "release-info": true,
+    "src/*/build": true
+  },
+  "git.enableStatusBarSync": false,
+  "gitlens.currentLine.enabled": false,
+  "jupyter.askForKernelRestart": false,
+  "jupyter.sendSelectionToInteractiveWindow": true,
+  "launch": {
+    "configurations": []
+  },
+  "markdown.preview.fontSize": 16,
+  "markdown.preview.lineHeight": 1.5,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "projectManager.git.baseFolders": [
+    "${USER}/development",
+    "${USER}/Documents",
+    "${USER}/workspace"
+  ],
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.extraPaths": [],
+  "python.analysis.typeCheckingMode": "off",
+  "python.autoComplete.extraPaths": [],
+  "python.defaultInterpreterPath": "",
+  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.formatting.provider": "black",
+  "python.languageServer": "Pylance",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "~/.local/bin/flake8",
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+  "python.testing.cwd": "",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestPath": "${USER}/.local/bin/pytest",
+  "remote.restoreForwardedPorts": true,
+  "scm.inputFontSize": 15,
+  "search.exclude": {
+    "env": true,
+    "src/*/build": true,
+    "build": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.pyc": true,
+    "**/.pytest_cache": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true,
+    "**/build": true,
+    "**/build-tools": true,
+    "**/logs": true,
+    "**/node_modules/**": true,
+    "**build**": true,
+    ".bemol": true,
+    ".rpm": true,
+    ".viceroy": true,
+    ".vscode": true,
+    "/local/*": true,
+    "apollo-overrides": true,
+    "bin": true,
+    "build-tools": true,
+    "packageInfo*": true,
+    "release-info": true
+  },
+  "search.followSymlinks": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
+  "terminal.external.osxExec": "/Applications/kitty.app",
+  "terminal.integrated.confirmOnExit": "never",
+  "terminal.integrated.copyOnSelection": false,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorWidth": 4,
+  "terminal.integrated.defaultProfile.osx": "/usr/bin/zsh",
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.gpuAcceleration": "auto",
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.tabs.enabled": false,
+  "todo-tree.highlights.useColourScheme": true,
+  "viceroy.config.beautyMode": false,
+  "viceroy.config.includeWorkspaceAsFolder": false,
+  "viceroy.config.internal.lastUpdateTime": "2024-02-14T07:23:45.463Z",
+  "viceroy.config.lastVersion": "0.52.201563",
+  "viceroy.config.resolveSymlinks": "resolve",
+  "viceroy.doc.welcome.showAtStartup": false,
+  "viceroy.marketplace.extensionUpdateChannels": {
+    "marklel.vscode-brazil": "stable",
+    "amzn.AWSGuruQLinter": "stable",
+    "kaze.vscode-plugin-contribution-model": "stable"
+  },
+  "viceroy.python.useBemol": true,
+  "viceroy.workspaceSyncStrategy": "automatic",
+  "vim.easymotion": true,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.highlightedyank.color": "rgba(78, 184, 251, 0.5)",
+  "vim.highlightedyank.duration": 500,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "k"
+      ]
     },
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+    {
+      "before": [
+        "<C>",
+        "a"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
     },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    {
+      "before": [
+        "<C>",
+        "e"
+      ],
+      "commands": [
+        "cursorEnd"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C>",
+        "a"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    {
+      "before": [
+        "<C>",
+        "a"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
     },
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": false
-        },
-        "editor.defaultFormatter": "ms-python.python"
+    {
+      "before": [
+        "<C>",
+        "a"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
     },
-    "breadcrumbs.enabled": false,
-    "debug.allowBreakpointsEverywhere": true,
-    "debug.console.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
-    "debug.console.fontSize": 12,
-    "debug.javascript.autoAttachFilter": "disabled",
-    "debug.onTaskErrors": "showErrors",
-    "debug.showBreakpointsInOverviewRuler": true,
-    "debug.showInStatusBar": "never",
-    "debug.terminal.clearBeforeReusing": true,
-    "diffEditor.codeLens": true,
-    "diffEditor.renderSideBySide": false,
-    "diffEditor.wordWrap": "off",
-    "editor.accessibilitySupport": "off",
-    "editor.codeLensFontFamily": "FiraCodeNerdFontCompleteM-Retina",
-    "editor.cursorBlinking": "smooth",
-    "editor.cursorSmoothCaretAnimation": true,
-    "editor.cursorStyle": "line",
-    "editor.cursorWidth": 2,
-    "editor.folding": false,
-    "editor.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
-    "editor.fontLigatures": false,
-    "editor.fontSize": 15,
-    "editor.glyphMargin": true,
-    "editor.guides.indentation": false,
-    "editor.hideCursorInOverviewRuler": false,
-    "editor.hover.enabled": true,
-    "editor.inlayHints.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
-    "editor.minimap.enabled": false,
-    "editor.minimap.maxColumn": 200,
-    "editor.minimap.renderCharacters": false,
-    "editor.minimap.showSlider": "always",
-    "editor.occurrencesHighlight": false,
-    "editor.overviewRulerBorder": true,
-    "editor.quickSuggestions": {
-        "comments": true,
-        "other": true,
-        "strings": true
+    {
+      "before": [
+        "<C>",
+        "e"
+      ],
+      "commands": [
+        "cursorEnd"
+      ]
     },
-    "editor.quickSuggestionsDelay": 10,
-    "editor.rename.enablePreview": false,
-    "editor.renderWhitespace": "none",
-    "editor.rulers": [
-        119
-    ],
-    "editor.scrollbar.horizontal": "hidden",
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.verticalScrollbarSize": 0,
-    "editor.smoothScrolling": false,
-    "editor.suggestFontSize": 14,
-    "editor.suggestSelection": "first",
-    "editor.wordWrapColumn": 130,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "explorer.openEditors.visible": 0,
-    "explorer.sortOrder": "filesFirst",
-    "extensions.ignoreRecommendations": true,
-    "files.associations": {
-        "*.toml": "ini"
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
     },
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 500,
-    "files.exclude": {
-        ".viceroy": true,
-        "apollo-overrides": true,
-        "release-info": true,
-        "src/*/build": true,
-        "build": true,
-        "env": true,
-        "packageInfo*": true,
-        ".bemol": true,
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/*.pyc": true,
-        "**/*.pytest_cache": true,
-        "**/__pycache__": true,
-        "**/build": true,
-        "**/build-tools": true,
-        "**/logs": true,
-        "**/node_modules/**": true,
-        "**/site-package/**": true,
-        "**build**": true,
-        ".rpm": true,
-        ".vscode": true,
-        "bin": true,
-        "build-tools": true
+    {
+      "before": [
+        "leader",
+        "c"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
     },
-    "files.insertFinalNewline": false,
-    "files.trimTrailingWhitespace": true,
-    "files.watcherExclude": {
-        "**/build/**": true,
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/node_modules/*/**": true,
-        "**/.hg/store/**": true,
-        "**/*.pyc": true,
-        "**/*.pytest_cache": true,
-        "**/*.svn": true,
-        "**/.DS_Store": true,
-        "**/.git": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/Thumbs.db": true,
-        "**/__pycache__": true,
-        "**/build": true,
-        "**/build-tools": true,
-        "**/logs": true,
-        "**/node_modules/**": true,
-        "**/site-package/**": true,
-        "**build**": true,
-        ".bemol": true,
-        ".rpm": true,
-        ".viceroy": true,
-        ".vscode": true,
-        "apollo-overrides": true,
-        "bin": true,
-        "build": true,
-        "build-tools": true,
-        "env": true,
-        "packageInfo*": true,
-        "release-info": true,
-        "src/*/build": true
+    {
+      "before": [
+        "leader",
+        "e"
+      ],
+      "commands": [
+        "workbench.view.explorer"
+      ]
     },
-    "git.enableStatusBarSync": false,
-    "gitlens.currentLine.enabled": false,
-    "jupyter.askForKernelRestart": false,
-    "jupyter.sendSelectionToInteractiveWindow": true,
-    "launch": {
-        "configurations": []
+    {
+      "before": [
+        "<leader>",
+        "h"
+      ],
+      "commands": [
+        ":nohl"
+      ]
     },
-    "markdown.preview.fontSize": 16,
-    "markdown.preview.lineHeight": 1.5,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ],
+      "silent": true
     },
-    "projectManager.git.baseFolders": [
-        "${USER}/development",
-        "${USER}/Documents",
-        "${USER}/workspace"
-    ],
-    "python.analysis.autoSearchPaths": true,
-    "python.analysis.completeFunctionParens": true,
-    "python.analysis.extraPaths": [],
-    "python.analysis.typeCheckingMode": "off",
-    "python.autoComplete.extraPaths": [],
-    "python.defaultInterpreterPath": "",
-    "python.formatting.blackPath": "~/.local/bin/black",
-    "python.formatting.provider": "black",
-    "python.languageServer": "Pylance",
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "~/.local/bin/flake8",
-    "python.testing.autoTestDiscoverOnSaveEnabled": false,
-    "python.testing.cwd": "",
-    "python.testing.pytestEnabled": true,
-    "python.testing.pytestPath": "${USER}/.local/bin/pytest",
-    "remote.restoreForwardedPorts": true,
-    "scm.inputFontSize": 14,
-    "search.exclude": {
-        "env": true,
-        "src/*/build": true,
-        "build": true,
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true,
-        "**/.DS_Store": true,
-        "**/.git": true,
-        "**/.hg": true,
-        "**/.pyc": true,
-        "**/.pytest_cache": true,
-        "**/.svn": true,
-        "**/CVS": true,
-        "**/Thumbs.db": true,
-        "**/__pycache__": true,
-        "**/build": true,
-        "**/build-tools": true,
-        "**/logs": true,
-        "**/node_modules/**": true,
-        "**build**": true,
-        ".bemol": true,
-        ".rpm": true,
-        ".viceroy": true,
-        ".vscode": true,
-        "/local/*": true,
-        "apollo-overrides": true,
-        "bin": true,
-        "build-tools": true,
-        "packageInfo*": true,
-        "release-info": true
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.revealDefinition"
+      ]
     },
-    "search.followSymlinks": false,
-    "security.workspace.trust.untrustedFiles": "open",
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "telemetry.telemetryLevel": "off",
-    "terminal.external.osxExec": "/Applications/kitty.app",
-    "terminal.integrated.confirmOnExit": "never",
-    "terminal.integrated.copyOnSelection": false,
-    "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.cursorWidth": 4,
-    "terminal.integrated.defaultProfile.osx": "/usr/bin/zsh",
-    "terminal.integrated.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.gpuAcceleration": "auto",
-    "terminal.integrated.shellIntegration.enabled": false,
-    "terminal.integrated.tabs.enabled": false,
-    "todo-tree.highlights.useColourScheme": true,
-    "viceroy.config.beautyMode": false,
-    "viceroy.config.includeWorkspaceAsFolder": false,
-    "viceroy.config.internal.lastUpdateTime": "2022-06-17T11:02:51.693Z",
-    "viceroy.config.lastVersion": "0.46.0",
-    "viceroy.config.resolveSymlinks": "resolve",
-    "viceroy.doc.welcome.showAtStartup": false,
-    "viceroy.marketplace.extensionUpdateChannels": {
-        "marklel.vscode-brazil": "stable"
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ]
     },
-    "viceroy.python.useBemol": true,
-    "viceroy.workspaceSyncStrategy": "automatic",
-    "vim.easymotion": true,
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false
+    {
+      "before": [
+        "<Tab>"
+      ],
+      "commands": [
+        "workbench.action.nextEditorInGroup"
+      ]
     },
-    "vim.highlightedyank.color": "rgba(78, 184, 251, 0.5)",
-    "vim.highlightedyank.duration": 500,
-    "vim.highlightedyank.enable": true,
-    "vim.hlsearch": true,
-    "vim.incsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "after": [
-                "<Esc>"
-            ],
-            "before": [
-                "j",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "e"
-            ],
-            "commands": [
-                "cursorEnd"
-            ]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "e"
-            ],
-            "commands": [
-                "cursorEnd"
-            ]
-        },
-        {
-            "before": [
-                "leader",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.files.save"
-            ]
-        },
-        {
-            "before": [
-                "leader",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.closeActiveEditor"
-            ]
-        },
-        {
-            "before": [
-                "leader",
-                "e"
-            ],
-            "commands": [
-                "workbench.view.explorer"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "h"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        },
-        {
-            "before": [
-                "K"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ],
-            "silent": true
-        },
-        {
-            "before": [
-                "g",
-                "d"
-            ],
-            "commands": [
-                "editor.action.revealDefinition"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "r"
-            ],
-            "commands": [
-                "editor.action.goToReferences"
-            ]
-        },
-        {
-            "before": [
-                "<Tab>"
-            ],
-            "commands": [
-                "workbench.action.nextEditorInGroup"
-            ]
-        },
-        {
-            "before": [
-                "<S>",
-                ",<Tab>"
-            ],
-            "commands": [
-                "workbench.action.previousEditor"
-            ]
-        }
-    ],
-    "vim.searchHighlightColor": "#00B0BB",
-    "vim.searchHighlightTextColor": "#282C34",
-    "vim.useCtrlKeys": true,
-    "vim.useSystemClipboard": true,
-    "vim.visualModeKeyBindings": [
-        {
-            "after": [
-                "<Esc>"
-            ],
-            "before": [
-                "j",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "a"
-            ],
-            "commands": [
-                "cursorHome"
-            ]
-        },
-        {
-            "before": [
-                "<C>",
-                "e"
-            ],
-            "commands": [
-                "cursorEnd"
-            ]
-        }
-    ],
-    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
-    "workbench.activityBar.visible": false,
-    "workbench.colorCustomizations": {
-        "[Atom One Dark]": {
-            "editorCursor.background": "#1D1D1D",
-            "editorCursor.foreground": "#D9D8D8",
-            "terminal.ansiBlack": "#282C34",
-            "terminal.ansiBlue": "#009DDC",
-            "terminal.ansiBrightBlack": "#737171",
-            "terminal.ansiBrightBlue": "#009DDC",
-            "terminal.ansiBrightCyan": "#39ADB9",
-            "terminal.ansiBrightGreen": "#89BB72",
-            "terminal.ansiBrightMagenta": "#B8453F",
-            "terminal.ansiBrightRed": "#E4616B",
-            "terminal.ansiBrightWhite": "#FFFFFF",
-            "terminal.ansiBrightYellow": "#E6B875",
-            "terminal.ansiCyan": "#39ADB9",
-            "terminal.ansiGreen": "#89BB72",
-            "terminal.ansiMagenta": "#B8453F",
-            "terminal.ansiRed": "#E4616B",
-            "terminal.ansiWhite": "#D9D8D8",
-            "terminal.ansiYellow": "#E6B875",
-            "terminal.background": "#21242C",
-            "terminalCursor.background": "#D9D8D8",
-            "terminalCursor.foreground": "#D9D8D8"
-        },
-        "statusBar.background": "#282C34",
-        "statusBar.debuggingBackground": "#E6B875",
-        "statusBar.debuggingForeground": "#000000",
-        "statusBar.foreground": "#D9D8D8",
-        "statusBar.noFolderBackground": "#282A36"
+    {
+      "before": [
+        "<S>",
+        ",<Tab>"
+      ],
+      "commands": [
+        "workbench.action.previousEditor"
+      ]
     },
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.editor.restoreViewState": true,
-    "workbench.editor.showIcons": false,
-    "workbench.editor.untitled.hint": "hidden",
-    "workbench.editor.wrapTabs": true,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+    {
+      "before": [
+        "leader",
+        "y"
+      ],
+      "after": [
+        "\"",
+        "+",
+        "y"
+      ]
+    }
+  ],
+  "vim.searchHighlightColor": "#00B0BB",
+  "vim.searchHighlightTextColor": "#282C34",
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": false,
+  "vim.visualModeKeyBindings": [
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "k"
+      ]
     },
-    "workbench.list.smoothScrolling": false,
-    "workbench.settings.enableNaturalLanguageSearch": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "zenMode.centerLayout": false,
-    "zenMode.hideLineNumbers": false,
-    "zenMode.hideStatusBar": false,
-    "zenMode.hideTabs": true,
-    "zenMode.restore": true
+    {
+      "before": [
+        "<C>",
+        "a"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
+    },
+    {
+      "before": [
+        "<C>",
+        "e"
+      ],
+      "commands": [
+        "cursorEnd"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "y"
+      ],
+      "after": [
+        "\"",
+        "+",
+        "y"
+      ]
+    }
+  ],
+  "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+  "workbench.colorCustomizations": {
+    "[Atom One Dark]": {
+      "editorCursor.background": "#1D1D1D",
+      "editorCursor.foreground": "#D9D8D8",
+      "terminal.ansiBlack": "#282C34",
+      "terminal.ansiBlue": "#009DDC",
+      "terminal.ansiBrightBlack": "#737171",
+      "terminal.ansiBrightBlue": "#009DDC",
+      "terminal.ansiBrightCyan": "#39ADB9",
+      "terminal.ansiBrightGreen": "#89BB72",
+      "terminal.ansiBrightMagenta": "#B8453F",
+      "terminal.ansiBrightRed": "#E4616B",
+      "terminal.ansiBrightWhite": "#FFFFFF",
+      "terminal.ansiBrightYellow": "#E6B875",
+      "terminal.ansiCyan": "#39ADB9",
+      "terminal.ansiGreen": "#89BB72",
+      "terminal.ansiMagenta": "#B8453F",
+      "terminal.ansiRed": "#E4616B",
+      "terminal.ansiWhite": "#D9D8D8",
+      "terminal.ansiYellow": "#E6B875",
+      "terminal.background": "#21242C",
+      "terminalCursor.background": "#D9D8D8",
+      "terminalCursor.foreground": "#D9D8D8"
+    },
+    "statusBar.background": "#282C34",
+    "statusBar.debuggingBackground": "#E6B875",
+    "statusBar.debuggingForeground": "#000000",
+    "statusBar.foreground": "#D9D8D8",
+    "statusBar.noFolderBackground": "#282A36"
+  },
+  "workbench.colorTheme": "Rosé Pine",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.restoreViewState": true,
+  "workbench.editor.showIcons": false,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.list.smoothScrolling": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+  "zenMode.restore": true,
+  "zenMode.showTabs": "single",
+  "terminal.integrated.env.osx": {
+    "CW_NEW_SESSION": "1"
+  },
+  "update.mode": "none",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "chat.editor.fontSize": 15,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "relative"
 }

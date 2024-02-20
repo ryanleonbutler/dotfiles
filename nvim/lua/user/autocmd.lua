@@ -22,24 +22,18 @@ autocmd({ "FileType" }, {
     end,
 })
 
--- Set width and wrap on Markdown files
-autocmd("BufNew", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            vim.opt.wrap = true
-            vim.opt.textwidth = 80
-        end
+-- Disable code folding
+autocmd("BufWritePost", {
+    group = augroup("Folding", {}),
+    pattern = "*",
+    callback = function()
+        vim.cmd([[set nofoldenable foldmethod=manual foldlevelstart=99]])
     end,
 })
-autocmd("BufWritePre", {
-    group = augroup("FormatMarkdown", { clear = false }),
-    pattern = "markdown",
-    callback = function(opts)
-        if vim.bo[opts.buf].filetype == "markdown" then
-            vim.opt.wrap = true
-            vim.opt.textwidth = 80
-        end
+autocmd("BufEnter", {
+    group = augroup("Folding", {}),
+    pattern = "*",
+    callback = function()
+        vim.cmd([[set nofoldenable foldmethod=manual foldlevelstart=99]])
     end,
 })

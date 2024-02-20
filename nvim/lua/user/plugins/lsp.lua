@@ -17,6 +17,7 @@ return {
             local lspconfig = require("lspconfig")
             local configs = require("lspconfig.configs")
             local mason_lspconfig = require("mason-lspconfig")
+
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities =
                 require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -76,7 +77,7 @@ return {
                     vim.lsp.buf.code_action()
                 end, "[<space>] code [a]ction")
                 nmap(
-                    "<leader>lr",
+                    "<leader>vr",
                     "<cmd>lua vim.lsp.buf.rename()<CR>",
                     "[<leader>l]var [r]ename"
                 )
@@ -92,12 +93,13 @@ return {
                 jsonls = {},
                 html = {},
                 cssls = {},
-                -- tailwindcss = {},
+                tailwindcss = {},
                 clangd = {},
                 pyright = {},
                 tsserver = {},
                 gopls = {},
                 rust_analyzer = {},
+                marksman = {},
                 lua_ls = {
                     Lua = {
                         workspace = { checkThirdParty = false },
@@ -152,6 +154,38 @@ return {
                     },
                 },
             })
+
+            -- if not configs.codewhisperer then
+            --     configs.codewhisperer = {
+            --         default_config = {
+            --             cmd = { "oliven-cwls" },
+            --             root_dir = lspconfig.util.root_pattern(
+            --                 "packageInfo",
+            --                 "package.json",
+            --                 "tsconfig.json",
+            --                 "jsconfig.json",
+            --                 ".git"
+            --             ),
+            --             filetypes = {
+            --                 "java",
+            --                 "python",
+            --                 "typescript",
+            --                 "javascript",
+            --                 "csharp",
+            --                 "ruby",
+            --                 "kotlin",
+            --                 "shell",
+            --                 "sql",
+            --                 "c",
+            --                 "cpp",
+            --                 "go",
+            --                 "rust",
+            --             },
+            --             autostart = true,
+            --         },
+            --     }
+            -- end
+            -- lspconfig.codewhisperer.setup({})
         end,
-    }
+    },
 }

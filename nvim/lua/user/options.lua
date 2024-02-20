@@ -2,7 +2,7 @@ local set = vim.opt
 local g = vim.g
 
 set.termguicolors = true
-set.colorcolumn = "80"
+set.colorcolumn = "100"
 set.signcolumn = "yes"
 set.cmdheight = 1
 set.hidden = true
@@ -19,8 +19,6 @@ set.rnu = true
 set.hlsearch = true
 set.incsearch = true
 
-set.foldexpr = ""
-set.foldmethod = "manual"
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4

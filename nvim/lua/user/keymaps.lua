@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Netrw
-map("n", "<leader>e", vim.cmd.Ex)
+map("n", "<leader>e", vim.cmd.Ex, "Netrw Ex")
 
 -- Disable arrow keys
 map("", "<up>", "<nop>")
@@ -92,3 +92,7 @@ end
 map("n", "<leader>yr", ":lua YankRelativePathToOsc()<CR>")
 map("n", "<leader>yf", ":lua YankFullPathToOsc()<CR>")
 map("n", "<leader>z", ":ZenMode<CR>")
+
+-- Scrathces
+map("n", "<leader>s", "<cmd>Scratch<cr>")
+map("n", "<leader>so", "<cmd>ScratchOpen<cr>")

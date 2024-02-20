@@ -193,4 +193,9 @@ return {
             require("nvim-lastplace").setup({})
         end,
     },
+    { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+    {
+        "LintaoAmons/scratch.nvim",
+        event = "VeryLazy",
+    },
 }
