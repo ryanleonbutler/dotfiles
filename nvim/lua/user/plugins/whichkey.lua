@@ -2,14 +2,18 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     init = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 500
+        local ui = require("harpoon.ui")
+        local mark = require("harpoon.mark")
 
         local wk = require("which-key")
         wk.register({
 
             -- File / Telescope
             ["<leader>f"] = { name = "+file" },
+            ["<leader>fo"] = {
+                "<cmd>Telescope oldfiles<cr>",
+                "Find Recently Opened Files",
+            },
             ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find File" },
             ["<leader>fg"] = {
                 "<cmd>Telescope live_grep<cr>",
@@ -43,25 +47,99 @@ return {
                 "<cmd>Telescope grep_string<cr>",
                 "Find Word",
             },
+            ["<leader>fb"] = {
+                "<cmd>Telescope buffers<cr>",
+                "Find Buffers",
+            },
+
+            -- harpoon / marks
+            ["<leader>m"] = {
+                mark.toggle_file,
+                "Mark File",
+            },
+            ["<leader>mt"] = {
+                ui.toggle_quick_menu,
+                "Harpoon Toggle",
+            },
+            ["<leader>mn"] = {
+                ui.nav_next,
+                "Mark Next",
+            },
+
+            -- Undotree
+            ["<leader>u"] = {
+                "<cmd>UndotreeToggle<cr>",
+                "UndotreeToggle",
+            },
+
+            -- Create New file
             ["<leader>fn"] = { "<cmd>enew<cr>", "New File" },
 
-            -- Telescope
-            ["<leader>e"] = { "<cmd>vim.cmd.Ex<cr>", "Netrw Ex" },
+            -- Netrw
+            ["<leader>e"] = { "<cmd>Ex<cr>", "Netrw Ex" },
 
-            -- Fugitive
+            -- Git
+            ["<leader>gw"] = {
+                "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+                "List Git Worktrees",
+            },
+            ["<leader>gW"] = {
+                "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+                "Create Git Worktree",
+            },
             ["<leader>g"] = { name = "+git" },
             ["<leader>gb"] = {
-                "<cmd>vim.cmd.GitBlameToggle<cr>",
+                "<cmd>Gitsigns toggle_current_line_blame<cr>",
                 "Git Blame Toggle",
             },
-            ["<leader>gp"] = { '<cmd>vim.cmd.Git("push")<cr>', "Git Push" },
+            ["<leader>gp"] = { ":Gitsigns preview_hunk<CR>", "Preview Hunk" },
             ["<leader>gr"] = {
-                '<cmd>vim.cmd.Git({ "pull", "--rebase" })<cr>',
+                "<cmd>Neogit pull --rebase<cr>",
                 "Git Rebase",
             },
             ["<leader>gs"] = {
-                '<cmd>Git<cr>',
+                "<cmd>Neogit<cr>",
                 "Git Status",
+            },
+
+            -- Diagnostics
+            ["<S-d>"] = {
+                "<cmd>lua vim.diagnostic.open_float()<CR>",
+                "Show Diagnostic",
+            },
+
+            -- Terminal
+            ["<leader>t"] = { name = "+terminal" },
+            ["<C-t>"] = {
+                '<cmd>lua require("FTerm").toggle()<cr>',
+                "Terminal Toggle",
+            },
+
+            -- Trouble
+            [";"] = { name = "+trouble" },
+            [";x"] = {
+                '<cmd>lua require("trouble").toggle()<cr>',
+                "Trouble Toggle",
+            },
+            [";w"] = {
+                '<cmd>lua require("trouble").toggle("workspace_diagnostics")<cr>',
+                "Trouble WS Diagnostics",
+            },
+            [";d"] = {
+                '<cmd>lua require("trouble").toggle("document_diagnostics")<cr>',
+                "Trouble Doc Diagnostics",
+            },
+            [";q"] = {
+                '<cmd>lua require("trouble").toggle("quickfix")<cr>',
+                "Trouble Quickfix",
+            },
+            [";l"] = {
+                '<cmd>lua require("trouble").toggle("quickfix")<cr>',
+                "Trouble loclist",
+            },
+            ["gR"] = {
+                '<cmd>lua require("trouble").toggle("lsp_references")<cr>',
+                "Trouble lsp_references",
             },
         })
     end,

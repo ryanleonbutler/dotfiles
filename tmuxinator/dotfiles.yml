@@ -1,7 +1,7 @@
 # /Users/butryan/.config/tmuxinator/dotfiles.yml
 
 name: dotfiles
-root: ~/development/dotfiles
+root: ~/
 
 # Optional tmux socket
 # socket_name: foo
@@ -52,13 +52,6 @@ windows:
       # synchronize: after
       panes:
         - vim
-        - ll -a
-        - pwd
-  - logs:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - tail -f ~/.cache/nvim/*
-        - pwd
+        - guard
+  - server: bundle exec rails s
+  - logs: tail -f log/development.log

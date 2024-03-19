@@ -2,7 +2,7 @@ local set = vim.opt
 local g = vim.g
 
 set.termguicolors = true
-set.colorcolumn = "100"
+set.colorcolumn = "80"
 set.signcolumn = "yes"
 set.cmdheight = 1
 set.hidden = true
@@ -10,7 +10,7 @@ set.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 set.laststatus = 0
 set.showmode = false
 set.completeopt = "menuone,noselect"
-set.showtabline = 2
+set.showtabline = 0
 set.cursorline = true
 
 set.nu = true
@@ -18,6 +18,8 @@ set.rnu = true
 
 set.hlsearch = true
 set.incsearch = true
+set.ignorecase = true
+set.smartcase = true
 
 set.tabstop = 4
 set.softtabstop = 4
@@ -35,7 +37,12 @@ set.undodir = os.getenv("HOME") .. "/.vim/undodir"
 set.undofile = true
 
 set.isfname:append("@-@")
+
 set.updatetime = 50
+set.redrawtime = 500
+set.timeout = true
+set.ttimeoutlen = 10
+
 set.autoread = true
 set.clipboard = ""
 set.fileencoding = "utf-8"
@@ -60,7 +67,6 @@ g.netrw_winsize = 25
 -- Other plugin options
 -- snippets path
 g.vscode_snippets_path = "./snippets"
+
 -- autocomplete
 g.cmp_toggle = true
--- git blame
-g.gitblame_enabled = 0

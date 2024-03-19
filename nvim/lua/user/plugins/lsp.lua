@@ -1,3 +1,26 @@
+local function bemol()
+    local bemol_dir =
+        vim.fs.find({ ".bemol" }, { upward = true, type = "directory" })[1]
+    local ws_folders_lsp = {}
+    if bemol_dir then
+        local file = io.open(bemol_dir .. "/ws_root_folders", "r")
+        if file then
+            for line in file:lines() do
+                table.insert(ws_folders_lsp, line)
+            end
+            file:close()
+        end
+    end
+
+    for _, line in ipairs(ws_folders_lsp) do
+        vim.lsp.buf.add_workspace_folder(line)
+    end
+end
+
+vim.diagnostic.config({
+    virtual_text = true,
+})
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -21,11 +44,6 @@ return {
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities =
                 require("cmp_nvim_lsp").default_capabilities(capabilities)
-            local telescope_dropdown_theme =
-                require("telescope.themes").get_dropdown({
-                    winblend = 10,
-                    previewer = true,
-                })
             local nmap = function(keys, func, desc)
                 if desc then
                     desc = "LSP: " .. desc
@@ -46,19 +64,13 @@ return {
                 client.server_capabilities.semanticTokensProvider = nil
 
                 nmap("gr", function()
-                    require("telescope.builtin").lsp_references(
-                        telescope_dropdown_theme
-                    )
+                    require("telescope.builtin").lsp_references()
                 end, "[G]oto [R]eferences")
                 nmap("gd", function()
-                    require("telescope.builtin").lsp_definitions(
-                        telescope_dropdown_theme
-                    )
+                    require("telescope.builtin").lsp_definitions()
                 end, "[G]oto [D]efinitions")
                 nmap("gt", function()
-                    require("telescope.builtin").lsp_type_definitions(
-                        telescope_dropdown_theme
-                    )
+                    require("telescope.builtin").lsp_type_definitions()
                 end, "[G]oto [T]ype Definitions")
                 nmap(
                     "gi",
@@ -75,17 +87,19 @@ return {
                 nmap("]d", vim.diagnostic.goto_next, "[]]Previous [d]iagnostic")
                 nmap("<leader>a", function()
                     vim.lsp.buf.code_action()
-                end, "[<space>] code [a]ction")
+                end, "[<leader>]Code [a]ction")
                 nmap(
                     "<leader>vr",
                     "<cmd>lua vim.lsp.buf.rename()<CR>",
-                    "[<leader>l]var [r]ename"
+                    "[<leader>][v]ar [r]ename"
                 )
                 nmap(
                     "<C-f>",
                     "<cmd>lua vim.lsp.buf.format()<CR>",
                     "[C]ode [f]ormat"
                 )
+
+                bemol()
             end
 
             local servers = {
@@ -155,37 +169,52 @@ return {
                 },
             })
 
-            -- if not configs.codewhisperer then
-            --     configs.codewhisperer = {
-            --         default_config = {
-            --             cmd = { "oliven-cwls" },
-            --             root_dir = lspconfig.util.root_pattern(
-            --                 "packageInfo",
-            --                 "package.json",
-            --                 "tsconfig.json",
-            --                 "jsconfig.json",
-            --                 ".git"
-            --             ),
-            --             filetypes = {
-            --                 "java",
-            --                 "python",
-            --                 "typescript",
-            --                 "javascript",
-            --                 "csharp",
-            --                 "ruby",
-            --                 "kotlin",
-            --                 "shell",
-            --                 "sql",
-            --                 "c",
-            --                 "cpp",
-            --                 "go",
-            --                 "rust",
-            --             },
-            --             autostart = true,
-            --         },
-            --     }
-            -- end
-            -- lspconfig.codewhisperer.setup({})
+            -- Check if the config is already defined (useful when reloading this file)
+            if not configs.barium then
+                configs.barium = {
+                    default_config = {
+                        cmd = { "barium" },
+                        filetypes = { "brazil-config" },
+                        root_dir = function(fname)
+                            return lspconfig.util.find_git_ancestor(fname)
+                        end,
+                        settings = {},
+                    },
+                }
+            end
+            lspconfig.barium.setup({})
+
+            if not configs.codewhisperer then
+                configs.codewhisperer = {
+                    default_config = {
+                        cmd = { "cwls" },
+                        root_dir = lspconfig.util.root_pattern(
+                            "packageInfo",
+                            "package.json",
+                            "tsconfig.json",
+                            "jsconfig.json",
+                            ".git"
+                        ),
+                        filetypes = {
+                            "java",
+                            "python",
+                            "typescript",
+                            "javascript",
+                            "csharp",
+                            "ruby",
+                            "kotlin",
+                            "shell",
+                            "sql",
+                            "c",
+                            "cpp",
+                            "go",
+                            "rust",
+                        },
+                        autostart = true,
+                    },
+                }
+            end
+            lspconfig.codewhisperer.setup({})
         end,
     },
 }

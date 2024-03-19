@@ -1,12 +1,15 @@
 return {
     {
         "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvimtools/none-ls-extras.nvim",
+        },
         opts = function(_, opts)
             local nls = require("null-ls")
             nls.setup({ debug = true })
             local b = nls.builtins
             opts.sources = vim.list_extend(opts.sources or {}, {
-                b.diagnostics.eslint,
+                require("none-ls.diagnostics.eslint"),
 
                 b.formatting.prettier.with({
                     disabled_filetypes = {
@@ -18,7 +21,7 @@ return {
                     filetypes = {
                         "markdown",
                     },
-                   extra_args = {
+                    extra_args = {
                         "--print-width",
                         "80",
                         "--tab-width",
@@ -33,7 +36,7 @@ return {
 
                 b.formatting.isort,
                 b.formatting.black,
-                b.diagnostics.flake8,
+                require("none-ls.diagnostics.flake8"),
 
                 b.formatting.gofmt,
                 b.formatting.goimports,

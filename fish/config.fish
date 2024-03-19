@@ -20,26 +20,19 @@ switch (uname)
 		set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
 		set -gx PATH ~/bin $PATH
 		set -gx PATH ~/.local/bin $PATH
-		source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.fish
     case Darwin
 		set -gx PATH bin $PATH
 		set -gx PATH ~/bin $PATH
 		set -gx PATH ~/.local/bin $PATH
 		set -gx PATH /opt/homebrew/bin $PATH
-		source /opt/homebrew/opt/asdf/libexec/asdf.fish
     case FreeBSD NetBSD DragonFly
             echo "This is FreeBSD or similar system!"
     case '*'
             echo "This is an unknown system!"
 end
 
-# Rust
-set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
-
-# Golang
-# set -x PATH $PATH $GOPATH/bin
-# set -x GOPATH $HOME/go
-. ~/.asdf/plugins/golang/set-env.fish
+# mise
+~/.local/bin/mise activate fish | source
 
 # Autossh
 function random_unused_port
@@ -64,13 +57,13 @@ alias vi "nvim"
 alias vim "nvim"
 alias t "tmux"
 alias sf "source ~/.config/fish/config.fish"
-alias dotfiles="cd ~/.config && vim"
-alias tmuxrc "vim ~/.config/tmux/tmux.conf"
+alias dotfiles="cd ~/development/dotfiles && vim"
+alias tmuxrc "vim ~/.tmux.conf"
 alias fishrc "vim ~/.config/fish/config.fish"
 alias starrc "vim ~/.config/starship/starship.toml"
 alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/.config/vim/.vimrc"
-alias nvimrc "vim ~/.config/nvim/lua/custom"
+alias nvimrc "cd ~/development/dotfiles/nvim && vim ~/.config/nvim/lua/custom"
 alias alarc "vim ~/.config/alacritty/alacritty.yml"
 alias yabairc "vim ~/.config/yabai/yabairc"
 alias skhdrc "vim ~/.config/skhd/skhdrc"
@@ -90,7 +83,7 @@ alias ...... "cd ../../.."
 # tmux
 alias t "tmux"
 alias tls "tmux ls"
-alias ta "tmux a -t"
+alias ta "tmux a"
 alias td "tmux detach"
 alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
@@ -107,8 +100,7 @@ alias dsm "docker start dev_machine"
 alias dam "dsm && docker attach dev_machine"
 alias dpm "docker pause dev_machine"
 alias drm "docker run -ti --name dev_machine \
-				-v $HOME/development:/home/rlb/development \
-				dev-machine"
+				-v $HOME/development:/root/development dev_machine"
 alias dbm "docker build -t dev_machine ~/development/dev_machine"
 alias ddm "docker container rm dev_machine --force"
 
@@ -137,13 +129,21 @@ alias gf "git fetch --all"
 # AWS CLI
 set -gx AWS_PAGER
 
+# Rust
+set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
+
+# Golang
+# set -x PATH $PATH $GOPATH/bin
+# set -x GOPATH $HOME/go
+# . ~/.asdf/plugins/golang/set-env.fish
+
 # Pipx
 set -gx PATH $HOME/.local/bin $PATH
-set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
+set -gx PIPX_DEFAULT_PYTHON $HOME/.local/share/mise/installs/python/latest/bin/python
 
 # fzf
 # nav with tab
-set FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
+set -Ux FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
 
 # catppuccin-mocha
 set -Ux FZF_DEFAULT_OPTS "\

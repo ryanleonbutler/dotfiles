@@ -1,9 +1,0 @@
-# /Users/butryan/.config/tmuxinator/fcworx.yml
-
-name: fcworx
-root: ~/development/fcworx
-
-windows:
-  - code: tree
-  - frontend: ~/development/fcworx/fcworx/frontend
-  - backend: ~/development/fcworx/fcworx/backend

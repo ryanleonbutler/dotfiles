@@ -1,8 +1,0 @@
-# /Users/butryan/.config/tmuxinator/dante-casebuddy.yml
-
-name: dante-casebuddy
-root: ~/workspace/Dante/src/Dante-CaseBuddy
-
-windows:
-  - code: tree
-  - cdd: ssh cdd-casebuddy

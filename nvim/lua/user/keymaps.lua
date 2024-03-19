@@ -53,9 +53,6 @@ map("n", "<C-t>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- Find and replace
 map("n", "<leader>ss", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
--- Toggle blame
-map("n", "<leader>gb", ":GitBlameToggle<CR>")
-
 -- Unix like terminal nav
 map("n", "<C-e>", "<END>")
 map("n", "<C-a>", "<HOME>")

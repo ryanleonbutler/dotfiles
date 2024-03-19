@@ -117,5 +117,10 @@
     {
         "key": "ctrl+f",
         "command": "editor.action.formatDocument"
-    }
+    },
+    {
+        "key": "cmd+p",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
 ]

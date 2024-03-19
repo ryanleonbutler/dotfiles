@@ -2,8 +2,21 @@ return {
     {
         "christoomey/vim-tmux-navigator",
         event = "VeryLazy",
+        cmd = {
+            "TmuxNavigateLeft",
+            "TmuxNavigateDown",
+            "TmuxNavigateUp",
+            "TmuxNavigateRight",
+            "TmuxNavigatePrevious",
+        },
+        keys = {
+            { "<C-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+            { "<C-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+            { "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+            { "<C-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+            { "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+        },
     },
-
     {
         "ojroques/nvim-osc52",
         config = function()
@@ -24,7 +37,6 @@ return {
             vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
         end,
     },
-
     {
         "gbprod/yanky.nvim",
         dependencies = {
@@ -147,21 +159,6 @@ return {
             },
         },
     },
-
-    {
-        "lewis6991/gitsigns.nvim",
-        opts = {
-            -- See `:help gitsigns.txt`
-            signs = {
-                add = { text = "+" },
-                change = { text = "~" },
-                delete = { text = "_" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-            },
-        },
-    },
-
     {
         "ThePrimeagen/harpoon",
         config = function()
@@ -172,21 +169,20 @@ return {
             vim.keymap.set("n", "<leader>.", ui.nav_next)
         end,
     },
+    {
+        "ThePrimeagen/git-worktree.nvim",
+        config = function()
+            require("git-worktree").setup()
+            require("telescope").load_extension("git_worktree")
+        end,
+    },
     { "ThePrimeagen/vim-be-good" },
-
     { "tpope/vim-commentary" },
     { "tpope/vim-surround" },
     { "tpope/vim-repeat" },
-
+    { "tpope/vim-vinegar" },
     { "jkramer/vim-checkbox" },
     { "ipkiss42/xwiki.vim" },
-
-    {
-        "f-person/git-blame.nvim",
-        config = function()
-            require("gitblame").setup({})
-        end,
-    },
     {
         "ethanholz/nvim-lastplace",
         config = function()

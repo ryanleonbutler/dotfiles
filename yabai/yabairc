@@ -39,12 +39,11 @@ yabai -m rule --add app="Rectangle Pro Preferences" space=1  manage=off
 yabai -m rule --add app="^Karabiner-Elements$" space=1  manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$" space=1  manage=off
 yabai -m rule --add app="Friendly Streaming" space=1 manage=off
-yabai -m rule --add app="Quip" space=1 manage=off
-yabai -m rule --add app="^Discord$" space=1 manage=off
-yabai -m rule --add app="^Excel$" space=1  manage=off
+yabai -m rule --add app="Quip" space=1 manage=on
+yabai -m rule --add app="^Discord$" space=1 manage=on
+yabai -m rule --add app="^Excel$" space=1  manage=on
 yabai -m rule --add app="^AmazonConnections$" space=1  manage=off
-yabai -m rule --add app="Chrome" space=1 manage=off
-yabai -m rule --add app="Obsidian" space=1 manage=off
+yabai -m rule --add app="Obsidian" space=1 manage=on
 
 # space 2
 yabai -m rule --add app="^Slack$" space=2
@@ -53,12 +52,13 @@ yabai -m rule --add app="^Amazon Chime$" space=2 manage=off
 
 # space 3
 yabai -m rule --add app="Alacritty" space=3
+yabai -m rule --add app="Code" space=3
+yabai -m rule --add app="Chrome" space=3 manage=on
 
 # space 4
 yabai -m rule --add app="Vivaldi" space=4
 
 # space 5
-yabai -m rule --add app="Visual Studio Code" space=5
 
 yabai -m config layout bsp
 yabai -m config window_placement second_child
@@ -66,9 +66,9 @@ yabai -m config split_ratio 0.50
 yabai -m config auto_balance off
 yabai -m config active_window_border_topmost on
 yabai -m config window_border on
-yabai -m config window_border_width 2
-yabai -m config window_border_radius 0
-yabai -m config window_border_blur off
+yabai -m config window_border_width 4
+yabai -m config window_border_radius 10
+yabai -m config window_border_blur on
 yabai -m config active_window_border_color 0xF0F0FFF0
 yabai -m config window_opacity off
 yabai -m config active_window_opacity 1.0

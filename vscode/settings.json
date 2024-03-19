@@ -18,12 +18,11 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never"
     },
-    "editor.defaultFormatter": "ms-python.python"
   },
   "breadcrumbs.enabled": false,
   "debug.allowBreakpointsEverywhere": true,
   "debug.console.fontFamily": "'JetBrainsMono Nerd Font Mono'",
-  "debug.console.fontSize": 15,
+  "debug.console.fontSize": 16,
   "debug.javascript.autoAttachFilter": "disabled",
   "debug.onTaskErrors": "showErrors",
   "debug.showBreakpointsInOverviewRuler": true,
@@ -35,7 +34,7 @@
   "editor.accessibilitySupport": "off",
   "editor.codeLensFontFamily": "'JetBrainsMono Nerd Font Mono'",
   "editor.cursorBlinking": "solid",
-  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSmoothCaretAnimation": "off",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 2,
   "editor.folding": false,
@@ -52,17 +51,19 @@
   "editor.minimap.renderCharacters": false,
   "editor.minimap.showSlider": "always",
   "editor.occurrencesHighlight": "off",
-  "editor.overviewRulerBorder": true,
+  "editor.matchBrackets": "never",
+  "editor.overviewRulerBorder": false,
+  "editor.find.seedSearchStringFromSelection": "never",
   "editor.quickSuggestions": {
     "comments": true,
     "other": true,
     "strings": true
   },
-  "editor.quickSuggestionsDelay": 10,
+  "editor.quickSuggestionsDelay": 7,
   "editor.rename.enablePreview": false,
   "editor.renderWhitespace": "none",
   "editor.rulers": [
-    119
+    80
   ],
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
@@ -70,16 +71,16 @@
   "editor.smoothScrolling": false,
   "editor.suggestFontSize": 16,
   "editor.suggestSelection": "first",
-  "editor.wordWrapColumn": 130,
+  "editor.wordWrapColumn": 80,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "explorer.openEditors.visible": 0,
+  "explorer.openEditors.visible": 1,
   "explorer.sortOrder": "filesFirst",
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     "*.toml": "ini"
   },
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "files.autoSaveDelay": 500,
   "files.exclude": {
     ".viceroy": true,
@@ -111,7 +112,7 @@
     "build-tools": true
   },
   "files.insertFinalNewline": false,
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": false,
   "files.watcherExclude": {
     "**/build/**": true,
     "**/.git/objects/**": true,
@@ -218,22 +219,21 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "telemetry.telemetryLevel": "off",
-  "terminal.external.osxExec": "/Applications/kitty.app",
+  "terminal.external.osxExec": "/Applications/Alacritty.app",
   "terminal.integrated.confirmOnExit": "never",
   "terminal.integrated.copyOnSelection": false,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorBlinking": false,
+  "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.cursorWidth": 4,
-  "terminal.integrated.defaultProfile.osx": "/usr/bin/zsh",
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.gpuAcceleration": "auto",
   "terminal.integrated.shellIntegration.enabled": false,
-  "terminal.integrated.tabs.enabled": false,
-  "todo-tree.highlights.useColourScheme": true,
+  "terminal.integrated.tabs.enabled": true,
   "viceroy.config.beautyMode": false,
   "viceroy.config.includeWorkspaceAsFolder": false,
-  "viceroy.config.internal.lastUpdateTime": "2024-02-14T07:23:45.463Z",
-  "viceroy.config.lastVersion": "0.52.201563",
+  "viceroy.config.internal.lastUpdateTime": "2024-02-29T13:39:17.764Z",
+  "viceroy.config.lastVersion": "0.52.201573",
   "viceroy.config.resolveSymlinks": "resolve",
   "viceroy.doc.welcome.showAtStartup": false,
   "viceroy.marketplace.extensionUpdateChannels": {
@@ -241,28 +241,19 @@
     "amzn.AWSGuruQLinter": "stable",
     "kaze.vscode-plugin-contribution-model": "stable"
   },
-  "viceroy.python.useBemol": true,
   "viceroy.workspaceSyncStrategy": "automatic",
-  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.easymotion": false,
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
   },
   "vim.highlightedyank.color": "rgba(78, 184, 251, 0.5)",
-  "vim.highlightedyank.duration": 500,
+  "vim.highlightedyank.duration": 400,
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
   "vim.incsearch": true,
   "vim.insertModeKeyBindings": [
-    {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "k"
-      ]
-    },
     {
       "before": [
         "<C>",
@@ -282,8 +273,80 @@
       ]
     }
   ],
-  "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "leader",
+        "e",
+      ],
+      "commands": [
+        "workbench.explorer.fileView.focus"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "f",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<C-d>"
+      ],
+      "after": [
+        "<C-d>",
+        "z",
+        "z",
+      ]
+    },
+    {
+      "before": [
+        "<C-u>"
+      ],
+      "after": [
+        "<C-u>",
+        "z",
+        "z",
+      ]
+    },
+    {
+      "before": [
+        "<C-h>"
+      ],
+      "commands": [
+        ":bprevious"
+      ]
+    },
+    {
+      "before": [
+        "<C-l>"
+      ],
+      "commands": [
+        ":bnext"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "v"
+      ],
+      "commands": [
+        ":vs"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "s"
+      ],
+      "commands": [
+        ":sp"
+      ]
+    },
     {
       "before": [
         "<C>",
@@ -332,19 +395,10 @@
     {
       "before": [
         "leader",
-        "c"
+        "x"
       ],
       "commands": [
         "workbench.action.closeActiveEditor"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "e"
-      ],
-      "commands": [
-        "workbench.view.explorer"
       ]
     },
     {
@@ -410,22 +464,13 @@
         "+",
         "y"
       ]
-    }
+    },
   ],
   "vim.searchHighlightColor": "#00B0BB",
   "vim.searchHighlightTextColor": "#282C34",
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": false,
   "vim.visualModeKeyBindings": [
-    {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "k"
-      ]
-    },
     {
       "before": [
         "<C>",
@@ -454,45 +499,54 @@
         "+",
         "y"
       ]
-    }
+    },
+    {
+      "before": [
+        "<",
+      ],
+      "after": [
+        "<",
+        "g",
+        "v",
+      ]
+    },
+    {
+      "before": [
+        ">",
+      ],
+      "after": [
+        ">",
+        "g",
+        "v",
+      ]
+    },
+    {
+      "before": [
+        "J",
+      ],
+      "commands": [
+        ":m '>+1"
+      ],
+      "after": [
+        "gv=gv"
+      ]
+    },
+    {
+      "before": [
+        "K",
+      ],
+      "commands": [
+        ":m '<-2<CR>gv=gv"
+      ]
+    },
   ],
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
-  "workbench.colorCustomizations": {
-    "[Atom One Dark]": {
-      "editorCursor.background": "#1D1D1D",
-      "editorCursor.foreground": "#D9D8D8",
-      "terminal.ansiBlack": "#282C34",
-      "terminal.ansiBlue": "#009DDC",
-      "terminal.ansiBrightBlack": "#737171",
-      "terminal.ansiBrightBlue": "#009DDC",
-      "terminal.ansiBrightCyan": "#39ADB9",
-      "terminal.ansiBrightGreen": "#89BB72",
-      "terminal.ansiBrightMagenta": "#B8453F",
-      "terminal.ansiBrightRed": "#E4616B",
-      "terminal.ansiBrightWhite": "#FFFFFF",
-      "terminal.ansiBrightYellow": "#E6B875",
-      "terminal.ansiCyan": "#39ADB9",
-      "terminal.ansiGreen": "#89BB72",
-      "terminal.ansiMagenta": "#B8453F",
-      "terminal.ansiRed": "#E4616B",
-      "terminal.ansiWhite": "#D9D8D8",
-      "terminal.ansiYellow": "#E6B875",
-      "terminal.background": "#21242C",
-      "terminalCursor.background": "#D9D8D8",
-      "terminalCursor.foreground": "#D9D8D8"
-    },
-    "statusBar.background": "#282C34",
-    "statusBar.debuggingBackground": "#E6B875",
-    "statusBar.debuggingForeground": "#000000",
-    "statusBar.foreground": "#D9D8D8",
-    "statusBar.noFolderBackground": "#282A36"
-  },
   "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.restoreViewState": true,
   "workbench.editor.showIcons": false,
-  "workbench.editor.wrapTabs": true,
+  "workbench.editor.wrapTabs": false,
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
@@ -509,9 +563,16 @@
   },
   "update.mode": "none",
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono'",
-  "chat.editor.fontSize": 15,
+  "chat.editor.fontSize": 16,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "editor.lineNumbers": "relative"
+  "editor.lineNumbers": "relative",
+  "aws.suppressPrompts": {
+    "codeWhispererConnectionExpired": true
+  },
+  "viceroy.config.setUpCodeWhisperer": false,
+  "viceroy.config.notifyGlibcIssue": false,
+  "projectManager.sortList": "Path",
+  "window.zoomLevel": 1
 }

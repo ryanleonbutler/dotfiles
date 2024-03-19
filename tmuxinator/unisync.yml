@@ -1,7 +1,0 @@
-# /Users/butryan/.config/tmuxinator/unisync.yml
-
-name: unisync
-root: ~/workspace
-
-windows:
-  - unisync: uni-sync
