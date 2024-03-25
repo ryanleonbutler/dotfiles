@@ -18,6 +18,17 @@ return {
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
             lsp_doc_border = true, -- add a border to hover docs and signature help
         },
+        filter = {
+            event = "msg_show",
+            any = {
+                { find = "%d+L, %d+B" },
+                { find = "; after #%d+" },
+                { find = "; before #%d+" },
+                { find = "%d fewer lines" },
+                { find = "%d more lines" },
+            },
+            opts = { skip = true },
+        },
     },
     dependencies = {
         "MunifTanjim/nui.nvim",

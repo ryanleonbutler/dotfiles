@@ -29,13 +29,11 @@ return {
                 "hrsh7th/cmp-nvim-lsp",
                 "williamboman/mason.nvim",
                 "williamboman/mason-lspconfig.nvim",
-                "j-hui/fidget.nvim",
                 "zeioth/garbage-day.nvim",
             },
         },
         config = function()
             require("mason").setup({})
-            require("fidget").setup({})
 
             local lspconfig = require("lspconfig")
             local configs = require("lspconfig.configs")

@@ -31,9 +31,6 @@ switch (uname)
             echo "This is an unknown system!"
 end
 
-# mise
-~/.local/bin/mise activate fish | source
-
 # Autossh
 function random_unused_port
     set port $(shuf -i 2000-65000 -n 1)
@@ -129,21 +126,41 @@ alias gf "git fetch --all"
 # AWS CLI
 set -gx AWS_PAGER
 
+# ASDF
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # Golang
 # set -x PATH $PATH $GOPATH/bin
 # set -x GOPATH $HOME/go
-# . ~/.asdf/plugins/golang/set-env.fish
+. ~/.asdf/plugins/golang/set-env.fish
 
 # Pipx
 set -gx PATH $HOME/.local/bin $PATH
-set -gx PIPX_DEFAULT_PYTHON $HOME/.local/share/mise/installs/python/latest/bin/python
+set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
 
 # fzf
+export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs --hidden'
+
 # nav with tab
 set -Ux FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
+
+# fzf ripgrep magic
+function fw
+    rg --color=always --line-number --no-heading --smart-case $argv[1] | \
+    fzf --ansi \
+      --color "hl:-1:underline,hl+:-1:underline:reverse" \
+      --delimiter : \
+      --preview 'bat --color=always {1} --highlight-line {2}' \
+      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+      --bind 'enter:become(nvim {1} +{2})'
+end
+
+function ff
+    fzf --preview 'bat --style=numbers --color=always {}' | xargs -n 1 nvim
+end
 
 # catppuccin-mocha
 set -Ux FZF_DEFAULT_OPTS "\
