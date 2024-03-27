@@ -1,7 +1,7 @@
 return {
     "folke/zen-mode.nvim",
-    opts = {
-        {
+    config = function()
+        require("zen-mode").setup({
             window = {
                 backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
                 -- height and width can be:
@@ -34,7 +34,7 @@ return {
                     laststatus = 0, -- turn off the statusline in zen mode
                 },
                 twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-                gitsigns = { enabled = false }, -- disables git signs
+                gitsigns = { enabled = true }, -- disables git signs
                 tmux = { enabled = true }, -- disables the tmux statusline
                 -- this will change the font size on kitty when in zen mode
                 -- to make this work, you need to set the following kitty options:
@@ -59,10 +59,12 @@ return {
                     font = "+4", -- (10% increase per step)
                 },
             },
-            -- callback where you can add custom code when the Zen window opens
-            on_open = function(win) end,
-            -- callback where you can add custom code when the Zen window closes
-            on_close = function() end,
-        },
-    },
+            on_open = function(_)
+                vim.fn.system([[tmux set status off]])
+            end,
+            on_close = function(_)
+                vim.fn.system([[tmux set status on]])
+            end,
+        })
+    end,
 }

@@ -232,7 +232,7 @@
   "terminal.integrated.tabs.enabled": true,
   "viceroy.config.beautyMode": false,
   "viceroy.config.includeWorkspaceAsFolder": false,
-  "viceroy.config.internal.lastUpdateTime": "2024-03-25T08:52:20.558Z",
+  "viceroy.config.internal.lastUpdateTime": "2024-03-26T13:13:48.024Z",
   "viceroy.config.lastVersion": "0.52.201573",
   "viceroy.config.resolveSymlinks": "resolve",
   "viceroy.doc.welcome.showAtStartup": false,
@@ -574,5 +574,6 @@
   "viceroy.config.setUpCodeWhisperer": false,
   "viceroy.config.notifyGlibcIssue": false,
   "projectManager.sortList": "Path",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "liveServer.settings.donotShowInfoMsg": true
 }

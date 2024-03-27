@@ -1,26 +1,17 @@
 palette = "catppuccin_mocha"
 
+continuation_prompt = "[❯](bold green)"
+format = """$hostname$directory$character"""
+right_format = """$all"""
+add_newline = true
+
 scan_timeout = 1000
 command_timeout = 1000
-add_newline = false
-format = """
-$battery\
-$hostname\
-$directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$python\
-$rust\
-$nodejs\
-$c\
-$package\
-$character\
-"""
-right_format = """$cmd_duration"""
-continuation_prompt = "[❯](bold green)"
+
+[directory.substitutions]
+'~/development/dotfiles' = 'dotfiles'
+'~/development' = 'development'
+'~/workspace' = 'workspace'
 
 [cmd_duration]
 min_time_to_notify = 200_000
@@ -29,13 +20,6 @@ min_time_to_notify = 200_000
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold yellow)"
-# success_symbol = "[➜](bold green)"
-# error_symbol = "[➜](bold red)"
-# vimcmd_symbol = "[❮](bold blue)"
-# [❯]
-# vimcmd_replace_one_symbol = "[❮](bold purple)"
-# vimcmd_replace_symbol = "[❮](bold purple)"
-# vimcmd_visual_symbol = "[❮](bold yellow)"
 
 [line_break]
 disabled = false

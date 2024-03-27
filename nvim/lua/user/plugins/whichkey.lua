@@ -39,10 +39,6 @@ return {
                 "<cmd>Telescope keymaps<cr>",
                 "Find Keymaps",
             },
-            ["<leader>fr"] = {
-                "<cmd>Telescope registers<cr>",
-                "Find Registers",
-            },
             ["<leader>fw"] = {
                 "<cmd>Telescope grep_string<cr>",
                 "Find Word",
@@ -50,6 +46,10 @@ return {
             ["<leader>fb"] = {
                 "<cmd>Telescope buffers<cr>",
                 "Find Buffers",
+            },
+            ["<leader>fr"] = {
+                ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+                "Find and Replace",
             },
 
             -- harpoon / marks
@@ -80,11 +80,11 @@ return {
 
             -- Git
             ["<leader>gw"] = {
-                "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+                "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
                 "List Git Worktrees",
             },
             ["<leader>gW"] = {
-                "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+                "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
                 "Create Git Worktree",
             },
             ["<leader>g"] = { name = "+git" },
@@ -92,24 +92,28 @@ return {
                 "<cmd>Gitsigns toggle_current_line_blame<cr>",
                 "Git Blame Toggle",
             },
-            ["<leader>gp"] = { ":Gitsigns preview_hunk<CR>", "Preview Hunk" },
-            ["<leader>gr"] = {
-                "<cmd>Neogit pull --rebase<cr>",
-                "Git Rebase",
+            ["<leader>gp"] = {
+                "<cmd>Gitsigns preview_hunk<cr>",
+                "Preview Hunk",
             },
             ["<leader>gs"] = {
                 "<cmd>Neogit<cr>",
                 "Git Status",
             },
+            ["<leader>gy"] = {
+                "<cmd>brazil.display_package_under_cursor_url<cr>",
+                "Display URL for Package under Cursor",
+            },
 
             -- Diagnostics
             ["<S-d>"] = {
-                "<cmd>lua vim.diagnostic.open_float()<CR>",
+                "<cmd>lua vim.diagnostic.open_float()<cr>",
                 "Show Diagnostic",
             },
 
             -- Terminal
             ["<leader>t"] = { name = "+terminal" },
+            ["<leader>ts"] = { "<cmd>silent !tmux neww tmux-sessionizer<cr>", "Tmux Sessionizer" },
             ["<C-t>"] = {
                 '<cmd>lua require("FTerm").toggle()<cr>',
                 "Terminal Toggle",
@@ -141,6 +145,25 @@ return {
                 '<cmd>lua require("trouble").toggle("lsp_references")<cr>',
                 "Trouble lsp_references",
             },
+
+            -- ZenMode
+            ["<leader>z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
+
+            -- Yanking
+            ["<leader>y"] = { name = "+yank" },
+            ["<leader>yr"] = {
+                "<cmd>lua YankRelativePathToOsc()<cr>",
+                "Yank relative file path",
+            },
+            ["<leader>yf"] = {
+                "<cmd>lua YankFullPathToOsc()<cr>",
+                "Yank full file path",
+            },
+
+            -- Scrathces
+            ["<leader>s"] = { name = "+scratch" },
+            ["<leader>ss"] = { "<cmd>Scratch<cr>" },
+            ["<leader>so"] = { "<cmd>ScratchOpen<cr>" },
         })
     end,
     opts = {

@@ -47,12 +47,6 @@ map("n", "<leader>y", '"+y')
 map("v", "<leader>y", '"+y')
 map("n", "<leader>Y", '"+Y')
 
--- tmux
-map("n", "<C-t>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
--- Find and replace
-map("n", "<leader>ss", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-
 -- Unix like terminal nav
 map("n", "<C-e>", "<END>")
 map("n", "<C-a>", "<HOME>")
@@ -85,11 +79,3 @@ function YankRelativePathToOsc()
     vim.fn.setreg("+", file_path)
     require("osc52").copy_register("+")
 end
-
-map("n", "<leader>yr", ":lua YankRelativePathToOsc()<CR>")
-map("n", "<leader>yf", ":lua YankFullPathToOsc()<CR>")
-map("n", "<leader>z", ":ZenMode<CR>")
-
--- Scrathces
-map("n", "<leader>s", "<cmd>Scratch<cr>")
-map("n", "<leader>so", "<cmd>ScratchOpen<cr>")
