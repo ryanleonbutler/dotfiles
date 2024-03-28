@@ -2,12 +2,8 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     init = function()
-        local ui = require("harpoon.ui")
-        local mark = require("harpoon.mark")
-
         local wk = require("which-key")
         wk.register({
-
             -- File / Telescope
             ["<leader>f"] = { name = "+file" },
             ["<leader>fo"] = {
@@ -52,24 +48,10 @@ return {
                 "Find and Replace",
             },
 
-            -- harpoon / marks
-            ["<leader>m"] = {
-                mark.toggle_file,
-                "Mark File",
-            },
-            ["<leader>mt"] = {
-                ui.toggle_quick_menu,
-                "Harpoon Toggle",
-            },
-            ["<leader>mn"] = {
-                ui.nav_next,
-                "Mark Next",
-            },
-
             -- Undotree
             ["<leader>u"] = {
                 "<cmd>UndotreeToggle<cr>",
-                "UndotreeToggle",
+                "Undotree Toggle",
             },
 
             -- Create New file
@@ -112,12 +94,18 @@ return {
             },
 
             -- Terminal
-            ["<leader>t"] = { name = "+terminal" },
-            ["<leader>ts"] = { "<cmd>silent !tmux neww tmux-sessionizer<cr>", "Tmux Sessionizer" },
             ["<C-t>"] = {
                 '<cmd>lua require("FTerm").toggle()<cr>',
                 "Terminal Toggle",
             },
+
+            -- Tests
+            ["<leader>t"] = { name = "+test" },
+            ["<leader>tn"] = { "<cmd>TestNearest<CR>" },
+            ["<leader>tf"] = { "<cmd>TestFile<CR>" },
+            ["<leader>ts"] = { "<cmd>TestSuite<CR>" },
+            ["<leader>tl"] = { "<cmd>TestLast<CR>" },
+            ["<leader>tv"] = { "<cmd>TestVisit<CR>" },
 
             -- Trouble
             [";"] = { name = "+trouble" },
@@ -164,6 +152,56 @@ return {
             ["<leader>s"] = { name = "+scratch" },
             ["<leader>ss"] = { "<cmd>Scratch<cr>" },
             ["<leader>so"] = { "<cmd>ScratchOpen<cr>" },
+
+            -- Debugging
+            ["<leader>d"] = { name = "+debugging" },
+            ["<leader>dt"] = {
+                "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+                "Toggle Breakpoint",
+            },
+            ["<leader>db"] = {
+                "<cmd>lua require'dap'.step_back()<cr>",
+                "Step Back",
+            },
+            ["<leader>dc"] = {
+                "<cmd>lua require'dap'.continue()<cr>",
+                "Continue",
+            },
+            ["<leader>dC"] = {
+                "<cmd>lua require'dap'.run_to_cursor()<cr>",
+                "Run To Cursor",
+            },
+            ["<leader>dd"] = {
+                "<cmd>lua require'dap'.disconnect()<cr>",
+                "Disconnect",
+            },
+            ["<leader>dg"] = {
+                "<cmd>lua require'dap'.session()<cr>",
+                "Get Session",
+            },
+            ["<leader>di"] = {
+                "<cmd>lua require'dap'.step_into()<cr>",
+                "Step Into",
+            },
+            ["<leader>do"] = {
+                "<cmd>lua require'dap'.step_over()<cr>",
+                "Step Over",
+            },
+            ["<leader>du"] = {
+                "<cmd>lua require'dap'.step_out()<cr>",
+                "Step Out",
+            },
+            ["<leader>dp"] = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+            ["<leader>dr"] = {
+                "<cmd>lua require'dap'.repl.toggle()<cr>",
+                "Toggle Repl",
+            },
+            ["<leader>ds"] = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+            ["<leader>dq"] = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+            ["<leader>dU"] = {
+                "<cmd>lua require'dapui'.toggle({reset = true})<cr>",
+                "Toggle UI",
+            },
         })
     end,
     opts = {

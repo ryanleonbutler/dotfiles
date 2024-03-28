@@ -68,7 +68,7 @@ yabai -m config active_window_border_topmost on
 yabai -m config window_border on
 yabai -m config window_border_width 4
 yabai -m config window_border_radius 10
-yabai -m config window_border_blur on
+yabai -m config window_border_blur off
 yabai -m config active_window_border_color 0xF0F0FFF0
 yabai -m config window_opacity off
 yabai -m config active_window_opacity 1.0

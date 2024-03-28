@@ -9,22 +9,22 @@ return {
             dashboard.button(
                 "SPC f e",
                 "  > New file",
-                ":ene <BAR> startinsert <CR>"
+                "<cmd>ene <BAR> startinsert <cr>"
             ),
             dashboard.button(
                 "SPC f f",
                 "  > Find file",
-                ":cd $HOME/Workspace | Telescope find_files<CR>"
+                "<cmd>Telescope find_files<cr>"
             ),
             dashboard.button(
                 "SPC f o",
                 "  > Recent",
-                ":Telescope oldfiles<CR>"
+                "<cmd>Telescope oldfiles<cr>"
             ),
             dashboard.button(
                 "s",
                 "  > Settings",
-                ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR>"
+                "<cmd>e ~/development/dotfiles/nvim | :cd %:p:h | wincmd k | pwd<cr>"
             ),
             dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
         }
