@@ -25,11 +25,13 @@ set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
-set.smartindent = true
-set.expandtab = true
+-- set.smartindent = true
+set.autoindent = true
+vim.cmd([[filetype plugin indent on]])
+set.fileformat = "unix"
 
 set.wrap = false
-set.scrolloff = 8
+set.scrolloff = 10
 
 set.swapfile = false
 set.backup = false

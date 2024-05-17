@@ -1,9 +1,9 @@
 palette = "catppuccin_mocha"
 
 continuation_prompt = "[❯](bold green)"
-format = """$hostname$directory$character"""
-right_format = """$all"""
-add_newline = true
+format = """($all)$character"""
+# right_format = """$all"""
+add_newline = false
 
 scan_timeout = 1000
 command_timeout = 1000

@@ -8,6 +8,7 @@ function fish_user_key_bindings
     bind yy fish_clipboard_copy
     bind Y fish_clipboard_copy
     bind p fish_clipboard_paste
+	bind \cz 'fg 2>/dev/null; commandline -f repaint'
 end
 
 set fish_greeting
