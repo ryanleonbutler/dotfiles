@@ -3,6 +3,7 @@ return {
     event = "VeryLazy",
     opts = {
         lsp = {
+            progress = { enabled = false },
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -18,16 +19,22 @@ return {
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
             lsp_doc_border = true, -- add a border to hover docs and signature help
         },
-        filter = {
-            event = "msg_show",
-            any = {
-                { find = "%d+L, %d+B" },
-                { find = "; after #%d+" },
-                { find = "; before #%d+" },
-                { find = "%d fewer lines" },
-                { find = "%d more lines" },
+        routes = {
+            {
+                filter = {
+                    event = "msg_show",
+                    kind = "",
+                    find = "written",
+                },
+                opts = { skip = true },
             },
-            opts = { skip = true },
+            {
+                filter = {
+                    event = "msg_show",
+                    kind = "search_count",
+                },
+                opts = { skip = true },
+            },
         },
     },
     dependencies = {

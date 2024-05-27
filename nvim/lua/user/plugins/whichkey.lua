@@ -155,18 +155,6 @@ return {
 
             -- Debugging
             ["<leader>d"] = { name = "+debugging" },
-            ["<leader>dt"] = {
-                "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
-                "Toggle Breakpoint",
-            },
-            ["<leader>db"] = {
-                "<cmd>lua require'dap'.step_back()<cr>",
-                "Step Back",
-            },
-            ["<leader>dc"] = {
-                "<cmd>lua require'dap'.continue()<cr>",
-                "Continue",
-            },
             ["<leader>dC"] = {
                 "<cmd>lua require'dap'.run_to_cursor()<cr>",
                 "Run To Cursor",
@@ -179,28 +167,48 @@ return {
                 "<cmd>lua require'dap'.session()<cr>",
                 "Get Session",
             },
-            ["<leader>di"] = {
+            ["<leader>dp"] = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+            ["<leader>b"] = {
+                "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+                "Toggle Breakpoint",
+            },
+            ["<F1>"] = {
+                "<cmd>lua require'dap'.continue()<cr>",
+                "Continue",
+            },
+            ["<F2>"] = {
                 "<cmd>lua require'dap'.step_into()<cr>",
                 "Step Into",
             },
-            ["<leader>do"] = {
+            ["<F3>"] = {
                 "<cmd>lua require'dap'.step_over()<cr>",
                 "Step Over",
             },
-            ["<leader>du"] = {
+            ["<F4>"] = {
                 "<cmd>lua require'dap'.step_out()<cr>",
                 "Step Out",
             },
-            ["<leader>dp"] = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-            ["<leader>dr"] = {
-                "<cmd>lua require'dap'.repl.toggle()<cr>",
-                "Toggle Repl",
+            ["<F5>"] = {
+                "<cmd>lua require'dap'.step_back()<cr>",
+                "Step Back",
             },
-            ["<leader>ds"] = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-            ["<leader>dq"] = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-            ["<leader>dU"] = {
-                "<cmd>lua require'dapui'.toggle({reset = true})<cr>",
-                "Toggle UI",
+            ["<F12>"] = {
+                "<cmd>lua require'dap'.restart()<cr>",
+                "Step Back",
+            },
+
+            -- Neotest
+            ["<leader>rt"] = {
+                "<cmd>lua require('neotest').run.run()<cr>",
+                "Run nearest test",
+            },
+            ["<leader>rf"] = {
+                "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+                "Run nearest test",
+            },
+            ["<leader>rd"] = {
+                "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+                "Run nearest test",
             },
         })
     end,
