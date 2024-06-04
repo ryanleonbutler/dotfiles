@@ -43,6 +43,10 @@ return {
                 "<cmd>Telescope buffers<cr>",
                 "Find Buffers",
             },
+            ["<leader>fm"] = {
+                "<cmd>Telescope marks<cr>",
+                "Telescope marks",
+            },
             ["<leader>fr"] = {
                 ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
                 "Find and Replace",
@@ -59,6 +63,9 @@ return {
 
             -- Netrw
             ["<leader>e"] = { "<cmd>Ex<cr>", "Netrw Ex" },
+
+			-- Oil
+            ["-"] = { "<cmd>Oil<cr>", "Open parent directory" },
 
             -- Git
             ["<leader>gw"] = {
@@ -168,7 +175,7 @@ return {
                 "Get Session",
             },
             ["<leader>dp"] = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-            ["<leader>b"] = {
+            ["<leader>db"] = {
                 "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
                 "Toggle Breakpoint",
             },
@@ -210,6 +217,127 @@ return {
                 "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
                 "Run nearest test",
             },
+
+            --scat
+            -- local brazil = require("scat.brazil")
+            -- local cr = require("scat.cr")
+            -- local paste = require("scat.paste")
+            -- local local_manager = require("scat.cr.local_manager")
+            -- local brazil_utils = require("scat.brazil.utils")
+            -- local scat = require("scat")
+
+            ["<leader>b"] = { name = "+brazil" },
+            ["<leader>bb"] = {
+                "<cmd>lua require('scat').brazil.build_current_package<cr>",
+                "Build Current Package",
+            },
+            ["<leader>bbr"] = {
+                "<cmd>lua require('scat').brazil.build_current_package_recursively<cr>",
+                "Build Current Package Recursively",
+            },
+            ["<leader>bl"] = {
+                "<cmd>lua require('scat').brazil.list_all_packages<cr>",
+                "List All Packages",
+            },
+            ["<leader>bp"] = {
+                "<cmd>lua require('scat').brazil.display_current_package_url<cr>",
+                "Display Current Package URL",
+            },
+            ["<leader>bP"] = {
+                "<cmd>lua require('scat').brazil.display_package_under_cursor_url<cr>",
+                "Display URL for Package under Cursor",
+            },
+            ["<leader>bR"] = {
+                "<cmd>lua require('scat').brazil.display_release_under_cursor_url<cr>",
+                "Display URL for Release under Cursor",
+            },
+            ["<leader>bf"] = {
+                "<cmd>lua require('scat').brazil.display_current_file_url<cr>",
+                "Display Current File URL",
+            },
+            ["<leader>bij"] = {
+                "<cmd>lua require('scat').brazil.install_current_jdt_package<cr>",
+                "Install Current JDT Package",
+            },
+            ["<leader>cr"] = {
+                "<cmd>lua require('scat').cr.open_cr<cr>",
+                "Open CR",
+            },
+
+            ["<leader>c"] = { name = "+crux" },
+            -- or map_key("n", "<leader>ar", function() cr.open_cr({ cr_template = vim.fn.expandcmd"$HOME/<path_to_your_cr_template>" }) end, { desc = "Open CR" })
+            ["<leader>ca"] = {
+                "<cmd>lua require('scat').cr.fetch_active_crs<cr>",
+                "Fetch Active CRs",
+            },
+            -- the below mapping prompts for user id you would like to view instead of picking from config
+            -- map(
+            --     "n",
+            --     "<leader>cau",
+            --     function()
+            --         "<cmd>lua require('scat').cr.fetch_active_crs({ force_pick = true }",
+            --     end,
+            --     { desc = "Fetch Active CRs (ignore user specified in config)" }
+            -- )
+            -- -- or map_key("n", "<leader>arp", function() cr.fetch_active_crs({user = "<your_user_name>"}) end)
+            -- map(
+            --     "n",
+            --     "<leader>cre",
+            --     "<cmd>lua require('scat').cr.update_existing_cr",
+            --     { desc = "Update Existing CR" }
+            -- )
+            -- map(
+            --     "n",
+            --     "<leader>art",
+            --     "<cmd>lua require('scat').local_manager.toggle_cr_overview",
+            --     { desc = "Toggle CR Overview" }
+            -- )
+            -- map(
+            --     "n",
+            --     "<leader>bbc",
+            --     "<cmd>lua require('scat').brazil_utils.run_checkstyle",
+            --     { desc = "Run Brazil Checkstyle" }
+            -- )
+            -- map(
+            --     "n",
+            --     "<leader>bbe",
+            --     brazil.run_command_inside_current_package",
+            --     { desc = "Run Brazil Command inside Current Package" }
+            -- )
+            -- map("n", "<leader>bbt", function()
+            --     "<cmd>lua require('scat').brazil.pick_brazil_task_inside_current_package({
+            --         callback = function(task)
+            --             vim.g.test_replacement_command = task
+            --         end",
+            --     })
+            -- end, { desc = "Pick Brazil Task inside Current Package" })
+            -- map(
+            --     "n",
+            --     "<leader>bbtp",
+            --     "<cmd>lua require('scat').brazil.run_prev_brazil_task",
+            --     { desc = "Run Previous Brazil Task" }
+            -- )
+            -- map(
+            --     "n",
+            --     "<leader>bbv",
+            --     "<cmd>lua require('scat').brazil.display_current_version_set_url",
+            --     { desc = "Display Current Version Set URL" }
+            -- )
+            -- map(
+            --     "n",
+            --     "<leader>aw",
+            --     "<cmd>lua require('scat').brazil.switch_workspace_package_info",
+            --     { desc = "Switch packageInfo in Current Workspace" }
+            -- )
+            -- map(
+            --     { "n", "x" },
+            --     "<leader>as",
+            --     "<cmd>lua require('scat').paste.send_to_pastebin",
+            --     "Send Selection to Pastebin" }
+            --     "n",
+            --     "<leader>asl",
+            --     "<cmd>lua require('scat').paste.list_my_pastes",
+            --     { desc = "List My Pastes" }
         })
     end,
     opts = {

@@ -33,6 +33,7 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
+				["<C-c>"] = cmp.mapping.complete(),
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete({}),
@@ -63,6 +64,7 @@ return {
                 { name = "nvim_lua" },
                 { name = "nvim_lsp" },
                 { name = "nvim_lsp_signature_help" },
+                { name = "codewhisperer" },
                 { name = "luasnip", keyword_length = 1 },
                 {
                     name = "buffer",

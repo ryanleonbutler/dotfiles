@@ -18,6 +18,19 @@ return {
             "table",
             "if_statement",
         },
-        exclude = {}, -- exclude these filetypes
+        exclude = {
+            "help",
+            "terminal",
+            "toggleterm",
+            "FTerm",
+            "dashboard",
+            "alpha",
+            "packer",
+            "lazy",
+            "lspinfo",
+            "TelescopePrompt",
+            "TelescopeResults",
+            "startify",
+        }, -- exclude these filetypes
     },
 }

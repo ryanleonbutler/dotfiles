@@ -10,7 +10,7 @@ set.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 set.laststatus = 0
 set.showmode = false
 set.completeopt = "menuone,noselect"
-set.showtabline = 0
+set.showtabline = 1
 set.cursorline = true
 
 set.nu = true
@@ -25,9 +25,9 @@ set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
--- set.smartindent = true
+set.smartindent = true
 set.autoindent = true
-vim.cmd([[filetype plugin indent on]])
+-- vim.cmd([[filetype plugin indent on]])
 set.fileformat = "unix"
 
 set.wrap = false

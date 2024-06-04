@@ -13,8 +13,4 @@ return {
             require("nvim-lastplace").setup({})
         end,
     },
-    {
-        "LintaoAmons/scratch.nvim",
-        event = "VeryLazy",
-    },
 }

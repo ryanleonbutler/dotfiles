@@ -201,6 +201,7 @@ return {
                         "cpp",
                         "go",
                         "rust",
+                        "lua",
                     },
                     autostart = true,
                 },

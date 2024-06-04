@@ -127,8 +127,8 @@ alias gf "git fetch --all"
 # AWS CLI
 set -gx AWS_PAGER
 
-# ASDF
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
+# mise
+~/.local/bin/mise activate fish | source
 
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
@@ -136,11 +136,9 @@ set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 # Golang
 # set -x PATH $PATH $GOPATH/bin
 # set -x GOPATH $HOME/go
-. ~/.asdf/plugins/golang/set-env.fish
 
 # Pipx
-set -gx PATH $HOME/.local/bin $PATH
-set -gx PIPX_DEFAULT_PYTHON $HOME/.asdf/shims/python
+set -U fish_user_paths $HOME/.local/bin $fish_user_paths
 
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs --hidden'

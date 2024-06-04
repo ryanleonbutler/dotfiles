@@ -3,5 +3,5 @@ return {
     { "tpope/vim-surround" },
     { "tpope/vim-repeat" },
     { "tpope/vim-vinegar" },
-    { "tpope/vim-sleuth" },
+    -- { "tpope/vim-sleuth" },
 }
