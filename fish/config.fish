@@ -1,5 +1,5 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+	#
 end
 
 # vi key bindings
@@ -18,14 +18,15 @@ set -g fish_term24bit 1
 
 switch (uname)
     case Linux
-		set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
-		set -gx PATH ~/bin $PATH
-		set -gx PATH ~/.local/bin $PATH
+		fish_add_path ~/bin
+		fish_add_path ~/.local/bin
+		fish_add_path /home/linuxbrew/.linuxbrew/bin
+		fish_add_path /home/linuxbrew/.linuxbrew/sbin
     case Darwin
-		set -gx PATH bin $PATH
-		set -gx PATH ~/bin $PATH
-		set -gx PATH ~/.local/bin $PATH
-		set -gx PATH /opt/homebrew/bin $PATH
+		fish_add_path ~/bin
+		fish_add_path ~/.local/bin
+		fish_add_path /opt/homebrew/bin
+		fish_add_path /opt/homebrew/sbin
     case FreeBSD NetBSD DragonFly
             echo "This is FreeBSD or similar system!"
     case '*'
@@ -45,6 +46,8 @@ end
 function ssh
 	random_unused_port
 	autossh $argv
+	sleep 1
+	echo 'disconnected...'
 end
 
 # aliases
@@ -102,12 +105,12 @@ alias drm "docker run -ti --name dev_machine \
 alias dbm "docker build -t dev_machine ~/development/dev_machine"
 alias ddm "docker container rm dev_machine --force"
 
-# exa
-if type -q exa
-  alias ll "exa -l -g --icons"
-  alias ls "exa --icons"
+# eza
+if type -q eza
+  alias ll "eza -l -g --icons"
+  alias ls "eza --icons"
   alias lla "ll -a"
-  alias tree "exa --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
+  alias tree "eza --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
 end
 
 # Git
@@ -133,20 +136,13 @@ set -gx AWS_PAGER
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
-# Golang
-# set -x PATH $PATH $GOPATH/bin
-# set -x GOPATH $HOME/go
-
-# Pipx
-set -U fish_user_paths $HOME/.local/bin $fish_user_paths
-
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs --hidden'
 
-# nav with tab
+## nav with tab
 set -Ux FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
 
-# fzf ripgrep magic
+## fzf ripgrep magic
 function fw
     rg --color=always --line-number --no-heading --smart-case $argv[1] | \
     fzf --ansi \

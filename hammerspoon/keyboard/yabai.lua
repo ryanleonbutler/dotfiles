@@ -1,6 +1,53 @@
+-- fix the window border issue, as the option was deleted from yabai
+local windowFilter = require("hs.window.filter")
+local defaultFilter = windowFilter.default
+local indicatorWIN = nil
+
+hs.window.animationDuration = 0
+
+local function removeBorder()
+	indicatorWIN:delete()
+end
+
+local function drawBorder()
+	-- Delete the old border if it exists
+	if indicatorWIN then
+		indicatorWIN:delete()
+	end
+
+	local win = hs.window.focusedWindow()
+	local screen = win:screen()
+	local max = screen:fullFrame()
+	local f = win:frame()
+	indicatorWIN = hs.canvas
+		.new({ x = max.x, y = max.y, h = max.h, w = max.w })
+		:appendElements({
+			type = "rectangle",
+			action = "stroke",
+			strokeWidth = 4.0,
+			roundedRectRadii = { xRadius = 11.0, yRadius = 11.0 },
+			strokeColor = { red = 235 / 255, green = 235 / 255, blue = 235 / 255 },
+			frame = { x = f.x, y = f.y, h = f.h, w = f.w },
+		})
+		:show()
+end
+
+defaultFilter:subscribe(windowFilter.windowFocused, function()
+	drawBorder()
+end)
+
+defaultFilter:subscribe(windowFilter.windowMoved, function()
+	drawBorder()
+end)
+
+defaultFilter:subscribe(windowFilter.windowUnfocused, function()
+	removeBorder()
+end)
+
 -- Send message(s) to a running instance of yabai.
 local function yabai(commands)
 	for _, cmd in ipairs(commands) do
+		print("yabai -m " .. cmd)
 		os.execute("/opt/homebrew/bin/yabai -m " .. cmd)
 	end
 end
@@ -18,7 +65,7 @@ local function alt_shift(key, commands)
 end
 
 local function alt_ctrl_cmd(key, commands)
-	hs.hotkey.bind({ "alt", "ctrl", "shift" }, key, function()
+	hs.hotkey.bind({ "ctrl", "alt", "cmd" }, key, function()
 		yabai(commands)
 	end)
 end
@@ -34,26 +81,6 @@ local function ctrl_shift(key, commands)
 		yabai(commands)
 	end)
 end
-
-local function hyper(key, commands)
-	hs.hotkey.bind({ "ctrl", "shift", "alt", "cmd" }, key, function()
-		yabai(commands)
-	end)
-end
-
--- alpha
--- alt("f", { "window --toggle zoom-fullscreen" })
--- alt("l", { "space --focus recent" })
--- alt("m", { "space --toggle mission-control" })
--- alt("p", { "window --toggle pip" })
--- alt("g", { "space --toggle padding", "space --toggle gap" })
--- alt("r", { "space --rotate 90" })
--- alt("t", { "window --toggle float", "window --grid 4:4:1:1:2:2" })
-
--- special characters
--- alt("'", { "space --layout stack" })
--- alt(";", { "space --layout bsp" })
--- alt("tab", { "space --focus recent" })
 
 -- change window focus within space
 alt("j", { "window --focus south" })
@@ -91,14 +118,8 @@ ctrl_cmd("j", { "window --resize bottom:0:80" })
 ctrl_cmd("k", { "window --resize top:0:-80" })
 ctrl_cmd("h", { "window --resize right:80:0" })
 
--- # Focus on a space
-for i = 1, 9 do
-	local num = tostring(i)
-	hyper(num, { "space --focus " .. num })
-end
-
 -- # move window to space
-for i = 1, 9 do
+for i = 1, 5 do
 	local num = tostring(i)
 	alt_ctrl_cmd(num, { "window --space " .. num })
 end

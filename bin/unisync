@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+while :
+do
+    echo "Starting unison process... " `date`
+    /opt/homebrew/bin/unison -repeat watch -ui text -ignorecase false default && break
+    echo "Unison process exited.  Sleeping before restarting.  ^C to exit. " `date`
+    sleep 30
+done
