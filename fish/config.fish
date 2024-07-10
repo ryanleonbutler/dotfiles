@@ -35,7 +35,7 @@ end
 
 # Autossh
 function random_unused_port
-    set port $(shuf -i 2000-65000 -n 1)
+    set port $(shuf -i 60000-65000 -n 1)
     netstat -lat | grep $port > /dev/null
     if [ $status = 1 ];
         set -gx AUTOSSH_PORT $port
@@ -45,7 +45,7 @@ function random_unused_port
 end
 function ssh
 	random_unused_port
-	autossh $argv
+	autossh -4 $argv
 	sleep 1
 	echo 'disconnected...'
 end
@@ -137,10 +137,10 @@ set -gx AWS_PAGER
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs --hidden'
+set -gx FZF_DEFAULT_COMMAND 'rg --files --ignore-vcs --hidden'
 
 ## nav with tab
-set -Ux FZF_DEFAULT_OPTS "--bind=shift-tab:down,tab:up"
+set -gx FZF_DEFAULT_OPTS '--bind=shift-tab:down,tab:up'
 
 ## fzf ripgrep magic
 function fw

@@ -64,7 +64,7 @@ return {
             -- Netrw
             ["<leader>e"] = { "<cmd>Ex<cr>", "Netrw Ex" },
 
-			-- Oil
+            -- Oil
             ["-"] = { "<cmd>Oil<cr>", "Open parent directory" },
 
             -- Git
@@ -104,6 +104,12 @@ return {
             ["<C-t>"] = {
                 '<cmd>lua require("FTerm").toggle()<cr>',
                 "Terminal Toggle",
+            },
+
+            -- AI Prompt
+            ["<leader>ai"] = {
+                "<cmd>ProomptExplain<cr>",
+                "AI Prompt",
             },
 
             -- Tests
