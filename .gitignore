@@ -7,3 +7,4 @@ __pycache__/
 lazy-lock.json
 private.lua
 unison
+tmuxinator

@@ -115,6 +115,7 @@ return {
                     },
                 },
             },
+            ruff_lsp = {},
         }
         mason_lspconfig.setup({
             ensure_installed = vim.tbl_keys(servers),

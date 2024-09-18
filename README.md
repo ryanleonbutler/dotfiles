@@ -25,8 +25,8 @@ ln -s ~/development/dotfiles/config/lvim/config.lua ~/.config/lvim/config.lua
 rm -rf /Users/butryan/Library/Application\ Support/Code/User/settings.json
 rm -rf /Users/butryan/Library/Application\ Support/Code/User/keybindings.json
 rm -rf /Users/butryan/Library/Application\ Support/Code/User/snippets
-ln -s ~/development/dotfiles/vscode/settings.json /Users/butryan/Library/Application\ Support/Code/User/settings.json 
-ln -s ~/development/dotfiles/vscode/keybindings.json /Users/butryan/Library/Application\ Support/Code/User/keybindings.json 
+ln -s ~/development/dotfiles/vscode/settings.json /Users/butryan/Library/Application\ Support/Code/User/settings.json
+ln -s ~/development/dotfiles/vscode/keybindings.json /Users/butryan/Library/Application\ Support/Code/User/keybindings.json
 ln -s ~/development/dotfiles/vscode/snippets /Users/butryan/Library/Application\ Support/Code/User/snippets
 
 # ranger

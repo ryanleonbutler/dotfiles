@@ -220,7 +220,7 @@
   "telemetry.enableTelemetry": false,
   "telemetry.telemetryLevel": "off",
   "terminal.external.osxExec": "/Applications/Alacritty.app",
-  "terminal.integrated.confirmOnExit": "never",
+  "terminal.integrated.confirmOnExit": "always",
   "terminal.integrated.copyOnSelection": false,
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.cursorStyle": "block",
@@ -228,12 +228,10 @@
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.gpuAcceleration": "auto",
-  "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.tabs.enabled": true,
   "viceroy.config.beautyMode": false,
-  "viceroy.config.includeWorkspaceAsFolder": false,
-  "viceroy.config.internal.lastUpdateTime": "2024-07-08T15:25:32.382Z",
-  "viceroy.config.lastVersion": "0.53.201719",
+  "viceroy.config.internal.lastUpdateTime": "2024-09-18T15:28:25.134Z",
+  "viceroy.config.lastVersion": "0.53.201771",
   "viceroy.config.resolveSymlinks": "resolve",
   "viceroy.doc.welcome.showAtStartup": false,
   "viceroy.marketplace.extensionUpdateChannels": {
@@ -242,7 +240,6 @@
     "kaze.vscode-plugin-contribution-model": "stable",
     "amzn.controls-dsl": "stable"
   },
-  "viceroy.workspaceSyncStrategy": "automatic",
   "vim.leader": "<space>",
   "vim.easymotion": false,
   "vim.handleKeys": {
@@ -560,9 +557,10 @@
   "zenMode.restore": true,
   "zenMode.showTabs": "single",
   "terminal.integrated.env.osx": {
-    "CW_NEW_SESSION": "1"
+    "CW_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
   },
-  "update.mode": "none",
+  "update.mode": "manual",
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono'",
   "chat.editor.fontSize": 16,
   "[typescript]": {
@@ -572,10 +570,18 @@
   "aws.suppressPrompts": {
     "codeWhispererConnectionExpired": true
   },
-  "viceroy.config.setUpCodeWhisperer": false,
   "viceroy.config.notifyGlibcIssue": false,
   "projectManager.sortList": "Path",
   "window.zoomLevel": 1,
   "liveServer.settings.donotShowInfoMsg": true,
-  "amazonQ.telemetry": false
+  "amazonQ.telemetry": false,
+  "viceroy.config.metrics.enabled": false,
+  "viceroy.config.promptForWorkspaceMode": "never",
+  "viceroy.config.autoReloadWorkspaceFolders": false,
+  "amazonQ.workspaceIndex": true,
+  "amazonQ.suppressPrompts": {
+    "amazonQSessionConfigurationMessage": true,
+    "codeWhispererConnectionExpired": true
+  },
+  "workbench.iconTheme": "eq-material-theme-icons"
 }
