@@ -4,7 +4,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-	selected=$(find -L ~/development ~/workspace ~/Documents ~/workspace/butryan-wiki/src -mindepth 1 -maxdepth 1  -type d | fzf)
+	selected=$(find -L ~/development ~/workspaces ~/Documents -mindepth 1 -maxdepth 1  -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -16,11 +16,13 @@ tmux_running="$(pgrep tmux)"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected -n $selected_name
+    tmux a -t $selected_name
     exit 0
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected -n $selected_name
+    tmux a -t $selected_name
 fi
 
 tmux switch-client -t $selected_name

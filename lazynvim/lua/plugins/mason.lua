@@ -1,5 +1,8 @@
 return {
     "williamboman/mason.nvim",
+    cmd = "Mason",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     opts = {
         ensure_installed = {
@@ -18,10 +21,7 @@ return {
             "pyright",
 
             -- JS/TS
-            "typescript-language-server",
             "eslint-lsp",
-            "eslint_d",
-            "prettierd",
 
             -- Lua
             "lua-language-server",
@@ -29,7 +29,7 @@ return {
 
             -- Markdown
             "markdown-toc",
-            "markdownlint-cli2",
+            -- "markdownlint-cli2",
             "marksman",
 
             -- JSON
@@ -39,4 +39,5 @@ return {
             "shfmt",
         },
     },
+    automatic_installation = false,
 }

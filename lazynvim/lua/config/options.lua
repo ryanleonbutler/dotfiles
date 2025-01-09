@@ -1,9 +1,6 @@
 local set = vim.opt
 local g = vim.g
 
--- theme
--- vim.cmd.colorscheme("catppuccin")
-
 -- warnings
 g.deprecation_warnings = true
 
@@ -11,11 +8,19 @@ g.deprecation_warnings = true
 g.lazyvim_prettier_needs_config = false
 
 -- formatting
-g.autoformat = true -- globally
+g.autoformat = false -- default
+
+vim.api.nvim_create_user_command("ToggleAutoFormat", function()
+    g.autoformat = not g.autoformat
+    print("Auto Format: " .. tostring(g.autoformat))
+end, {})
 
 -- UI
 set.colorcolumn = "100"
 set.conceallevel = 0
+set.cursorline = true
+-- set.cursorcolumn = true
+vim.o.list = false
 
 -- Netrw
 g.netrw_browse_split = 0

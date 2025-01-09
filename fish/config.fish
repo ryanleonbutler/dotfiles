@@ -8,7 +8,6 @@ function fish_user_key_bindings
     bind yy fish_clipboard_copy
     bind Y fish_clipboard_copy
     bind p fish_clipboard_paste
-	bind \cz 'fg 2>/dev/null; commandline -f repaint'
 end
 
 set fish_greeting
@@ -18,63 +17,66 @@ set -g fish_term24bit 1
 
 switch (uname)
     case Linux
-		fish_add_path ~/bin
-		fish_add_path ~/.local/bin
-		fish_add_path /home/linuxbrew/.linuxbrew/bin
-		fish_add_path /home/linuxbrew/.linuxbrew/sbin
+        fish_add_path ~/bin
+        fish_add_path ~/.local/bin
+        fish_add_path /home/linuxbrew/.linuxbrew/bin
+        fish_add_path /home/linuxbrew/.linuxbrew/sbin
     case Darwin
-		fish_add_path ~/bin
-		fish_add_path ~/.local/bin
-		fish_add_path /opt/homebrew/bin
-		fish_add_path /opt/homebrew/sbin
+        fish_add_path ~/bin
+        fish_add_path ~/.local/bin
+        fish_add_path /opt/homebrew/bin
+        fish_add_path /opt/homebrew/sbin
     case FreeBSD NetBSD DragonFly
-            echo "This is FreeBSD or similar system!"
+        echo "This is FreeBSD or similar system!"
     case '*'
-            echo "This is an unknown system!"
+        echo "This is an unknown system!"
 end
 
 # Autossh
 function random_unused_port
     set port $(shuf -i 60000-65000 -n 1)
-    netstat -lat | grep $port > /dev/null
-    if [ $status = 1 ];
+    netstat -lat | grep $port >/dev/null
+    if [ $status = 1 ]
         set -gx AUTOSSH_PORT $port
     else
         random_unused_port
-	end
+    end
 end
 function ssh
-	random_unused_port
-	autossh -4 $argv
-	sleep 1
-	echo 'disconnected...'
+    random_unused_port
+    autossh -4 $argv
+    sleep 1
+    echo 'disconnected...'
 end
 
 # aliases
 set -gx EDITOR nvim
-alias c "clear"
-alias v "nvim"
-alias vi "nvim"
-alias vim "nvim"
-alias t "tmux"
+alias c clear
+alias v nvim
+alias vi nvim
+alias vim nvim
+alias t tmux
 alias sf "source ~/.config/fish/config.fish"
 alias dotfiles="cd ~/development/dotfiles && vim"
-alias tmuxrc "vim ~/.tmux.conf"
+alias tmuxrc "vim ~/development/dotfiles/tmux/tmux.conf"
 alias fishrc "vim ~/development/dotfiles/fish/config.fish"
 alias starrc "vim ~/development/dotfiles/starship/starship.toml"
-alias sshrc "vim ~/.sshdevelopment/dotfiles"
+alias sshrc "vim ~/.ssh/config"
 alias vimrc "vim ~/development/dotfiles/vim/.vimrc"
-alias nvimrc "cd ~/development/dotfiles/nvim && vim ~/development/dotfiles/nvim/lua/custom"
-alias alarc "vim ~/development/dotfiles/alacritty/alacritty.yml"
-alias yabairc "vim ~/development/dotfiles/yabai/yabairc"
-alias skhdrc "vim ~/development/dotfiles/skhd/skhdrc"
+alias nvimrc "cd ~/development/dotfiles/lazynvim && vim ~/development/dotfiles/lazynvim"
+alias alarc "vim ~/development/dotfiles/alacritty/alacritty.toml"
+alias ghostrc "vim ~/development/dotfiles/ghostty/config"
+alias aerorc "vim ~/development/dotfiles/aerospace/aerospace.toml"
 alias filesopen "sudo lsof -n | cut -f1 -d | uniq -c | sort | tail"
-alias chrome "open -n -a /Applications/Vivaldi.app/Contents/MacOS/Vivaldi --args --user-data-dir='/Users/butryan/temporary-vivalid-profile-dir' --disable-web-security --ignore-certificate-errors && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /Users/butryan/temporary-chrome-profile-dir"
+# alias chrome "open -n --new -a /Applications/Vivaldi-Dev.app/Contents/MacOS/Vivaldi --args --window-name='Vivaldi-Dev' --user-data-dir='/Users/butryan/temporary-vivalid-profile-dir' --disable-web-security --ignore-certificate-errors && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /Users/butryan/temporary-chrome-profile-dir"
+alias chrome "open -n --new -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir='/Users/butryan/temporary-chrome-profile-dir' --disable-web-security --ignore-certificate-errors && cp ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/amazon_enterprise_access.json /Users/butryan/temporary-chrome-profile-dir"
 alias secretsrc "vim ~/.env"
-alias cht "~/.cht.sh"
 alias av "source .venv/bin/activate.fish"
-alias dv "deactivate"
-alias cat "bat"
+alias dv deactivate
+
+function giphy
+    ffmpeg -i $argv[1] -filter_complex "[0:v] fps=12,scale=w=-1:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" $argv[2]
+end
 
 # better cd
 alias .. "cd .."
@@ -82,18 +84,18 @@ alias .... "cd ../.."
 alias ...... "cd ../../.."
 
 # tmux
-alias t "tmux"
+alias t tmux
 alias tls "tmux ls"
 alias ta "tmux a"
 alias td "tmux detach"
 alias tk "tmux kill-session -t"
 alias tka "tmux kill-server"
-alias tx "tmuxinator"
+alias tx tmuxinator
 alias txl "tx list"
 alias txs "tx start"
 alias txe "tx edit"
 alias txn "tx new"
-alias ts "tmux-sessionizer"
+alias ts tmux-sessionizer
 
 # Docker
 alias dls "docker container ls -a"
@@ -107,10 +109,10 @@ alias ddm "docker container rm dev_machine --force"
 
 # eza
 if type -q eza
-  alias ll "eza -l -g --icons"
-  alias ls "eza --icons"
-  alias lla "ll -a"
-  alias tree "eza --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
+    alias ll "eza -l -g --icons"
+    alias ls "eza --icons"
+    alias lla "ll -a"
+    alias tree "eza --tree --level 2 --icons --long --all --ignore-glob '.git|node_modules|*.pyc|__pycache__/.DS_Store'"
 end
 
 # Git
@@ -126,6 +128,7 @@ alias gco "git checkout"
 alias gp "git push"
 alias gw "git clone --bare"
 alias gf "git fetch --all"
+alias gpr "git pull --rebase"
 
 # ipython
 alias ipython "ipython --TerminalInteractiveShell.editing_mode='vi'"
@@ -147,31 +150,37 @@ set -gx FZF_DEFAULT_OPTS '--bind=shift-tab:down,tab:up'
 
 ## fzf ripgrep magic
 function fw
-    rg --color=always --line-number --no-heading --smart-case $argv[1] | \
-    fzf --ansi \
-      --color "hl:-1:underline,hl+:-1:underline:reverse" \
-      --delimiter : \
-      --preview 'bat --color=always {1} --highlight-line {2}' \
-      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-      --bind 'enter:become(nvim {1} +{2})'
+    rg --color=always --line-number --no-heading --smart-case $argv[1] | fzf --ansi \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --delimiter : \
+        --preview 'bat --color=always {1} --highlight-line {2}' \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+        --bind 'enter:become(nvim {1} +{2})'
 end
 
 function ff
     fzf --preview 'bat --style=numbers --color=always {}' | xargs -n 1 nvim
 end
 
-# catppuccin-mocha
-set -Ux FZF_DEFAULT_OPTS "\
---color=bg+:-1,bg:-1,spinner:#f5e0dc,hl:#f38ba8,gutter:-1 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# rosepine-moon
+set -Ux FZF_DEFAULT_OPTS "
+	--color=fg:#908caa,bg:#232136,hl:#ea9a97
+	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
+	--color=border:#44415a,header:#3e8fb0,gutter:#232136
+	--color=spinner:#f6c177,info:#9ccfd8
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
+# Ghostty
+if test "$TERM_PROGRAM" = "ghostty"
+    set -gx TERM "xterm-256color"
+end
+
 # zoxide
-zoxide init fish | source
+zoxide init --cmd cd fish | source
 
 # starship
 starship init fish | source

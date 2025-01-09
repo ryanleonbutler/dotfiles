@@ -13,8 +13,8 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget borders active_color=0xFFFFFFFF inactive_color=0xff404344 width=5.0',
-    'workspace 4',
+	'exec-and-forget borders active_color=0xFFFFFFFF inactive_color=0xff404344 width=7.0',
+	'workspace 4',
 ]
 
 # Start AeroSpace at login
@@ -27,10 +27,10 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 50
+accordion-padding = 20
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -66,6 +66,8 @@ outer.right = 8
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
+
+ctrl-alt-cmd-shift-r = 'exec-and-forget ~/.config/aerospace/restart_wm.sh'
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -112,7 +114,7 @@ ctrl-alt-cmd-shift-2 = 'workspace 2'
 ctrl-alt-cmd-shift-3 = 'workspace 3'
 ctrl-alt-cmd-shift-4 = 'workspace 4'
 ctrl-alt-cmd-shift-5 = 'workspace 5'
-# alt-6 = 'workspace 6'
+# ctrl-alt-cmd-shift-6 = 'workspace 6'
 # alt-7 = 'workspace 7'
 # alt-8 = 'workspace 8'
 # alt-9 = 'workspace 9'
@@ -173,11 +175,17 @@ ctrl-alt-cmd-5 = 'move-node-to-workspace 5'
 # alt-shift-z = 'move-node-to-workspace Z'
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'                            # Monitor sequence number from left to right. 1-based indexing
-2 = 'main'                       # Main monitor
-3 = 'main'                  # Non-main monitor in case when there are only two monitors
-4 = ['main', 'secondary']        # You can specify multiple patterns. The first matching pattern will be used
-5 = ['main', 'secondary']        # You can specify multiple patterns. The first matching pattern will be used
+1 = 'main' # Monitor sequence number from left to right. 1-based indexing
+2 = 'main' # Main monitor
+3 = 'main' # Non-main monitor in case when there are only two monitors
+4 = [
+	'secondary',
+	'main',
+] # You can specify multiple patterns. The first matching pattern will be used
+5 = [
+	'secondary',
+	'main',
+] # You can specify multiple patterns. The first matching pattern will be used
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -193,7 +201,15 @@ if.app-name-regex-substring = 'Finder'
 run = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Discord'
+run = ['layout floating', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
 if.app-id = 'com.oecoway.friendlynetflix'
+run = ['layout floating', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.docker.docker'
 run = ['layout floating', 'move-node-to-workspace 1']
 
 
@@ -208,12 +224,15 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Outlook'
-run = ['layout floating', 'move-node-to-workspace 2']
-
+run = ['move-node-to-workspace 2']
 
 # ### 3 ####
 [[on-window-detected]]
 if.app-name-regex-substring = 'Alacritty'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Ghostty'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
@@ -223,11 +242,6 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.docker.docker'
-run = ['layout floating', 'move-node-to-workspace 3']
-
 
 # ### 4 ####
 [[on-window-detected]]
@@ -241,7 +255,10 @@ run = 'move-node-to-workspace 4'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+	'layout floating tiling',
+	'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']

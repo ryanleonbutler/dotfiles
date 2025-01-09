@@ -8,3 +8,5 @@ lazy-lock.json
 private.lua
 unison
 tmuxinator
+barium.lua
+bemol.lua
