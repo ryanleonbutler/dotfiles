@@ -8,21 +8,20 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-emoji",
             {
-                url = os.getenv("USER") .. "@git.amazon.com:pkg/AmazonQNVim",
-                -- build = ":AmazonQAuth",
-                config = function(_, opts)
-					-- vim.lsp.set_log_level("DEBUG")
-                    local amazonq = require("AmazonQNVim")
-                    amazonq.setup({
+                {
+                    name = "amazonq",
+                    url = "ssh://git.amazon.com/pkg/AmazonQNVim",
+                    opts = {
                         ssoStartUrl = "https://amzn.awsapps.com/start",
                         lsp_server_cmd = {
                             "node",
-                            os.getenv("HOME")
-                                .. "/.local/share/nvim/lazy/AmazonQNVim/language-server/build/aws-lsp-codewhisperer-token-binary.js",
+                            vim.fn.stdpath("data")
+                                .. "/lazy/amazonq/language-server/build/aws-lsp-codewhisperer-token-binary.js",
                             "--stdio",
                         },
-                    })
-                end,
+                        inline_suggest = false,
+                    },
+                },
             },
         },
         config = function()
@@ -39,15 +38,24 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-c>"] = cmp.mapping.complete(),
+                    ["<C-p>"] = cmp.mapping.complete({
+                        Config = {
+                            sources = cmp.config.sources({
+                                {
+                                    { name = "amazonq", priority = 100 },
+                                },
+                            }),
+                        },
+                    }),
                     ["<TAB>"] = cmp.mapping.select_next_item(),
                     ["<S-tab>"] = cmp.mapping.select_prev_item(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "amazonq" },
+                    { name = "amazonq", priority = 100 },
+                    { name = "luasnip", keyword_length = 1 },
                     { name = "nvim_lua" },
                     { name = "nvim_lsp" },
-                    { name = "luasnip", keyword_length = 1 },
                     {
                         name = "buffer",
                         keyword_length = 1,

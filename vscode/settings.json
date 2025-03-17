@@ -208,8 +208,8 @@
   "terminal.integrated.gpuAcceleration": "auto",
   "terminal.integrated.tabs.enabled": true,
   "viceroy.config.beautyMode": false,
-  "viceroy.config.internal.lastUpdateTime": "2025-01-08T09:41:41.595Z",
-  "viceroy.config.lastVersion": "0.53.201821",
+  "viceroy.config.internal.lastUpdateTime": "2025-03-06T07:01:23.241Z",
+  "viceroy.config.lastVersion": "0.53.201860",
   "viceroy.config.resolveSymlinks": "resolve",
   "viceroy.doc.welcome.showAtStartup": false,
   "viceroy.marketplace.extensionUpdateChannels": {
@@ -1802,5 +1802,7 @@
     },
   ],
   "playwright.reuseBrowser": true,
-  "playwright.showTrace": false
+  "playwright.showTrace": false,
+  "remote.SSH.connectTimeout": 60,
+  "remote.SSH.experimental.chat": false
 }

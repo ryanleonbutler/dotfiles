@@ -12,7 +12,9 @@ return {
                     cmd = { "barium" },
                     filetypes = { "brazil-config" },
                     root_dir = function(fname)
-						return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+                        return vim.fs.dirname(
+                            vim.fs.find(".git", { path = fname, upward = true })[1]
+                        )
                     end,
                     settings = {},
                 },
@@ -37,4 +39,14 @@ return {
             vim.lsp.buf.add_workspace_folder(line)
         end
     end,
+    servers = {
+        tsserver = {
+            init_options = {
+                preferences = {
+                    importModuleSpecifierPreference = "non-relative",
+                    importModuleSpecifierEnding = "minimal",
+                },
+            },
+        },
+    },
 }

@@ -88,3 +88,9 @@ end
 
 map("n", "<leader>yr", "<cmd>lua YankRelativePathToOsc()<cr>", "Yank relative file path")
 map("n", "<leader>yf", "<cmd>lua YankFullPathToOsc()<cr>", "Yank full file path")
+
+-- Telescope
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", "Find Recently Opened Files")
+
+-- Disable diagnostics
+map("n", "<leader>cd", "<cmd>lua vim.diagnostic.disable()<cr>", "Disable diagnostics")

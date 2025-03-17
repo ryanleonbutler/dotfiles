@@ -177,7 +177,10 @@ ctrl-alt-cmd-5 = 'move-node-to-workspace 5'
 [workspace-to-monitor-force-assignment]
 1 = 'main' # Monitor sequence number from left to right. 1-based indexing
 2 = 'main' # Main monitor
-3 = 'main' # Non-main monitor in case when there are only two monitors
+3 = [
+	'secondary',
+	'main',
+]
 4 = [
 	'secondary',
 	'main',
@@ -212,6 +215,10 @@ run = ['layout floating', 'move-node-to-workspace 1']
 if.app-id = 'com.docker.docker'
 run = ['layout floating', 'move-node-to-workspace 1']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'GIMP'
+run = ['layout floating', 'move-node-to-workspace 1']
+
 
 # ### 2 ####
 [[on-window-detected]]
@@ -242,6 +249,10 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Zed'
+run = ['move-node-to-workspace 3']
 
 # ### 4 ####
 [[on-window-detected]]
