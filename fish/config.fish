@@ -1,5 +1,5 @@
 if status is-interactive
-	#
+    #
 end
 
 # vi key bindings
@@ -34,23 +34,26 @@ end
 
 # Autossh
 function random_unused_port
-    set port $(shuf -i 60000-65000 -n 1)
-    netstat -lat | grep $port >/dev/null
-    if [ $status = 1 ]
-        set -gx AUTOSSH_PORT $port
-    else
-        random_unused_port
+    # Use nc (netcat) instead of netstat for faster checking
+    for port in (shuf -i 60000-65000 -n 5)
+        if not nc -z localhost $port 2>/dev/null
+            set -gx AUTOSSH_PORT $port
+            return 0
+        end
     end
 end
+
 function ssh
     random_unused_port
+    # set -x AUTOSSH_GATETIME 30
+    # set -x AUTOSSH_POLL 30
+    # autossh -M $AUTOSSH_PORT -4 $argv
     autossh -4 $argv
-    sleep 1
     echo 'disconnected...'
 end
 
 # aliases
-set -gx EDITOR nvim
+set -gx EDITOR vim
 alias c clear
 alias v nvim
 alias vi nvim
@@ -73,6 +76,7 @@ alias chrome "open -n --new -a /Applications/Google\ Chrome.app/Contents/MacOS/G
 alias secretsrc "vim ~/.env"
 alias av "source .venv/bin/activate.fish"
 alias dv deactivate
+alias z cd
 
 function giphy
     ffmpeg -i $argv[1] -filter_complex "[0:v] fps=12,scale=w=-1:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" $argv[2]
@@ -162,21 +166,16 @@ function ff
     fzf --preview 'bat --style=numbers --color=always {}' | xargs -n 1 nvim
 end
 
-# rosepine-moon
-set -Ux FZF_DEFAULT_OPTS "
-	--color=fg:#908caa,bg:#232136,hl:#ea9a97
-	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
-	--color=border:#44415a,header:#3e8fb0,gutter:#232136
-	--color=spinner:#f6c177,info:#9ccfd8
-	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+# fzf theme
+source $HOME/.config/fish/fzf.fish
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
 source $SECRETS
 
 # Ghostty
-if test "$TERM_PROGRAM" = "ghostty"
-    set -gx TERM "xterm-256color"
+if test "$TERM_PROGRAM" = ghostty
+    set -gx TERM xterm-256color
 end
 
 # zoxide

@@ -1,5 +1,18 @@
 return {
     "nvim-telescope/telescope.nvim",
+    dependencies = { "fcying/telescope-ctags-outline.nvim" },
+    extensions = {
+        ctags_outline = {
+            --ctags option
+            ctags = { "ctags" },
+            --ctags filetype option
+            ft_opt = {
+                vim = "--vim-kinds=fk",
+                lua = "--lua-kinds=fk",
+            },
+            sorting_strategy = "ascending",
+        },
+    },
     keys = {
         {
             "<leader>fg",
@@ -51,5 +64,13 @@ return {
             ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
             desc = "Find and Replace",
         },
+        {
+            "<leader>ft",
+            "<cmd>Telescope ctags_outline<cr>",
+            desc = "Find CTags",
+        },
     },
+    config = function()
+        require("telescope").load_extension("ctags_outline")
+    end,
 }

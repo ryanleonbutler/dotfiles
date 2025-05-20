@@ -10,12 +10,8 @@ g.lazyvim_prettier_needs_config = false
 -- formatting
 g.autoformat = false -- default
 
-vim.api.nvim_create_user_command("ToggleAutoFormat", function()
-    g.autoformat = not g.autoformat
-    print("Auto Format: " .. tostring(g.autoformat))
-end, {})
-
 -- UI
+vim.o.termguicolors = true
 set.colorcolumn = "100"
 set.conceallevel = 0
 set.cursorline = true
@@ -72,3 +68,11 @@ set.ttimeoutlen = 10
 -- splits
 set.splitbelow = true -- Put new windows below current
 set.splitright = true -- Put new windows right of current
+
+-- nvim-cmp
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
+
+-- load python
+-- g.python_host_prog  = '/Users/butryan/.local/share/mise/installs/python/3.13.1/bin/python'
+-- g.python3_host_prog = '/Users/butryan/.local/share/mise/installs/python/3.13.1/bin/python'

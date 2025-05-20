@@ -254,6 +254,14 @@ run = 'move-node-to-workspace 3'
 if.app-name-regex-substring = 'Zed'
 run = ['move-node-to-workspace 3']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'PyCharm'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'WebStorm'
+run = ['move-node-to-workspace 5']
+
 # ### 4 ####
 [[on-window-detected]]
 if.app-id = 'com.vivaldi.Vivaldi'

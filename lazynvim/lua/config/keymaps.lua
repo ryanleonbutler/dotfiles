@@ -94,3 +94,7 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", "Find Recently Opened File
 
 -- Disable diagnostics
 map("n", "<leader>cd", "<cmd>lua vim.diagnostic.disable()<cr>", "Disable diagnostics")
+
+-- Aerial
+map("n", "<leader>o", "<cmd>AerialToggle<cr>", "Outline Toggle")
+map("n", "K", "<cmd>lua require('pretty_hover').hover()<cr>", "Pretty LSP Docs")

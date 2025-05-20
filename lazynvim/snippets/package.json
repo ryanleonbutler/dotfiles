@@ -1,0 +1,41 @@
+{
+	"name": "custom-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"python"
+				],
+				"path": "./python.json"
+			},
+			{
+				"language": [
+					"python"
+				],
+				"path": "./pytest.json"
+			},
+			{
+				"language": [
+					"javascript"
+				],
+				"path": "./es6.json"
+			},
+			{
+				"language": [
+					[
+						"html",
+						"markdown",
+						"md",
+						"javascript",
+						"javascriptreact",
+						"javascript.jsx",
+						"typescript",
+						"typescriptreact",
+						"typescript.tsx"
+					]
+				],
+				"path": "./html.json"
+			}
+		]
+	}
+}

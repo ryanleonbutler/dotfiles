@@ -3,12 +3,12 @@ return {
     opts = {
 		bigfile = { enabled = true },
 		indent = { enabled = false },
-		input = { enabled = true },
-		notifier = { enabled = true },
-		quickfile = { enabled = true },
+		input = { enabled = false },
+		notifier = { enabled = false },
+		quickfile = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
-		words = { enabled = true },
+		words = { enabled = false },
         dashboard = {
             enabled = false,
             preset = {

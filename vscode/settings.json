@@ -94,9 +94,9 @@
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
-    "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
+    "**/CVS": true,
     "**/*.pyc": true,
     "**/*.pytest_cache": true,
     "**/__pycache__": true,
@@ -208,15 +208,21 @@
   "terminal.integrated.gpuAcceleration": "auto",
   "terminal.integrated.tabs.enabled": true,
   "viceroy.config.beautyMode": false,
-  "viceroy.config.internal.lastUpdateTime": "2025-03-06T07:01:23.241Z",
-  "viceroy.config.lastVersion": "0.53.201860",
+  "viceroy.config.internal.lastUpdateTime": "2025-05-16T08:18:08.844Z",
+  "viceroy.config.lastVersion": "0.53.202085",
   "viceroy.config.resolveSymlinks": "resolve",
   "viceroy.doc.welcome.showAtStartup": false,
   "viceroy.marketplace.extensionUpdateChannels": {
     "marklel.vscode-brazil": "stable",
     "amzn.AWSGuruQLinter": "stable",
     "kaze.vscode-plugin-contribution-model": "stable",
-    "amzn.controls-dsl": "stable"
+    "amzn.controls-dsl": "stable",
+    "mchpatr.datapath-vscode": "stable",
+    "mchpatr.datapath-language-server": "stable",
+    "amzn.vscode-isengard-tooltip": "stable",
+    "amzn.amzn-pippin": "stable",
+    "amazon.controls-dsl": "stable",
+    "asbx.amzn-cline": "stable"
   },
   "vim.leader": "<space>",
   "vim.easymotion": false,
@@ -536,7 +542,7 @@
     },
   ],
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
-  "workbench.colorTheme": "Rosé Pine Moon",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.restoreViewState": true,
@@ -574,7 +580,8 @@
   "amazonQ.workspaceIndex": true,
   "amazonQ.suppressPrompts": {
     "amazonQSessionConfigurationMessage": true,
-    "codeWhispererConnectionExpired": true
+    "codeWhispererConnectionExpired": true,
+    "amazonQSelectDeveloperProfile": true
   },
   "workbench.iconTheme": "eq-material-theme-icons",
   "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
@@ -1804,5 +1811,10 @@
   "playwright.reuseBrowser": true,
   "playwright.showTrace": false,
   "remote.SSH.connectTimeout": 60,
-  "remote.SSH.experimental.chat": false
+  "remote.SSH.experimental.chat": false,
+  "remote.defaultExtensionsIfInstalledLocally": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.vscode-pull-request-github"
+  ]
 }

@@ -1,13 +1,17 @@
-theme = "rose-pine-moon"
+theme = "/Users/butryan/development/dotfiles/ghostty/themes/Base16-Black-Metal-Bathory-Dark"
 shell-integration = "none"
 term = "xterm-256color"
 font-family = "JetBrainsMonoNL Nerd Font Mono"
-font-size = 20
+font-size = 18
 shell-integration = none
 cursor-style-blink = false
 cursor-style = block
 cursor-color = #E0DEF4
 quit-after-last-window-closed = true
+window-decoration = none
+background-opacity = 0.8
+link-url = true
+keybind = ctrl-shift-u=hint:link:link-url:open_browser
 
 ## === Font Configuration ===
 #font-family = "JetBrainsMonoNL Nerd Font Mono"  # String: Font name or empty to reset
@@ -178,5 +182,5 @@ quit-after-last-window-closed = true
 #
 ## === Window Style (Adwaita) ===
 #adw-toolbar-style = "flat"           # Values: "flat", "raised", "raised-border"
-#
-#
+
+# https://google.com
