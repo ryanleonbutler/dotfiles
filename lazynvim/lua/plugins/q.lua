@@ -13,8 +13,5 @@ return {
             },
             inline_suggest = true,
         },
-        config = function()
-            require("amazonq").setup({})
-        end,
     },
 }

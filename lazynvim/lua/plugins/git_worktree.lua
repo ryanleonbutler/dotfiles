@@ -1,6 +1,7 @@
 return {
     {
-        "ThePrimeagen/git-worktree.nvim",
+        "ryanleonbutler/git-worktree.nvim",
+        lazy = false,
         config = function()
             require("git-worktree").setup({
                 change_directory_command = "cd", -- default: "cd"

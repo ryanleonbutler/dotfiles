@@ -69,6 +69,11 @@ return {
             "<cmd>Telescope ctags_outline<cr>",
             desc = "Find CTags",
         },
+        {
+            "<leader>gw",
+            "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+            desc = "Browse Git Worktrees",
+        },
     },
     config = function()
         require("telescope").load_extension("ctags_outline")
