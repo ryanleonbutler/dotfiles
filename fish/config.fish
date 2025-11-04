@@ -53,7 +53,7 @@ function ssh
 end
 
 # aliases
-set -gx EDITOR vim
+set -gx EDITOR nvim
 alias c clear
 alias v nvim
 alias vi nvim
@@ -166,8 +166,13 @@ function ff
     fzf --preview 'bat --style=numbers --color=always {}' | xargs -n 1 nvim
 end
 
-# fzf theme
-source $HOME/.config/fish/fzf.fish
+# fzf theme (Catppuccin Mocha)
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
 
 # Source secrets from .env
 set -gx SECRETS $HOME/.env
@@ -183,3 +188,5 @@ zoxide init --cmd cd fish | source
 
 # starship
 starship init fish | source
+
+source "/Users/butryan/.config/awsdavinci-genai-knowledgebase/shell-config"

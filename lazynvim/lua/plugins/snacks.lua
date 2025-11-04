@@ -4,11 +4,11 @@ return {
 		bigfile = { enabled = true },
 		indent = { enabled = false },
 		input = { enabled = false },
-		notifier = { enabled = false },
+		notifier = { enabled = true },
 		quickfile = { enabled = false },
-		scroll = { enabled = false },
-		statuscolumn = { enabled = false },
-		words = { enabled = false },
+		scroll = { enabled = true },
+		statuscolumn = { enabled = true },
+		words = { enabled = true },
         dashboard = {
             enabled = false,
             preset = {

@@ -76,3 +76,5 @@ vim.opt.pumblend = 0
 -- load python
 -- g.python_host_prog  = '/Users/butryan/.local/share/mise/installs/python/3.13.1/bin/python'
 -- g.python3_host_prog = '/Users/butryan/.local/share/mise/installs/python/3.13.1/bin/python'
+
+vim.g.snacks_animate = false

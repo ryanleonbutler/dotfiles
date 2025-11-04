@@ -13,9 +13,8 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-	'exec-and-forget borders active_color=0xFFFFFFFF inactive_color=0xff404344 width=7.0',
 	'exec-and-forget sketchybar',
-	'workspace 4',
+	'exec-and-forget /opt/homebrew/bin/borders order=above style=square active_color=0xff92b3f5 inactive_color=0xff404344 width=8.0',
 ]
 
 # Notify Sketchybar about workspace change
@@ -72,6 +71,13 @@ outer.right = 10
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
+
+cmd-enter = '''exec-and-forget osascript -e '
+tell application "Alacritty"
+	do script
+	activate
+end tell'
+'''
 
 ctrl-alt-cmd-shift-r = 'exec-and-forget ~/.config/aerospace/restart_wm.sh'
 
@@ -202,6 +208,10 @@ run = ['layout floating', 'move-node-to-workspace 1']
 
 # ### 2 ####
 [[on-window-detected]]
+if.app-name-regex-substring = 'Zoom'
+run = ['layout floating', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-id = 'com.amazon.Amazon-Chime'
 run = ['layout floating', 'move-node-to-workspace 2']
 
@@ -213,39 +223,35 @@ run = 'move-node-to-workspace 2'
 if.app-name-regex-substring = 'Outlook'
 run = ['move-node-to-workspace 2']
 
+
 # ### 3 ####
 [[on-window-detected]]
 if.app-name-regex-substring = 'Alacritty'
 run = 'move-node-to-workspace 3'
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Zed'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'PyCharm'
-run = ['move-node-to-workspace 5']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'WebStorm'
-run = ['move-node-to-workspace 5']
 
 # ### 4 ####
 [[on-window-detected]]
 if.app-id = 'com.vivaldi.Vivaldi'
 run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 3'
+
+
+# ### 5 ####
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Zed'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Kiro'
+run = ['move-node-to-workspace 5']
 
 
 # 'service' binding mode declaration.
