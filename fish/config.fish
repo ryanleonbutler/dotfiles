@@ -141,7 +141,7 @@ alias ipython "ipython --TerminalInteractiveShell.editing_mode='vi'"
 set -gx AWS_PAGER
 
 # mise
-~/.local/bin/mise activate fish | source
+/usr/bin/mise activate fish | source
 
 # Rust
 set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
@@ -188,5 +188,3 @@ zoxide init --cmd cd fish | source
 
 # starship
 starship init fish | source
-
-source "/Users/butryan/.config/awsdavinci-genai-knowledgebase/shell-config"
